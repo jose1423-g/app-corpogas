@@ -1,0 +1,36 @@
+.footer {
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+    left:0;
+    z-index: -1;
+    width: 100%;
+}
+
+.text-small{
+    font-size: .9rem;
+}
+
+.bg-body-gray{
+    background-color: #f4f6f9;
+}
+
+.mb-6 {
+    margin-bottom: 3rem;
+}
+
+.mt-3rem {
+    margin-top: 3rem;
+}
+
+.holis {
+    margin-bottom: 3.9rem;
+}
+
+.select2 {
+    width:100%!important;
+}
+
+#grid-table .paginate_button {
+    font-size: 14px; /* Tamaño de letra deseado */
+}

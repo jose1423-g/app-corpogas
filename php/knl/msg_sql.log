@@ -1,0 +1,374 @@
+Error id: "31773"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "24210"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "14519"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "6180"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "28557"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\\\'holis\"' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\\\'holis\" ";
+Error id: "9538"; Message: "Unknown column 'holis' in 'where clause'"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = holis ";
+Error id: "10579"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "4752"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'hello\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'hello\' ";
+Error id: "30601"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\\\'hello\\\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\\\'hello\\\' ";
+Error id: "21390"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'hello`' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = ``hello` ";
+Error id: "1967"; Message: "Unknown column 'hello' in 'where clause'"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = `hello` ";
+Error id: "18364"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'hello\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'hello\'";
+Error id: "837"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'hello\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'hello\' ";
+Error id: "6810"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\\\'hello\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\\\'hello\' ";
+Error id: "28619"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'hello\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE Username = \'hello\'";
+Error id: "9128"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "3777"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "4631"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "26116"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "22509"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "22050"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'\' ";
+Error id: "14515"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "24176"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "1513"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "12910"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "11535"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "29084"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "6053"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "1914"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = ";
+Error id: "2859"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE IdUsuario =  ";
+Error id: "2952"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE IdUsuario =  ";
+Error id: "2337"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE IdUsuario = ";
+Error id: "8518"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE IdUsuario = \'\'";
+Error id: "12039"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "22580"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "5725"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'holis\'' at line 1"; Query: "SELECT IdUsuario FROM seg_usuarios WHERE UserName = \'holis\' ";
+Error id: "13948"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = ";
+Error id: "28771"; Message: "Table 'pruebascorpogas.usuarios' doesn't exist"; Query: "SELECT id_usuario, Usuario, EsActivo password FROM usuarios WHERE Usuario = 'desarrollo'";
+Error id: "13173"; Message: "Table 'pruebascorpogas.usuarios' doesn't exist"; Query: "SELECT id_usuario, Usuario, EsActivo password FROM usuarios WHERE Usuario = 'desarrollo'";
+Error id: "16138"; Message: "Unknown column 'FechaLastLogin' in 'field list'"; Query: "UPDATE seg_usuarios SET FechaLastLogin = 20231115, HoraLastLogin = '09:24:28', DirIpLastLogin = '::1' WHERE IdUsuario = 436";
+Error id: "30515"; Message: "Unknown column 'FechaLastLogin' in 'field list'"; Query: "UPDATE seg_usuarios SET FechaLastLogin = 20231115, HoraLastLogin = '09:28:06', DirIpLastLogin = '::1' WHERE IdUsuario = 436";
+Error id: "18022"; Message: "Unknown column 'FechaLastLogin' in 'field list'"; Query: "UPDATE seg_usuarios SET FechaLastLogin = 20231115, HoraLastLogin = '09:33:21', DirIpLastLogin = '::1' WHERE IdUsuario = 436";
+Error id: "15783"; Message: "Unknown column 't1.IdApp' in 'field list'"; Query: "SELECT t1.IdApp
+                FROM seg_perfilesaplicaciones t1
+                LEFT JOIN seg_usuarioperfil t2 ON
+                    t1.IdUsuarioPerfil = t2.UsuarioPerfilId
+                LEFT JOIN seg_aplicaciones t3 ON
+                    t1.IdApp = t3.IdApp
+                LEFT JOIN seg_usuarios t4 ON
+                    t1.IdUsuarioPerfil = t4.UsuarioPerfilId
+                WHERE IdUsuario = 436 AND
+                    t3.FileName = 'index.php'";
+Error id: "4987"; Message: "Table 'pruebascorpogas.usuarios' doesn't exist"; Query: "SELECT IdUsuario, passwd, EsActivo FROM usuarios WHERE UserName = 'desarrollo'";
+Error id: "26478"; Message: "Unknown column 'Estatus' in 'field list'"; Query: "
+            SELECT IdCategoria, IdCategoria AS icons, Categoria, Estatus
+            FROM   productos_categorias
+            
+            ORDER BY  IdCategoria
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "9288"; Message: "Table 'pruebascorpogas.medicos' doesn't exist"; Query: "SELECT idMedico, NombreCompleto, EsDefault, Cedula, CedulaEspecialidad,
+                    Medicos.IdEspecialidad, Especialidad.Especialidad,
+                    ApellidoP, ApellidoM, Nombre,
+                    CONCAT(COALESCE(Nombre, ''), ' ', COALESCE(ApellidoP, ''), ' ', COALESCE(ApellidoM, ''), ' ') AS NombreCompleto2
+                FROM Medicos
+                LEFT JOIN Especialidad ON
+                    Medicos.IdEspecialidad = Especialidad.Id
+                WHERE Estatus = 1 AND upper(NombreCompleto) LIKE '%B%'
+                UNION ALL SELECT -1, 'OTRO', 0, '', '', 0, '', '', '', 'OTRO', 'OTRO'
+                ORDER BY NombreCompleto";
+;
+Error id: "13622"; Message: "Table 'pruebascorpogas.medicos' doesn't exist"; Query: "SELECT idMedico, NombreCompleto, EsDefault, Cedula, CedulaEspecialidad,
+                    Medicos.IdEspecialidad, Especialidad.Especialidad,
+                    ApellidoP, ApellidoM, Nombre,
+                    CONCAT(COALESCE(Nombre, ''), ' ', COALESCE(ApellidoP, ''), ' ', COALESCE(ApellidoM, ''), ' ') AS NombreCompleto2
+                FROM Medicos
+                LEFT JOIN Especialidad ON
+                    Medicos.IdEspecialidad = Especialidad.Id
+                WHERE Estatus = 1 AND upper(NombreCompleto) LIKE '%BHS%'
+                UNION ALL SELECT -1, 'OTRO', 0, '', '', 0, '', '', '', 'OTRO', 'OTRO'
+                ORDER BY NombreCompleto";
+Error id: "19511"; Message: "Table 'pruebascorpogas.medicos' doesn't exist"; Query: "SELECT idMedico, NombreCompleto, EsDefault, Cedula, CedulaEspecialidad,
+                    Medicos.IdEspecialidad, Especialidad.Especialidad,
+                    ApellidoP, ApellidoM, Nombre,
+                    CONCAT(COALESCE(Nombre, ''), ' ', COALESCE(ApellidoP, ''), ' ', COALESCE(ApellidoM, ''), ' ') AS NombreCompleto2
+                FROM Medicos
+                LEFT JOIN Especialidad ON
+                    Medicos.IdEspecialidad = Especialidad.Id
+                WHERE Estatus = 1 AND upper(NombreCompleto) LIKE '%BHSJ%'
+                UNION ALL SELECT -1, 'OTRO', 0, '', '', 0, '', '', '', 'OTRO', 'OTRO'
+                ORDER BY NombreCompleto";
+Error id: "26020"; Message: "Table 'pruebascorpogas.medicos' doesn't exist"; Query: "SELECT idMedico, NombreCompleto, EsDefault, Cedula, CedulaEspecialidad,
+                    Medicos.IdEspecialidad, Especialidad.Especialidad,
+                    ApellidoP, ApellidoM, Nombre,
+                    CONCAT(COALESCE(Nombre, ''), ' ', COALESCE(ApellidoP, ''), ' ', COALESCE(ApellidoM, ''), ' ') AS NombreCompleto2
+                FROM Medicos
+                LEFT JOIN Especialidad ON
+                    Medicos.IdEspecialidad = Especialidad.Id
+                WHERE Estatus = 1 AND upper(NombreCompleto) LIKE '%BHSJO%'
+                UNION ALL SELECT -1, 'OTRO', 0, '', '', 0, '', '', '', 'OTRO', 'OTRO'
+                ORDER BY NombreCompleto";
+Error id: "31567"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "23482"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "27243"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "17116"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "28429"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "5205"; Message: "Unknown column 't2.1' in 'on clause'"; Query: "SELECT t2.IdCotizacion AS valor
+		 		FROM invcotizacionesDt t1  
+				LEFT JOIN invcotizaciones t2 ON t1.IdCotizacion_fk = t2.1";
+Error id: "27092"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "22148"; Message: "Unknown column 'IdArticulo' in 'field list'"; Query: "SELECT IdArticulo, descripcion FROM productos";
+Error id: "15981"; Message: "Unknown column 'IdArticulo' in 'field list'"; Query: "SELECT IdArticulo, descripcion FROM productos";
+Error id: "22397"; Message: "Unknown column 'IdArticulo' in 'field list'"; Query: "SELECT IdArticulo, descripcion FROM productos";
+Error id: "19278"; Message: "Unknown column 'IdArticulo' in 'field list'"; Query: "SELECT IdArticulo, descripcion FROM productos";
+Error id: "1747"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN produ' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "15978"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN produ' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "1650"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN produ' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "31394"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN pro t' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN pro t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "25104"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN produ' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN productos t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "10947"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN holis' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN holis t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "20288"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN holis' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+    LEFT JOIN holis t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "20745"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+                   ' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "3931"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show, t1.IdProducto AS icons
+            FROM productos t1
+                   ' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS show, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "1135"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.IdProducto AS icons
+            FROM productos t1
+                    LEFT JO' at line 1"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.img AS t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "12626"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't1.NombreRefaccion LIKE '%cable%'
+            ORDER BY  t1.IdProducto
+        ' at line 4"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            t1.NombreRefaccion LIKE '%cable%'
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "17203"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10' at line 5"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            WHERE t1.Referencia LIKE '%10004090%' AND t1.IdCategoria_fk = 
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "11299"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.Categoria
+            ORDER BY  t1.IdProducto
+                    ' at line 4"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            WHERE ORDER BY t2.Categoria
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "25980"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t1.NombreRefaccion
+            ORDER BY  t1.IdProducto
+              ' at line 4"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            WHERE ORDER BY t1.NombreRefaccion
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "11781"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.Categoria
+            ORDER BY  t1.IdProducto
+                    ' at line 4"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            WHERE ORDER BY t2.Categoria
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "9504"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10' at line 5"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            ORDER BY t2.Categoria
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "16089"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10' at line 5"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            ORDER BY t1.NombreRefaccion
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "4254"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BY t1.NombreRefaccion
+            ORDER BY  t1.IdProducto
+                    ' at line 4"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            ORDER BY t2.CategoriaORDER BY t1.NombreRefaccion
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "20058"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AS IdProducto
+            ORDER BY  t1.IdProducto
+                    asc
+   ' at line 4"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            ORDER BY t2.Categoria AS IdProducto
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "29688"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t1.NombreRefaccion AS IdProducto
+            ORDER BY  t1.IdProducto
+' at line 4"; Query: "
+            SELECT t1.IdProducto, t1.NombreRefaccion, t1.Referencia, t1.NoSerie, t2.Categoria, t1.IdProducto AS btnshow, t1.IdProducto AS icons
+            FROM productos t1
+                    LEFT JOIN productos_categorias t2 ON t1.IdCategoria_fk = t2.IdCategoria
+            WHERE ORDER BY t1.NombreRefaccion AS IdProducto
+            ORDER BY  t1.IdProducto
+                    asc
+            LIMIT 0, 10
+        ";
+Error id: "26495"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "29516"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "28430"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT NombreRefaccion, img FROM productos WHERE Idproducto = ";
+Error id: "18139"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SELECT IdApp FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "5496"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SELECT IdApp FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "21443"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SELECT IdApp FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "17472"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SELECT IdApp FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "16249"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SELECT IdApp FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "5310"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SELECT IdApp FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "28173"; Message: "Unknown column 'IdUsuarioPerfil' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "450"; Message: "Unknown column 'IdUsuarioPerfil' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
