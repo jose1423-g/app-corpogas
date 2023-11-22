@@ -51,9 +51,15 @@ $a_head_data_2 = array( 'id', 'Sel','File Name','Descripcion');
                     <div class="table-responsive" style="overflow-x: hidden;">
                         <table id="table-clientes" class="text-small display table table-bordered table-striped table-bordered table-hover table-condensed table-sm" style="width: 100%">
                             <thead>
-                                <div class="bg-primary d-flex justify-content-around rounded p-2 mb-2">
-                                    <h4>Aplicaciones para el perfil</h4>
-                                    <h4><span id="NombrePerfil"></span></h4>
+                            
+                                <div class="bg-primary d-flex justify-content-between rounded py-2 px-4 mb-2">
+                                    <div class="d-flex">
+                                        <h4 class="me-4">Aplicaciones para el perfil:</h4>
+                                        <h4><span id="NombrePerfil"></span></h4>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-danger btn-sm" id="btn-close"><i class="fas fa-times"></i></button>        
+                                    </div>
                                 </div>
                                 <div class="btn-group mb-2">
                                     <button type="button" data-toggle="tooltip" data-placement="top" title="Mostrar Solo los conceptos seleccionados" class="btn btn-sm btn-primary active" id="button-show-sel">Solo seleccionados</button>

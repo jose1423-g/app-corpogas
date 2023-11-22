@@ -6,14 +6,11 @@ require_once("$SYS_ROOT/php/knl/seg_sys.inc.php");
 
 session_start();
 
-// // cia (page title)
-// $qry = "SELECT PagesTitle FROM empresa WHERE EmpresaID = 1";
-// $title = DbGetFirstFieldValue($qry);
-// $title = (strlen($title)) ? $title : "Doxa";
-
 $app = basename(__FILE__);
 $app_title = 'Perfil de Usuario';
 segVerifyAuth($app);
+
+$title = "";
 
 // $id_user = SessGetUserId();
 // // $g_nombre_usuario = GetUserName($id_user, 'NA');

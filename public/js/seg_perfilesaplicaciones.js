@@ -3,13 +3,11 @@ $(document).ready(function() {
         "responsive": true,
 		"autoWidth": true,
 		"processing": true,
-        "serverSide": true,
+        // "serverSide": true,
 		"searching": true,
         "ajax": {
 			"url": "../../ria/seg_perfilesaplicaciones.ria.php",
 			"data": function(d) {
-				// d.s_mostrar = $('#s_Mostrar').val();
-				// d.s_area = $('#s_area').val();
 			}
 		},
         "language": {
@@ -50,7 +48,6 @@ $(document).ready(function() {
 			loadPerfil(data[0], perfil);
 	});
 
-
 	$('#table-clientes tbody').on('click', '.idapp', function(){
 
 		var data = table.row($(this).parents('tr')).data();
@@ -58,7 +55,6 @@ $(document).ready(function() {
 			data = table.row( this ).data();
 		}
 		
-		let a_data = Array();
 		var id_app = $(this).attr('data-id');
 		
 		var check_app = ($(this).prop('checked') ) ? 1 : 0;
@@ -112,7 +108,6 @@ $(document).ready(function() {
 		$("#id_perfil_all").val(1)
 		$("#button-show-sel").removeClass('active')
 		$("#button-show-all").addClass('active')
-		// table2();
 		$('#table-clientes').DataTable().ajax.reload();
 
 	})
@@ -121,17 +116,18 @@ $(document).ready(function() {
 		$("#button-show-all").removeClass('active')
 		$("#button-show-sel").addClass('active')
 		$("#id_perfil_all").val(0)
-		// table2();
 		$('#table-clientes').DataTable().ajax.reload();
 	})
+
+	$("#btn-close").on('click', function () {
+		$('#content-table').addClass('d-none');
+	});
 
 
 	function loadPerfil(id_perfil, NombrePerfil) {
 		$("#id_perfil").val(id_perfil);
-		// $("#UsuarioPerfilId").val(id_perfil);
 		$("#op").val();
 		$("#NombrePerfil").text(NombrePerfil);
-		// table2();
 		$('#table-clientes').DataTable().ajax.reload();
 	}
 
@@ -140,7 +136,7 @@ $(document).ready(function() {
 		"responsive": true,
 		"autoWidth": true,
 		"processing": true,
-        "serverSide": true,
+        // "serverSide": true,
 		"searching": true,
 		"ajax": {
 			"url": "../../ria/seg_perfilesaplicaciones_save.ria.php",
@@ -163,6 +159,10 @@ $(document).ready(function() {
 				"visible": false,
 				"searchable": false,
 			},
+			{
+				"targets": [ 1 ],
+				"className": 'text-center'
+			}
 		],
 		"columns": [
 			{ "data": "IdApp" },

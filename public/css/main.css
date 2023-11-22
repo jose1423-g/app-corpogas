@@ -23,14 +23,12 @@
     margin-top: 3rem;
 }
 
-.holis {
-    margin-bottom: 3.9rem;
-}
-
 .select2 {
     width:100%!important;
 }
-
-#grid-table .paginate_button {
-    font-size: 14px; /* Tamaño de letra deseado */
+/* para que los numeros de data tables de mostrar no se tapen */
+.custom-select {
+    padding-right: 1.5rem;
+    padding-left: 1rem;
+    font-size: .9rem;
 }
