@@ -22,7 +22,7 @@ $valor =  segVerifyAuth($app);
 // $g_nombre_usuario = GetUserName($id_user, 'NA');
 
 // // read data (grid)
-$a_head_data = array('#', 'Usuario', '#ApellidoPaterno', '#ApellidoMaterno', '#Nombre', 'Nombre', '#UsuarioPerfilId', 'Perfil', '#EsActivo', 'Estatus', '#passwd', 'Acciones');
+$a_head_data = array('#', 'Sel', 'E.S', 'Razon Social', 'Gerente', 'Correo de GPV', 'Correo del Supervisor', 'EsActivo');
 // $a_grid_data = array();
 
 // // catalogos
@@ -50,7 +50,7 @@ $a_head_data = array('#', 'Usuario', '#ApellidoPaterno', '#ApellidoMaterno', '#N
 		<div class="col-12">
 			<!-- Modal -->
 			<div class="modal fade" id="DataModal">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Agregar/Editar Usuario </h5>
@@ -59,45 +59,59 @@ $a_head_data = array('#', 'Usuario', '#ApellidoPaterno', '#ApellidoMaterno', '#N
 						<div class="modal-body p-0">
 							<form id="form-data" class="form-horizontal" action="" method="post">
 								<input type="hidden" id="IdUsuario" name="IdUsuario">
-								<input type="hidden" id="IsPasswdMod" name="IsPasswdMod" value="0">
+								<!-- <input type="hidden" id="IsPasswdMod" name="IsPasswdMod" value="0"> -->
 								<div class="modal-body">
-									<div class="form-group">
-										<label class="form-label fw-bold">Usuario</label>
-										<input type="text" name="UserName" id="UserName" class="form-control" placeholder="Usuario" maxlength="30" required>
-									</div>
-									<div class="form-group">
-										<label class="form-label fw-bold">Nombre</label>
-										<input type="text" name="Nombre" id="Nombre" class="form-control" placeholder="Nombre" maxlength="30" required>
-									</div>
-									<div class="form-group">
-										<label class="form-label fw-bold">Apellido Paterno</label>
-										<input type="text" name="ApellidoPaterno" id="ApellidoPaterno" class="form-control" placeholder="Apellido Paterno" maxlength="30" required>
-									</div>
-									<div class="form-group">
-										<label class="form-label fw-bold">Apellido Materno</label>
-										<input type="text" name="ApellidoMaterno" id="ApellidoMaterno" class="form-control" placeholder="Apellido Materno" maxlength="30">
-									</div>
-									<div class="form-group">
-										<label class="form-label fw-bold">Contraseña</label>
-										<input type="password" name="passwd" id="passwd" onchange="$('#IsPasswdMod').val(1);" class="form-control" placeholder="Contraseña" maxlength="50">
-									</div>
-									<div class="form-group">
-										<label class="form-label fw-bold">Perfil</label>
-										<select class="form-control" name="UsuarioPerfilId_fk" id="UsuarioPerfilId_fk">
-											<option value="">-- Perfil --</option>
-										<?php
-											foreach($a_perfiles as $a_pf) {
-												$id_perfil_show = $a_pf['UsuarioPerfilId'];
-												$nombre_perfil_show = $a_pf['NombrePerfil'];
-												echo "<option value=\"$id_perfil_show\">$nombre_perfil_show</option>";
-											}
-										?>
-										</select>
-									</div>
-									<div class="form-group">
-										<div class="custom-control custom-switch">
-											<input type="checkbox" class="custom-control-input" name="EsActivo" id="EsActivo">
-											<label class="custom-control-label" for="EsActivo">Usuario Activo</label>
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold">Usuario</label>
+												<input type="text" name="UserName" id="UserName" class="form-control" placeholder="Usuario" maxlength="30" required>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold">Nombre</label>
+												<input type="text" name="Nombre" id="Nombre" class="form-control" placeholder="Nombre" maxlength="30" required>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold">Apellido Paterno</label>
+												<input type="text" name="ApellidoPaterno" id="ApellidoPaterno" class="form-control" placeholder="Apellido Paterno" maxlength="30" required>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold">Apellido Materno</label>
+												<input type="text" name="ApellidoMaterno" id="ApellidoMaterno" class="form-control" placeholder="Apellido Materno" maxlength="30">
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold">Contraseña</label>
+												<input type="password" name="passwd" id="passwd" onchange="$('#IsPasswdMod').val(1);" class="form-control" placeholder="Contraseña" maxlength="50">
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold">Perfil</label>
+												<select class="form-control" name="UsuarioPerfilId_fk" id="UsuarioPerfilId_fk">
+													<option value="">-- Perfil --</option>
+												<?php
+													foreach($a_perfiles as $a_pf) {
+														$id_perfil_show = $a_pf['UsuarioPerfilId'];
+														$nombre_perfil_show = $a_pf['NombrePerfil'];
+														echo "<option value=\"$id_perfil_show\">$nombre_perfil_show</option>";
+													}
+												?>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" name="EsActivo" id="EsActivo">
+												<label class="custom-control-label" for="EsActivo">Usuario Activo</label>
+											</div>
 										</div>
 									</div>
 								</div> 

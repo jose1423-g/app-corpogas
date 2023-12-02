@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
     var table = $('#grid-table').DataTable( {
         "responsive": true,
 		"autoWidth": true,

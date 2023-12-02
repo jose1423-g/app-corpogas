@@ -21,13 +21,53 @@ $passwd = (isset($_REQUEST['passwd'])) ? $_REQUEST['passwd'] : "";
 $is_passwd_mod = (isset($_REQUEST['IsPasswdMod'])) ? $_REQUEST['IsPasswdMod'] : "0";
 $es_activo = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
 
-$output = "";
+$msg = "";
 $result = 0;
 
 // en proceso op=del
-if ($op == 'del') {
-	// No se eliminan usuarios
-	$output = "No se puede eliminar el Usuario. Debe desactivarlo para evitar su uso";
+if ($op == 'showusuario') {
+	if (!strlen($id_usuario)) {
+		$msg = 'Hubo un error, la categoria no fue seleccionado correctamente';
+		$result = -1;
+	} else if (true) {
+
+	}  else if (true) {
+
+	}  else if (true) {
+
+	}
+	
+	elseif (!strlen($id_user)) {
+		$msg = 'Su sesion ha expirado';
+		$result = -1;
+	} else {
+		$qry = "SELECT Usuername, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono, IdEstacion_fk
+		 		FROM seg_usuarios WHERE IdUsuario = $id_usuario";
+		$a_usuarios = DbQryToRow($qry);
+
+		$user_name = utf8_decode($user_name);
+		$apellido_paterno = utf8_decode($apellido_paterno);
+		$apellido_materno = utf8_decode($apellido_materno);
+		$nombre = utf8_decode($nombre);
+		$passwd = utf8_decode($passwd);
+		
+
+		$categoria = utf8_encode($a_categoria['Categoria']);
+		$a_categoria['Categoria'] = $categoria;
+
+		$nombre = utf8_encode($a_categoria['IdUsuario_fk']);
+		$a_categoria['IdUsuario_fk'] = $nombre;
+		
+
+		$a_categoria['result'] = 1;
+		$a_categoria['msg'] = $msg;
+		$a_ret = $a_categoria;
+	
+		echo json_encode($a_ret);
+		exit();
+	}
+
+
 } else {
 	// valida datos
 	$es_error = 0;
@@ -43,19 +83,9 @@ if ($op == 'del') {
 	}
 	
 	// transforma para guardar o insertar
-	$user_name = utf8_decode($user_name);
-	$apellido_paterno = utf8_decode($apellido_paterno);
-	$apellido_materno = utf8_decode($apellido_materno);
-	$nombre = utf8_decode($nombre);
-	$passwd = utf8_decode($passwd);
 	
 	// valida que UserName no exista en otro usuario
-	$slc_id_usuario = "";
-	if (strlen($id_usuario)) {
-		$slc_id_usuario = " AND IdUsuario <> $id_usuario";
-	}
-	$qry = "SELECT IdUsuario FROM seg_usuarios WHERE UserName = '$user_name' $slc_id_usuario";
-	// echo $qry;
+	
 
 	$user_name_existe = DbGetFirstFieldValue($qry);
 	if (strlen($user_name_existe)) {

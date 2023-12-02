@@ -30,6 +30,7 @@ if ($op == 'ShowImg') {
 		$qry = "SELECT img FROM productos WHERE Idproducto = $id_producto";
 		$a_producto = DbQryToRow($qry);	
 
+
 		$a_producto['result'] = 1;
 		$a_producto['msg'] = $msg;
 		$a_ret = $a_producto;

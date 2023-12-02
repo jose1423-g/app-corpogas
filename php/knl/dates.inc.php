@@ -155,9 +155,9 @@ function DtDbDiffLbl($dt_from, $dt_to, $is_days = false, $is_months = false, $is
     $dias = ($dias < 1) ? 0 : $dias;
 	if ($is_years_lbl) {
 		if ($anios == 1) {
-			$lbl_anios = 'año';
+			$lbl_anios = 'aï¿½o';
 		} else {
-			$lbl_anios = 'años';
+			$lbl_anios = 'aï¿½os';
         }
 	} else {
 		$lbl_anios = '';
@@ -175,14 +175,14 @@ function DtDbDiffLbl($dt_from, $dt_to, $is_days = false, $is_months = false, $is
 		}
         if ($is_days) {
             if ($dias == 1) {
-                $lbl_dias = 'día';
+                $lbl_dias = 'dï¿½a';
             } elseif ($dias == 0) { 
                 $lbl_dias = '';
                 if (!$show_zeros) {
                     $dias = '';
                 }
             } else {
-                $lbl_dias = 'días';
+                $lbl_dias = 'dï¿½as';
             }
             $ret = $anios . ' ' . $lbl_anios . ' ' . $meses . ' ' . $lbl_meses . ' ' . $dias . ' ' . $lbl_dias;
         } else {
@@ -216,8 +216,8 @@ function DtTmDiff($dt_from, $hr_from, $dt_to, $hr_to){
 // recibe 2 fechas en formato de la bd con sus respectivas horas y devuelve el numero de minutos de diferencia
 // ret: interval, label, long_label, minutos (int)
 //    	interval: 	devuelve el intervalo y debe ser formateado por quien reciba el return
-//		label:    	devuelve etiqueta creada en esta funcion: se trunca solo a 1 elemento (solo dias o solo años o solo minutos o solo horas, no da la diferencia completa)
-//		long_label:	misma que label pero con todo el intervalo explicado (ej. 1 año, 3 meses, 2 dias, 3 horas 5 minutos)
+//		label:    	devuelve etiqueta creada en esta funcion: se trunca solo a 1 elemento (solo dias o solo aï¿½os o solo minutos o solo horas, no da la diferencia completa)
+//		long_label:	misma que label pero con todo el intervalo explicado (ej. 1 aï¿½o, 3 meses, 2 dias, 3 horas 5 minutos)
 //		dias:		numero total de dias entre 2 fechas
 //		minutos:	numero total de minutos entre 2 fechas
 function DtTmMinutesDiff($dt_from, $hr_from, $dt_to, $hr_to, $ret = "label"){
@@ -246,9 +246,9 @@ function DtTmMinutesDiff($dt_from, $hr_from, $dt_to, $hr_to, $ret = "label"){
 	// para label o long_label
 	$min_label = "min";
 	$hr_label = "hr";
-	$day_label = "día";
+	$day_label = "dï¿½a";
 	$month_label = "mes";
-	$year_label = "año";
+	$year_label = "aï¿½o";
 	// pone minutos hora o dias
 	$years = $interval->format('%y%');
 	$meses = $interval->format('%m%');
@@ -336,7 +336,7 @@ function DtShowToDb($dt_show) {
 	$dt_show = substr($dt_show, 0, 8); // 8 posiciones de fecha	
     $y = substr($dt_show, 4, 4);
     $y = trim($y);
-    // si ponen año con 2 digitos trata de convertirlo a 4 digitos con este algoritmo
+    // si ponen aï¿½o con 2 digitos trata de convertirlo a 4 digitos con este algoritmo
     if (strlen($y) == 2) {
         if ($y < '40') {
             $y = "20$y";
@@ -359,7 +359,7 @@ function DtShowToDbLg($dt_show, $hora = '') {
 	$dt_show = substr($dt_show, 0, 8); // 8 posiciones de fecha	
     $y = substr($dt_show, 4, 4);
     $y = trim($y);
-    // si ponen año con 2 digitos trata de convertirlo a 4 digitos con este algoritmo
+    // si ponen aï¿½o con 2 digitos trata de convertirlo a 4 digitos con este algoritmo
     if (strlen($y) == 2) {
         if ($y < '40') {
             $y = "20$y";
@@ -410,8 +410,8 @@ function DtYearMonthAddMonths($year, $month, $no_months) {
     return (array('year' => $dt_year, 'month' => $dt_month));
 }
 
-// devuelve la diferencia en meses de 2 pares de valores año-mes.
-// el sufijo "to" indica la fecha que se asume es la mayor. Si "_from" es mayor, el resultado debe ser negativo ¿?
+// devuelve la diferencia en meses de 2 pares de valores aï¿½o-mes.
+// el sufijo "to" indica la fecha que se asume es la mayor. Si "_from" es mayor, el resultado debe ser negativo ï¿½?
 function DtYearMonthDiffMonths($year_from, $month_from, $year_to, $month_to) {
 	if (function_exists('date_diff')) {
 		$day = 1;
@@ -456,7 +456,7 @@ function DtTmDbLgAddHours($fecha, $duracion_intervalo) {
 // formato de fecha largo
 function DtDbLgToShowLong($dt_db_lg, $show_week_day = true) {
     $dt = date_create($dt_db_lg);
-    $a_days = array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+    $a_days = array("Domingo", "Lunes", "Martes", "Miï¿½rcoles", "Jueves", "Viernes", "Sï¿½bado");
     $a_months = array("", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
     
     $long = (($show_week_day) ? ($a_days[date_format($dt, 'w')] . ' ') : '') . date_format($dt, 'd') . ' de ' . $a_months[date_format($dt, 'n')] . ' de ' . date_format($dt, 'Y');

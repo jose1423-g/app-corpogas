@@ -1,6 +1,4 @@
 $(document).ready(function() {
-	
-	alert("si jalo")
 
 	$('#passwd_confirma').keydown( function(event) {
 		if (event.keyCode == 13) {

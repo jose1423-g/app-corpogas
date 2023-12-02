@@ -372,3 +372,79 @@ Error id: "16249"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SE
 Error id: "5310"; Message: "Unknown column 'IdApp' in 'field list'"; Query: "SELECT IdApp FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
 Error id: "28173"; Message: "Unknown column 'IdUsuarioPerfil' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
 Error id: "450"; Message: "Unknown column 'IdUsuarioPerfil' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1";
+Error id: "13752"; Message: "Unknown column 'IdArticulo' in 'field list'"; Query: "SELECT IdArticulo, descripcion FROM productos";
+Error id: "17465"; Message: "Unknown column 'IdArticulo' in 'field list'"; Query: "SELECT IdArticulo, descripcion FROM productos";
+Error id: "17639"; Message: "Unknown column 'IdArticulo' in 'field list'"; Query: "SELECT IdArticulo, descripcion FROM productos";
+Error id: "9840"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud = ";
+Error id: "11753"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud = ";
+Error id: "14958"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '7' at line 1"; Query: "SELECT * FROM solicitudes WHERE IdSolicitud = 48 AND IdCategoria_fk 7";
+Error id: "2726"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "27037"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "19687"; Message: "Unknown column 'IdSolcitud' in 'where clause'"; Query: "UPDATE solicitudes SET Folio = 'CMG - 50' WHERE IdSolcitud = 50";
+Error id: "20419"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "32698"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "15979"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "24008"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "3681"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "23942"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "22087"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "3700"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "12189"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "26"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.IdPartida ASC' at line 5"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad 
+	FROM solicitudes t1
+	LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+	LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+	WHERE t1.IdSolicitud =  ORDER BY t2.IdPartida ASC";
+Error id: "12409"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "12734"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";
+Error id: "15143"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"; Query: "SELECT t2.EsAdmin
+			FROM seg_usuarios t1
+			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
+			WHERE t1.IdUsuario = 436";

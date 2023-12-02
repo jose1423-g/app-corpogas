@@ -13,7 +13,13 @@ $(document).ready(function() {
 		"processing": true,
         "serverSide": true,
 		"searching": true,
-        "ajax": "../../ria/seg_categorias.ria.php", // ADHOC
+		"ajax": {
+            "url":"../../ria/seg_categorias.ria.php", // ADHOC
+            "data": function(d) {
+                // d.Folio = $('#folio').val();
+                // d.s_mostrar = $('#s_mostrar').val();
+            }
+        },
         "language": {
             "url": "../../vendor/datatables/lang/Spanish.json"
         },

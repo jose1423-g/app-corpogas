@@ -93,21 +93,27 @@ $(document).ready(function() {
 					var data = jQuery.parseJSON(data);
 				var result = data.result;
                 if (result == 1) {
-					    $("#show_img").attr('src', '../../images/products/'+data.img);
-                        // $('#IdUsuario_fk').val(data.IdUsuario_fk).trigger('change');
-                    if (data.EsActivo == 1) {
-                        $('#EsActivo').prop('checked', true);
-                    } else {
-                        $('#EsActivo').prop('checked', false);
-                    }
+					if (data.img ==  '') {
+						$("#show_img").attr('alt', 'Este producto no cuenta con imagen');
+					} else {
+						$("#show_img").attr('src', '../../images/products/'+data.img);
+					}
 					
-                }
-				
-				// $('#grid-table').DataTable().ajax.reload();
+				} else {
+					if (result == -1) {
+						toastr.warning(data.msg);
+					} else {
+						toastr.info(data.msg);
+					}
+				}
 			  }
 		});
 	  event.preventDefault();
 	} );
+
+    $("#close-modal-img").on('click', function () {
+		$("#show_img").attr('src', '');
+	})
 
 
     $('#grid-table tbody').on( 'click', '.btn-delete', function () {

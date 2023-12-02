@@ -36,7 +36,6 @@ if (!strlen($id_user)) {
 	$Descripcion =  (isset($_GET['Descripcion'])) ? $_GET['Descripcion'] : '';
 	$Referenecia =  (isset($_GET['Referenecia'])) ? $_GET['Referenecia'] : '';
 	$IdCategoria_fk =  (isset($_GET['IdCategoria_fk'])) ? $_GET['IdCategoria_fk'] : '';
-	$Ordenar =  (isset($_GET['Ordenar'])) ? $_GET['Ordenar'] : '';
 
     if (strlen($Descripcion)) {
         $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
@@ -48,15 +47,14 @@ if (!strlen($id_user)) {
         $custom_where .= "t1.Referencia LIKE '%$Referenecia%'";
     }
 
-    if (strlen($IdCategoria_fk)) {
+	if (strlen($IdCategoria_fk)) {
         $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
         $custom_where .= "t1.IdCategoria_fk = $IdCategoria_fk";
-    }
+    } else {
+		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= "t1.IdCategoria_fk = 0";
+	}
 
-    if ($Ordenar == 2) {
-        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-        $custom_where .= "ORDER BY t1.NombreRefaccion AS IdProducto";    
-    }
 	
 	// new function for paging
 	$start = (isset($_GET['start'])) ? $_GET['start'] : '';
