@@ -46,123 +46,193 @@ $(document).ready(function() {
 			data = table.row( this ).data();
 		}
 		let id_usuario = data[0];
+		$("#IdUsuario").val(id_usuario);
+		$('#passwd').prop('readonly', true);
 		loadusuario(id_usuario)
 	} );
 
 
 	function loadusuario(id_usuario) {
-		// alert(id_usuario);
-		// $("#IdUsuario").val(data[0]);
-		// $("#UserName").val(data[1]);
-		// $("#ApellidoPaterno").val(data[2]);
-		// $("#ApellidoMaterno").val(data[3]);
-		// $("#Nombre").val(data[4]);
-		// $("#UsuarioPerfilId").val(data[6]);
-		// $("#passwd").val(data[10]);
-		// $("#IsPasswdMod").val('0');
-		// if (data[8] == 1) {
-		// 	$('#EsActivo').prop('checked', true);
-		// } else {
-		// 	$('#EsActivo').prop('checked', false);
-		// }	
-
-		// $.ajax({
-        //     type: "get",
-        //     url: "../../ria/seg_categorias_save.ria.php",
-        //     data: {
-        //         id_categoria: id_categoria,
-        //         op: 'loadCategoria'
-        //     },
-        //     success: function (data) {
-        //         var data = jQuery.parseJSON(data);
-		// 		var result = data.result;
-        //         if (result == 1) {
-		// 			$("#Categoria").val(data.Categoria);
-        //             $('#IdUsuario_fk').val(data.IdUsuario_fk).trigger('change');
-        //             if (data.EsActivo == 1) {
-        //                 $('#EsActivo').prop('checked', true);
-        //             } else {
-        //                 $('#EsActivo').prop('checked', false);
-        //             }
+		
+		$.ajax({
+            type: "POST",
+            url: "../../ria/usuarios_save.ria.php",
+            data: {
+                IdUsuario: id_usuario,
+                op: 'loadUsuario'
+            },
+            success: function (data) {
+                var data = jQuery.parseJSON(data);
+				var result = data.result;
+                if (result == 1) {
+					// toastr.success(data.msg);
+					$("#UserName").val(data.Username);
+					$("#Nombre").val(data.Nombre);
+					$("#ApellidoPaterno").val(data.ApellidoPaterno);
+					$("#ApellidoMaterno").val(data.ApellidoMaterno);
+					$("#passwd").val(data.passwd);
+					$('#UsuarioPerfilId_fk').val(data.UsuarioPerfilId_fk).trigger('change');
+					$("#Email").val(data.Email);
+					$("#telefono").val(data.telefono);
+					$('#IdEstacion_fk').val(data.IdEstacion_fk).trigger('change');
+					$("#EmailSupervisor").val(data.EmailSupervisor);
 					
-        //         }
-        //     }
-        // });
+					// $("#EsActivo").val(data.EsActivo);
+					if (data.EsActivo == 1) {
+						$('#EsActivo').prop('checked', true);
+					} else {
+						$('#EsActivo').prop('checked', false);
+					}
+				} else {
+					if (result == -1) {
+						toastr.warning(data.msg);
+					} else {
+						toastr.info(data.msg);
+					}
+				}
+            }
+        });
 	}
 
-	
-	
-	$('#button-add').on('click', function(){
+	$("#btn-add").on('click', function () {
 		$('#DataModal').modal('show');
+		$('#passwd').prop('readonly', false);
+		clear();
+	})
+
+	$("#btn-save").on('click', function () {
+		let  parametros = $("#form-data").serialize();
+		parametros = parametros+"&op=save";
+		$.ajax({
+            type: "POST",
+            url: "../../ria/usuarios_save.ria.php",
+            data: parametros,
+            success: function (data) {
+                var data = jQuery.parseJSON(data);
+				var result = data.result;
+                if (result == 1) {
+					toastr.success(data.msg);
+					$('#grid-table').DataTable().ajax.reload();
+				} else {
+					if (result == -1) {
+						toastr.warning(data.msg);
+					} else {
+						toastr.info(data.msg);
+					}
+				}
+            }
+        });
 		
-		// clean form
+	})
+
+	function clear() {
 		$("#IdUsuario").val('');
 		$("#UserName").val('');
+		$("#Nombre").val('');
 		$("#ApellidoPaterno").val('');
 		$("#ApellidoMaterno").val('');
-		$("#Nombre").val('');
-		$("#UsuarioPerfilId").val('');
 		$("#passwd").val('');
-		$("#IsPasswdMod").val('0');
-		$('#EsActivo').prop('checked', true);
-	});
-	
-	$('#button-save').on('click', function(){
-		var parametros = $('#form-data').serialize();
-		$.ajax({
-				type: "POST",
-				url: "../../ria/usuarios-save.ria.php",
-				data: parametros,
-				success: function(data){
-					var data = jQuery.parseJSON(data);
-					var result = data.result;
-					if (result == 1) {
-						toastr.success(data.msg);
-					} else {
-						if (result == -1) {
-							toastr.warning(data.msg);
-						} else {
-							toastr.info(data.msg);
-						}
-					}
-				
-				$('#DataModal').modal('hide');
-				$('#grid-table').DataTable().ajax.reload();
-			  }
-		});
-	  event.preventDefault();
-		
+		// $('#UsuarioPerfilId_fk').val('')
+		$('#UsuarioPerfilId_fk').val(null).trigger('change');
+		$("#Email").val('');
+		$("#telefono").val('');
+		// $('#IdEstacion_fk').val('');
+		$('#IdEstacion_fk').val(null).trigger('change');
+		$("#EmailSupervisor").val('');
+		$("#EsActivo").prop('checked', true);
+	}
+
+
+	$('#UsuarioPerfilId_fk').select2({
+		theme: 'bootstrap4',
+		dropdownParent: $('#DataModal'),
+		language: 'es',
+		allowClear: true,
+		placeholder: 'Selecciona un valor',
 	});
 
-	$('#grid-table tbody').on( 'click', '.button-delete', function () {
-		if (!confirm(confirmacion_elimina)) return false;
+	$('#IdEstacion_fk').select2({
+		theme: 'bootstrap4',
+		dropdownParent: $('#DataModal'),
+		language: 'es',
+		allowClear: true,
+		placeholder: 'Selecciona un valor',
+	});
+
+
+	
+	
+	// $('#button-add').on('click', function(){
+	// 	$('#DataModal').modal('show');
 		
-		var data = table.row($(this).parents('tr')).data();
-		if (data == undefined) {
-			data = table.row( this ).data();
-		}
-		parametros = 'IdUsuario=' + data[0] + '&op=del';
-		$.ajax({
-				type: "POST",
-				url: "../../ria/usuarios-save.ria.php",
-				data: parametros,
-				success: function(data){
-					var data = jQuery.parseJSON(data);
-					var result = data.result;
-					if (result == 1) {
-						toastr.success(data.msg);
-					} else {
-						if (result == -1) {
-							toastr.warning(data.msg);
-						} else {
-							toastr.info(data.msg);
-						}
-					}
+	// 	// clean form
+	// 	$("#IdUsuario").val('');
+	// 	$("#UserName").val('');
+	// 	$("#ApellidoPaterno").val('');
+	// 	$("#ApellidoMaterno").val('');
+	// 	$("#Nombre").val('');
+	// 	$("#UsuarioPerfilId").val('');
+	// 	$("#passwd").val('');
+	// 	$("#IsPasswdMod").val('0');
+	// 	$('#EsActivo').prop('checked', true);
+	// });
+	
+	// $('#button-save').on('click', function(){
+	// 	var parametros = $('#form-data').serialize();
+	// 	$.ajax({
+	// 			type: "POST",
+	// 			url: "../../ria/usuarios-save.ria.php",
+	// 			data: parametros,
+	// 			success: function(data){
+	// 				var data = jQuery.parseJSON(data);
+	// 				var result = data.result;
+	// 				if (result == 1) {
+	// 					toastr.success(data.msg);
+	// 				} else {
+	// 					if (result == -1) {
+	// 						toastr.warning(data.msg);
+	// 					} else {
+	// 						toastr.info(data.msg);
+	// 					}
+	// 				}
 				
-				$('#DataModal').modal('hide');
-				$('#grid-table').DataTable().ajax.reload();
-			  }
-		});
-	  event.preventDefault();
-	} );
+	// 			$('#DataModal').modal('hide');
+	// 			$('#grid-table').DataTable().ajax.reload();
+	// 		  }
+	// 	});
+	//   event.preventDefault();
+		
+	// });
+
+	// $('#grid-table tbody').on( 'click', '.button-delete', function () {
+	// 	if (!confirm(confirmacion_elimina)) return false;
+		
+	// 	var data = table.row($(this).parents('tr')).data();
+	// 	if (data == undefined) {
+	// 		data = table.row( this ).data();
+	// 	}
+	// 	parametros = 'IdUsuario=' + data[0] + '&op=del';
+	// 	$.ajax({
+	// 			type: "POST",
+	// 			url: "../../ria/usuarios-save.ria.php",
+	// 			data: parametros,
+	// 			success: function(data){
+	// 				var data = jQuery.parseJSON(data);
+	// 				var result = data.result;
+	// 				if (result == 1) {
+	// 					toastr.success(data.msg);
+	// 				} else {
+	// 					if (result == -1) {
+	// 						toastr.warning(data.msg);
+	// 					} else {
+	// 						toastr.info(data.msg);
+	// 					}
+	// 				}
+				
+	// 			$('#DataModal').modal('hide');
+	// 			$('#grid-table').DataTable().ajax.reload();
+	// 		  }
+	// 	});
+	//   event.preventDefault();
+	// } );
 } );

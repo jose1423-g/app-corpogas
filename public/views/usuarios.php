@@ -6,40 +6,32 @@ require_once("$SYS_ROOT/php/knl/seg_sys.inc.php");
 
 session_start();
 
-// // cia (page title)
-// $qry = "SELECT PagesTitle FROM empresa WHERE EmpresaID = 1";
-// $title = DbGetFirstFieldValue($qry);
-// $title = (strlen($title)) ? $title : "Doxa";
 
 $app = basename(__FILE__);
-$app_title = 'Usuarios';
+$app_title = 'Gerentes';
 $usuarios_active = 'active';
-$valor =  segVerifyAuth($app);
-// echo $valor;
-// exit();
+segVerifyAuth($app);
 
-// $id_user = SessGetUserId();
-// $g_nombre_usuario = GetUserName($id_user, 'NA');
-
-// // read data (grid)
 $a_head_data = array('#', 'Sel', 'E.S', 'Razon Social', 'Gerente', 'Correo de GPV', 'Correo del Supervisor', 'EsActivo');
-// $a_grid_data = array();
 
-// // catalogos
-// $where_admin = " AND EsAdmin = 0";
-// if (strlen($id_user)) {
-// 	$qry = "SELECT t2.EsAdmin
-// 			FROM seg_usuarios t1
-// 			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
-// 			WHERE t1.IdUsuario = $id_user";
-// 	$es_admin = DbGetFirstFieldValue($qry);
-// 	if ($es_admin == 1) {
-// 		$where_admin = "";
-// 	}
-// }
-// $qry = "SELECT UsuarioPerfilId, NombrePerfil FROM seg_usuarioperfil WHERE EsActivo = 1 $where_admin ORDER BY Nivel, NombrePerfil";
-// $a_perfiles = DbQryToArray($qry, true);
+$qry = "SELECT UsuarioPerfilId, NombrePerfil FROM seg_usuarioperfil";
+$a_perfiles = DbQryToArray($qry, true);
+$perfiles;
+foreach($a_perfiles as $a_pf) {
+	$id_perfil_show = $a_pf['UsuarioPerfilId'];
+	$nombre_perfil_show = $a_pf['NombrePerfil'];
+	$perfiles .= "<option value=\"$id_perfil_show\">$nombre_perfil_show</option>";
+}
 
+$qry = "SELECT IdEstacion, EstacionServicio, NoEstacion FROM estaciones";
+$a_estaciones = DbQryToArray($qry, true);
+$estaciones;
+foreach ($a_estaciones as $row) {
+    $id = $row['IdEstacion'];
+    $nombre = utf8_decode($row['EstacionServicio']);
+    $numero = $row['NoEstacion'];
+    $estaciones .= "<option value='$id'>$numero $nombre</option>";
+}
 
 ?>
 
@@ -53,7 +45,7 @@ $a_head_data = array('#', 'Sel', 'E.S', 'Razon Social', 'Gerente', 'Correo de GP
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Agregar/Editar Usuario </h5>
+							<h5 class="modal-title" id="exampleModalLabel">Agregar/Editar Gerente</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body p-0">
@@ -65,46 +57,67 @@ $a_head_data = array('#', 'Sel', 'E.S', 'Razon Social', 'Gerente', 'Correo de GP
 										<div class="col-6">
 											<div class="form-group">
 												<label class="form-label fw-bold">Usuario</label>
-												<input type="text" name="UserName" id="UserName" class="form-control" placeholder="Usuario" maxlength="30" required>
+												<input type="text" name="UserName" id="UserName" class="form-control"  maxlength="30" >
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label class="form-label fw-bold">Nombre</label>
-												<input type="text" name="Nombre" id="Nombre" class="form-control" placeholder="Nombre" maxlength="30" required>
+												<input type="text" name="Nombre" id="Nombre" class="form-control"  maxlength="30" >
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label class="form-label fw-bold">Apellido Paterno</label>
-												<input type="text" name="ApellidoPaterno" id="ApellidoPaterno" class="form-control" placeholder="Apellido Paterno" maxlength="30" required>
+												<input type="text" name="ApellidoPaterno" id="ApellidoPaterno" class="form-control"  maxlength="30" >
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label class="form-label fw-bold">Apellido Materno</label>
-												<input type="text" name="ApellidoMaterno" id="ApellidoMaterno" class="form-control" placeholder="Apellido Materno" maxlength="30">
+												<input type="text" name="ApellidoMaterno" id="ApellidoMaterno" class="form-control"  maxlength="30" >
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label class="form-label fw-bold">Contraseña</label>
-												<input type="password" name="passwd" id="passwd" onchange="$('#IsPasswdMod').val(1);" class="form-control" placeholder="Contraseña" maxlength="50">
+												<input type="password" name="passwd" id="passwd" class="form-control"  maxlength="50">
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label class="form-label fw-bold">Perfil</label>
-												<select class="form-control" name="UsuarioPerfilId_fk" id="UsuarioPerfilId_fk">
+												<select class="form-control" name="UsuarioPerfilId_fk" id="UsuarioPerfilId_fk" >
 													<option value="">-- Perfil --</option>
-												<?php
-													foreach($a_perfiles as $a_pf) {
-														$id_perfil_show = $a_pf['UsuarioPerfilId'];
-														$nombre_perfil_show = $a_pf['NombrePerfil'];
-														echo "<option value=\"$id_perfil_show\">$nombre_perfil_show</option>";
-													}
-												?>
+												<?php echo $perfiles ?>
 												</select>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold" for="Email">Email</label>
+												<input type="email" name="Email" id="Email" class="form-control" >
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold" for="telefono">telefono</label>
+												<input type="text" name="telefono" id="telefono" class="form-control" >
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold" for="IdEstacion_fk">Estacion de servicio</label>
+												<select class="form-control" name="IdEstacion_fk" id="IdEstacion_fk" >
+													<option value="">-- estacion --</option>
+												<?php echo $estaciones; ?>
+												</select>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="form-label fw-bold" for="EmailSupervisor">Email supervisor</label>
+												<input type="email" name="EmailSupervisor" id="EmailSupervisor" class="form-control" >
 											</div>
 										</div>
 										<div class="form-group">
@@ -117,7 +130,7 @@ $a_head_data = array('#', 'Sel', 'E.S', 'Razon Social', 'Gerente', 'Correo de GP
 								</div> 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-									<button type="button" name="button-save" id="button-save" class="btn btn-sm btn-primary">Guardar</button>
+									<button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>
 								</div>
 							</form>
 						</div>
@@ -147,7 +160,7 @@ $a_head_data = array('#', 'Sel', 'E.S', 'Razon Social', 'Gerente', 'Correo de GP
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
-					<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>
+					<button type="button" id="btn-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>
 				</div>
 				<div class="col-sm-6">
 				</div>

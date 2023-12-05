@@ -15,7 +15,7 @@ if (!strlen($id_user)) {
 	 * you want to insert a non-database field (for example a counter or static image)
 	 */
 	 
-	$aColumns = array('t1.IdSolicitud', 't1.IdSolicitud AS icons', 't1.Folio', 't3.NoEstacion', 't1.Estatus', 't1.Fecha');
+	$aColumns = array('t1.IdSolicitud', 't1.IdSolicitud AS icons', 't1.Folio', 't4.NoEstacion', 't1.Estatus', 't1.Fecha');
 	$aColumnsClean = array( 'IdSolicitud', 'icons', 'Folio', 'NoEstacion', 'Estatus', 'Fecha');
 
 	// especifico
@@ -29,8 +29,9 @@ if (!strlen($id_user)) {
 	
 	// custom from
 	$custom_from = "FROM solicitudes t1 
-                    LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
-                    LEFT JOIN estaciones t3 ON t2.IdEstacion_fk  = t3.IdEstacion ";
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion ";
 						
 	$custom_where = "";
     $folio = (isset($_GET['Folio'])) ? $_GET['Folio'] : '';
@@ -52,6 +53,11 @@ if (!strlen($id_user)) {
     } else {
         $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
         $custom_where .= " Estatus = 2";
+    }
+
+	if ($s_mostrar == 4) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= " Estatus = 4";
     }
 
 

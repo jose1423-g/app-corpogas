@@ -19,9 +19,13 @@ $(document).ready(function () {
         // this.classList.toggle('nav-active');
         $(this).toggleClass('nav-active');
         $("#content-solicitudes").toggle('active');
+    })    
 
-    })
-    
+    $("#perfiles").on('click', function () {
+        // this.classList.toggle('nav-active');
+        $(this).toggleClass('nav-active');
+        $("#content-perfiles").toggle('active');
+    })    
 
 
 

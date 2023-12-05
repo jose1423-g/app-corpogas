@@ -11,7 +11,7 @@ $(document).ready(function() {
 	$('#button-save').on('click', function(){
 		$.ajax({
 				type: "POST",
-				url: "../ria/usuario-perfil-save.ria.php",
+				url: "../../ria/usuario-perfil-save.ria.php",
 				data: {
 					id_usuario: $("#IdUsuario").val(),
 					passwd_actual: $("#passwd_actual").val(),

@@ -12,19 +12,19 @@ segVerifyAuth($app);
 
 $title = "";
 
-// $id_user = SessGetUserId();
-// // $g_nombre_usuario = GetUserName($id_user, 'NA');
-// $a_user = GetUserData($id_user);
-// $g_nombre_usuario = trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno']);
-// $nombre_usuario = trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno'] . ' ' . $a_user['ApellidoMaterno']);
-// $user_name = $a_user['UserName'];
-// $id_perfil = $a_user['UsuarioPerfilId'];
+$id_user = SessGetUserId();
+// $g_nombre_usuario = GetUserName($id_user, 'NA');
+$a_user = GetUserData($id_user);
+$g_nombre_usuario = trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno']);
+$nombre_usuario = trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno'] . ' ' . $a_user['ApellidoMaterno']);
+$user_name = $a_user['UserName'];
+$id_perfil = $a_user['UsuarioPerfilId_fk'];
 
-// $perfil = "";
-// if (strlen($id_perfil)) {
-// 	$qry = "SELECT NombrePerfil FROM seg_usuarioperfil WHERE UsuarioPerfilId = $id_perfil";
-// 	$perfil = DbGetFirstFieldValue($qry);
-// }
+$perfil = "";
+if (strlen($id_perfil)) {
+	$qry = "SELECT NombrePerfil FROM seg_usuarioperfil WHERE UsuarioPerfilId = $id_perfil";
+	$perfil = DbGetFirstFieldValue($qry);
+}
 
 // read data (grid)
 

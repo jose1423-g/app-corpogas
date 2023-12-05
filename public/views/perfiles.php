@@ -7,13 +7,13 @@ require_once("$SYS_ROOT/php/knl/seg_sys.inc.php");
 session_start();
 
 $app = basename(__FILE__);
-$app_title = 'Estaciones';
+$app_title = 'Perfiles';
 $index_active = 'active';
 segVerifyAuth($app);
 
 $id_user = SessGetUserId();
 
-$a_head_data = array('#', 'Sel', 'Estacion de servicio', 'Num de estacion', 'Estatus');
+$a_head_data = array('#', 'Sel', 'Perfil', 'Estatus');
 
 
 ?>
@@ -28,26 +28,26 @@ $a_head_data = array('#', 'Sel', 'Estacion de servicio', 'Num de estacion', 'Est
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Agregar/Editar Estaciones </h5>
+							<h5 class="modal-title" id="exampleModalLabel">Agregar/Editar Perfiles</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body p-0">
 							<form id="form-data" class="form-horizontal" action="" method="post">
-							<input type="hidden" id="IdEstacion" name="IdEstacion">
+							<input type="hidden" id="UsuarioPerfilId" name="UsuarioPerfilId">
 							<div class="modal-body">
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
-											<label class="form-label fw-bold" for="EstacionServicio">Nombre de la estacion de servicio</label>
-											<input type="text" class="form-control form-control-sm" id="EstacionServicio" name="EstacionServicio">
+											<label class="form-label fw-bold" for="NombrePerfil">Nombre del perfil</label>
+											<input type="text" class="form-control form-control-sm" id="NombrePerfil" name="NombrePerfil">
 										</div>
 									</div>
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
 										<div class="form-group">
 											<label class="form-label fw-bold" for="NoEstacion">Numero de la estacion</label>
 											<input type="text" class="form-control form-control-sm" id="NoEstacion" name="NoEstacion">
 										</div>
-									</div>
+									</div> -->
 									<div class="col-12">
 										<div class="form-group">
 											<div class="custom-control custom-switch">
@@ -118,7 +118,7 @@ $a_head_data = array('#', 'Sel', 'Estacion de servicio', 'Num de estacion', 'Est
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/seg_estaciones.js"></script>
+<script src="../js/perfiles.js"></script>
 
 
 <?php include('../layouts/main_end.php'); ?>

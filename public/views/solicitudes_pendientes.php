@@ -6,40 +6,17 @@ require_once("$SYS_ROOT/php/knl/seg_sys.inc.php");
 
 session_start();
 
-// // cia (page title)
-// $qry = "SELECT PagesTitle FROM empresa WHERE EmpresaID = 1";
-// $title = DbGetFirstFieldValue($qry);
-// $title = (strlen($title)) ? $title : "Doxa";
-
 $app = basename(__FILE__);
 $app_title = 'Busqueda de Solicitudes';
 $usuarios_active = 'active';
-$valor =  segVerifyAuth($app);
-// echo $valor;
-// exit();
+segVerifyAuth($app);
 
-// $id_user = SessGetUserId();
-// $g_nombre_usuario = GetUserName($id_user, 'NA');
+$id_user = SessGetUserId();
 
-// // read data (grid)
+// read data (grid)
 $a_head_data = array('#', 'Acciones', 'Folio', 'Estacion', 'Estatus', 'Fecha Creacion');
 $a_head_data_refacciones = array('Partida', 'Referencia', 'Descripcion', 'Cantidad');
-// $a_grid_data = array();
 
-// // catalogos
-// $where_admin = " AND EsAdmin = 0";
-// if (strlen($id_user)) {
-// 	$qry = "SELECT t2.EsAdmin
-// 			FROM seg_usuarios t1
-// 			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
-// 			WHERE t1.IdUsuario = $id_user";
-// 	$es_admin = DbGetFirstFieldValue($qry);
-// 	if ($es_admin == 1) {
-// 		$where_admin = "";
-// 	}
-// }
-$qry = "SELECT IdUsuario, Nombre FROM seg_usuarios WHERE EsActivo = 1";
-$a_perfiles = DbQryToArray($qry, true);
 
 
 ?>
@@ -133,7 +110,8 @@ $a_perfiles = DbQryToArray($qry, true);
 							</div> 
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-								<!-- <button type="button" class="btn btn-danger btn-sm" id="btn-delete">Eliminar</button> -->
+								<button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button>
+                                <button type="button" class="btn btn-primary btn-sm" id="btn-aprobar">Aprobar</button>
 								<!-- <button type="button" name="button-save" id="button-save" class="btn btn-sm btn-primary">Guardar</button> -->
 
 							</div>
@@ -145,11 +123,10 @@ $a_perfiles = DbQryToArray($qry, true);
 		</div>
 
         <!-- search --> 
-        <div class="col-12 shadow-sm bg-white rounded-2 py-2">
+        <!-- <div class="col-12 shadow-sm bg-white rounded-2 py-2">
             <div class="py-2 border-bottom">
                 <h4><?php echo $app_title ?></h4>
             </div>
-            <!-- <form id="form-data" class="form-horizontal mt-2" action="" method="post"> -->
 			<div class="row pt-2 justify-content-center">
 				<div class="col-4">
 					<div class="form-group">
@@ -164,18 +141,32 @@ $a_perfiles = DbQryToArray($qry, true);
                             <option value=""></option>    
                             <option value="2">Pendiente Revision</option>
                             <option value="3">Rechazadas</option>
+                            <option value="3">Abiertas</option>
                         </select>    
 						<button class="btn btn-outline-info bg-info btn-sm" type="button" id="btn-search"><i class="fas fa-search"></i></button>
 					</div>
 				</div>
-			</div><!-- row -->
-            <!-- </form> -->
-        </div>
+			</div>
+        </div> -->
 		
 		<!-- table -->
 		<div class="col-12 conten bg-white mt-3 shadow-sm rounded-2 py-2">			
 			<section class="content-header">
-				<!-- <h1 class="fs-4"><?php echo $app_title; ?></h1> -->
+				<div class="row justify-content-end">
+                    <h1 class="fs-4"><?php echo $app_title; ?></h1>
+                    <div class="col-4">
+                        <label class="form-label fw-bold" for="s_mostrar">Estatus</label>
+                        <div class="input-group mb-3">
+                            <select class="form-select form-select-sm" name="s_mostrar" id="s_mostrar">
+                                <option value=""></option>    
+                                <option value="2">Pendiente Revision</option>
+                                <option value="3">Rechazadas</option>
+                                <option value="3">Abiertas</option>
+                            </select>    
+                            <button class="btn btn-outline-info bg-info btn-sm" type="button" id="btn-search"><i class="fas fa-search"></i></button>
+                        </div>
+				    </div>
+                </div>
 			</section>
 			<div class="table-responsive" style="overflow-x: hidden;">
 				<table id="grid-table" class="text-small display table table-bordered table-striped table-bordered table-hover table-condensed table-sm" style="width: 100%">

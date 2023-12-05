@@ -14,29 +14,15 @@ session_start();
 $app = basename(__FILE__);
 $app_title = 'Categorias';
 $usuarios_active = 'active';
-$valor =  segVerifyAuth($app);
-// echo $valor;
-// exit();
+segVerifyAuth($app);
 
-// $id_user = SessGetUserId();
-// $g_nombre_usuario = GetUserName($id_user, 'NA');
+
+
 
 // // read data (grid)
 $a_head_data = array('#', 'Sel', 'Categoria', 'Estatus', 'Encargado');
 // $a_grid_data = array();
 
-// // catalogos
-// $where_admin = " AND EsAdmin = 0";
-// if (strlen($id_user)) {
-// 	$qry = "SELECT t2.EsAdmin
-// 			FROM seg_usuarios t1
-// 			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
-// 			WHERE t1.IdUsuario = $id_user";
-// 	$es_admin = DbGetFirstFieldValue($qry);
-// 	if ($es_admin == 1) {
-// 		$where_admin = "";
-// 	}
-// }
 $qry = "SELECT IdUsuario, Nombre FROM seg_usuarios WHERE EsActivo = 1";
 $a_perfiles = DbQryToArray($qry, true);
 
@@ -59,7 +45,7 @@ $a_perfiles = DbQryToArray($qry, true);
 						<div class="modal-body p-0">
 							<form id="form-data" class="form-horizontal" action="" method="post">
 							<input type="hidden" id="id_categoria" name="id_categoria">
-							<input type="hidden" id="IsPasswdMod" name="IsPasswdMod" value="0">
+							<!-- <input type="hidden" id="IsPasswdMod" name="IsPasswdMod" value="0"> -->
 							<div class="modal-body">
 								<div class="row">
 									<div class="col-12">

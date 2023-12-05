@@ -14,10 +14,10 @@ $(document).ready(function() {
         "serverSide": true,
 		"searching": true,
 		"ajax": {
-            "url":"../../ria/seg_categorias.ria.php", // ADHOC
+            "url":"../../ria/perfiles.ria.php", // ADHOC
             "data": function(d) {
                 // d.Folio = $('#folio').val();
-                // d.s_mostrar = $('#s_mostrar').val();
+                d.s_mostrar = $('#s_mostrar').val();
             }
         },
         "language": {
@@ -33,7 +33,7 @@ $(document).ready(function() {
                 "searchable": false
             },
             {
-				"targets": [ 1,2,3,4 ],
+				"targets": [ 0, 1, 2, 3 ],
 				"className": 'text-center'
 			}
         ],
@@ -43,7 +43,7 @@ $(document).ready(function() {
 			null, // sel 1
 			null, // categoria 2
 			null, // estatus 3
-			null, // IdUsuario_fk
+			// null, // IdUsuario_fk
 		]
     });
  
@@ -54,24 +54,24 @@ $(document).ready(function() {
 		if (data == undefined) {
 			data = table.row( this ).data();
 		}
-        $("#id_categoria").val(data[0])
-		loadCatergoria(data[0])
+        $("#UsuarioPerfilId").val(data[0])
+		loadPerfiles(data[0])
 	});
 
-    function  loadCatergoria (id_categoria) {
+    function  loadPerfiles (id_perfil) {
         $.ajax({
-            type: "get",
-            url: "../../ria/seg_categorias_save.ria.php",
+            type: "POST",
+            url: "../../ria/perfiles_save.ria.php",
             data: {
-                id_categoria: id_categoria,
-                op: 'loadCategoria'
+                UsuarioPerfilId: id_perfil,
+                op: 'loadPerfiles'
             },
             success: function (data) {
                 var data = jQuery.parseJSON(data);
 				var result = data.result;
                 if (result == 1) {
-					$("#Categoria").val(data.Categoria);
-                    $('#IdUsuario_fk').val(data.IdUsuario_fk).trigger('change');
+					$("#NombrePerfil").val(data.NombrePerfil);
+                    // $("#NoEstacion").val(data.NoEstacion);
                     if (data.EsActivo == 1) {
                         $('#EsActivo').prop('checked', true);
                     } else {
@@ -82,35 +82,27 @@ $(document).ready(function() {
             }
         });
     }
+
+    $('#btn-search').on('click', function () {
+        $('#grid-table').DataTable().ajax.reload();
+    })
 	
 	$('#button-add').on('click', function(){
 		$('#DataModal').modal('show');
 		
-		// clean form
-		$("#id_categoria").val('');
-		$("#Categoria").val('');
-		// $("#IdUsuario_fk").val('');
-		$('#IdUsuario_fk').val(null).trigger('change');
+        $("#UsuarioPerfilId").val('');
+        $("#NombrePerfil").val('');
 		$('#EsActivo').prop('checked', true);
+        
+		
 	});
-
-	$('#IdUsuario_fk').select2({
-		theme: 'bootstrap4',
-		dropdownParent: $('#DataModal'),
-		language: 'es',
-		allowClear: true,
-		placeholder: 'Selecciona un valor',
-	});
-
-	// $('#IdUsuario_fk').val(1).trigger('change');
-
 
 	$('#button-save').on('click', function(){
 		var parametros = $('#form-data').serialize();
 		parametros = parametros + "&op=save";
 		$.ajax({
 				type: "POST",
-				url: "../../ria/seg_categorias_save.ria.php",
+				url: "../../ria/perfiles_save.ria.php",
 				data: parametros,
 				success: function(data){
 					var data = jQuery.parseJSON(data);
@@ -132,32 +124,32 @@ $(document).ready(function() {
 		
 	});
 
-	$("#btn-delete").on('click', function () {
-		id_categoria =  $("#id_categoria").val();
-		if (!confirm(confirmacion)) return false;
-		$.ajax({
-            type: "get",
-            url: "../../ria/seg_categorias_save.ria.php",
-            data: {
-                id_categoria: id_categoria,
-                op: 'delete'
-            },
-            success: function (data) {
-                var data = jQuery.parseJSON(data);
-				var result = data.result;
-				if (result == 1) {
-					toastr.success(data.msg);
-					$('#DataModal').modal('hide');
-					$('#grid-table').DataTable().ajax.reload();
-				} else {
-					if (result == -1) {
-						toastr.warning(data.msg);
-					} else {
-						toastr.info(data.msg);
-					}
-				}
-            }
-        });
-	})
+	// $("#btn-delete").on('click', function () {
+	// 	id_categoria =  $("#id_categoria").val();
+	// 	if (!confirm(confirmacion)) return false;
+	// 	$.ajax({
+    //         type: "get",
+    //         url: "../../ria/seg_estaciones_save.ria.php",
+    //         data: {
+    //             id_categoria: id_categoria,
+    //             op: 'delete'
+    //         },
+    //         success: function (data) {
+    //             var data = jQuery.parseJSON(data);
+	// 			var result = data.result;
+	// 			if (result == 1) {
+	// 				toastr.success(data.msg);
+	// 				$('#DataModal').modal('hide');
+	// 				$('#grid-table').DataTable().ajax.reload();
+	// 			} else {
+	// 				if (result == -1) {
+	// 					toastr.warning(data.msg);
+	// 				} else {
+	// 					toastr.info(data.msg);
+	// 				}
+	// 			}
+    //         }
+    //     });
+	// })
 
 } );

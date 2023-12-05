@@ -55,7 +55,7 @@ if ($op == 'load') {
 		}
 		
 		$qry = "SELECT IdApp, IdApp AS Sel, FileName, Descripcion
-				FROM Seg_Aplicaciones"; 
+				FROM Seg_Aplicaciones WHERE Es_activa = 1"; 
 
 		$a_data_b = DbQryToArray($qry, true);
 		$a_data = array();

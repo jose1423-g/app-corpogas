@@ -43,12 +43,13 @@ if ($op == 'loadSolicitud') {
 	} else {
 
 		$qry = "SELECT t1.Folio, t1.Estatus, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
-		t1.MotRechazo, t1.ObGenerales, t4.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email, t3.Telefono
+		t1.MotRechazo, t1.ObGenerales, t5.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email, t3.Telefono
 		FROM solicitudes t1 
 		LEFT JOIN areas t2 ON t1.IdAreaSolicita_fk = t2.IdArea
 		LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
-		LEFT JOIN estaciones t4 ON t3.IdEstacion_fk = t4.IdEstacion
-		WHERE IdSolicitud = $id_solicitud";
+		LEFT JOIN seg_estacionesusuario t4 ON t3.IdUsuario = t4.IdUsuario_fk 
+		LEFT JOIN estaciones t5 ON t4.IdEstacion_fk = t5.IdEstacion
+		WHERE IdSolicitud  = $id_solicitud";
         $a_datos = DbQryToRow($qry);	
 
 

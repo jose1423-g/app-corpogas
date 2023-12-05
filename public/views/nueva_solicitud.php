@@ -19,9 +19,10 @@ $id_user = SessGetUserId();
 $fecha_hoy = DtDbToday();
 $fecha_hoy_show =  DtDbToShow($fecha_hoy);
 
-$qry  = "SELECT t2.EstacionServicio, t2.NoEstacion, t1.Nombre, t1.ApellidoPaterno, t1.APellidoMaterno, t1.Email, t1.telefono, t1.IdEstacion_fk  
+$qry  = "SELECT t3.EstacionServicio, t3.NoEstacion, t1.Nombre, t1.ApellidoPaterno, t1.APellidoMaterno, t1.Email, t1.telefono, t2.IdEstacion_fk 
         FROM seg_usuarios t1
-        LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+        LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
+        LEFT JOIN estaciones t3 ON t2.IdEstacion_fk = t3.IdEstacion
         WHERE t1.IdUsuario = $id_user";
 $a_servicio = DbQryToArray($qry, true);
 foreach ($a_servicio as $row){
@@ -42,37 +43,6 @@ foreach ($a_areas as $row) {
     $nombre = $row['Nombre'];
     $html_areas .= "<option value='$id'>$nombre</option>";
 }
-
-// $qry = "SELECT Folio FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
-// $folio = DbGetFirstFieldValue($qry);
-
-// $qry = "SELECT IdSolicitud FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
-// $id_solicitud = DbGetFirstFieldValue($qry);
-
-// $qry = "SELECT * FROM solicitudes WHERE IdSolicitud = $id_solicitud AND Estatus = 1 ORDER BY IdSolicitud DESC LIMIT 1";
-// $resp = DbGetFirstFieldValue($qry);
-// if (strlen($resp)) {
-//     echo "true";
-// }
-// $qry = "INSERT INTO solicitudes (Folio, Estatus) VALUES ('CMG - ', 1)";
-// $res_upd = DbExecute($qry);
-//     DbCommit();
-//     if (is_string($res_upd)) {
-//         // $msg = 'Error al enviar los datos:' . $res_upd;
-//         // $result = -1;
-//         echo "Error";
-//     } else {
-//         if (!$res_upd) {
-//             // $msg = 'Error al enviar los datos';
-//             // $result = -1;
-//         } else {
-//             $qry = "SELECT * FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
-//             $id_solicitud  =  DbGetFirstFieldValue($qry);
-
-//             $qry = "UPDATE solicitudes SET Folio = 'CMG - $id_solicitud' WHERE IdSolicitud = $id_solicitud";
-//             DbExecute($qry);
-//         }
-//     }        
 
 
 

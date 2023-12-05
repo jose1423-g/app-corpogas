@@ -15,36 +15,38 @@ if (!strlen($id_user)) {
 	 * you want to insert a non-database field (for example a counter or static image)
 	 */
 	 
-	$aColumns = array('t1.IdUsuario', 't1.IdUsuario AS icons', 't3.NoEstacion', 't3.EstacionServicio', "CONCAT(t1.Nombre,' ',t1.ApellidoPaterno,' ',t1.ApellidoMaterno) AS Gerente",
-	't1.Email AS correogpv', 't1.Email AS supervisor', 't1.EsActivo');
-	$aColumnsClean = array( 'IdUsuario', 'icons', 'NoEstacion', 'EstacionServicio', 'Gerente', 'correogpv', 'supervisor','EsActivo');
+	$aColumns = array('UsuarioPerfilId', 'UsuarioPerfilId AS icons',  'NombrePerfil', 'EsActivo');
+	$aColumnsClean = array( 'UsuarioPerfilId', 'icons', 'NombrePerfil', 'EsActivo');
 
 	// especifico
 	// ..
 	
 	/* Indexed column (used for fast and accurate table cardinality) */
-	$sIndexColumn = "IdUsuario";
+	$sIndexColumn = "UsuarioPerfilId";
 	
 	/* DB table to use */
-	$sTable = "seg_usuarios";
+	$sTable = "seg_usuarioperfil";
 	
 	// custom from
-	$custom_from = "FROM seg_usuarios t1
-					LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
-					LEFT JOIN estaciones t3 ON t2.IdEstacion_fk = t3.IdEstacion";
+	$custom_from = "";
 						
 	$custom_where = "";
-	// si es usuario actual no es admin, oculta los usuarios con perfil admin
-	// $qry = "SELECT t2.EsAdmin
-	// 		FROM seg_usuarios t1
-	// 		LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
-	// 		WHERE t1.IdUsuario = $id_user";
-	// $es_admin = DbGetFirstFieldValue($qry);
+    // $s_razon_social = (isset($_GET['s_razon_social'])) ? $_GET['s_razon_social'] : '';
+	$s_mostrar =  (isset($_GET['s_mostrar'])) ? $_GET['s_mostrar'] : '';
+    // if (strlen($s_razon_social)) {
+    //     $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+    //     $custom_where .= " RazonSocial LIKE '%$s_razon_social%'";
+    // }
 	
-	// if ($es_admin != 1) {
-	// 	$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-	// 	$custom_where .= "t2.EsAdmin = 0";
-	// }
+	if ($s_mostrar == 1) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= " EsActivo = 1";
+    }
+	
+	if ($s_mostrar == 0) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= " EsActivo = 0";
+    }
 	
 	// new function for paging
 	$start = (isset($_GET['start'])) ? $_GET['start'] : '';
@@ -58,6 +60,7 @@ if (!strlen($id_user)) {
 	$rResult = $aQueryRet['rResult']; // recorset?
 	$iFilteredTotal = $aQueryRet['iFilteredTotal'];
 	$iTotal = $aQueryRet['iTotal'];
+	
 	
 	/*
 	 * Output
@@ -73,23 +76,23 @@ if (!strlen($id_user)) {
 	while ( $aRow = mysqli_fetch_array( $rResult ) ) {
 		$row = array();
 		for ( $i=0 ; $i<count($aColumns) ; $i++ ) {
-			if ( $aColumns[$i] == "EsActivo" ) {
-				$estatus = $aRow[ $aColumns[$i] ];
+			if ( $aColumns[$i] == "icons" ) {
+				$icons = '<div style="cursor:pointer;" title="Editar"><span class="fas fa-pen-square text-primary fs-5 button-edit" aria-hidden="true"></span></div>';
+                // $icons = '<button type="button" class="btn btn-primary button-edit btn-sm"><span class="fas fa-pen-square button-edit" aria-hidden="true"></button>';
+				$row[] = $icons;
+            } else if ($aColumns[$i] == "EsActivo"){
+                $estatus = $aRow[ $aColumns[$i] ];
                 if ($estatus == 1) {
                     $html = '<center><i class="far fa-check-square"></i></center>';
                 } else {
                     $html = '<center><i class="far fa-square"></i></center>';
                 }
                 $row[] = $html;
-			} else if ( $aColumns[$i] == "EstacionServicio" ){
-				$estacion = utf8_decode($aRow[ $aColumns[$i] ]);
-				$row[] = $estacion;
-			} else if ($aColumns[$i] == "icons") {
-				$icons = '<div style="cursor:pointer;" title="Editar"><span class="fas fa-pen-square text-primary fs-5 btn-edit" aria-hidden="true"></span></div>';
-				$row[] = $icons;
-			} 
-			
-			else if ( $aColumns[$i] != ' ' ) {
+            // } else if ($aColumns[$i] == "EstacionServicio") {
+            //     $estacion = $aRow[ $aColumns[$i] ];
+            //     $row[] = utf8_decode($estacion);
+
+			} else if ( $aColumns[$i] != ' ' ) {
 				/* General output */
 				$row[] = utf8_encode($aRow[ $aColumns[$i] ]);
 			}

@@ -448,3 +448,109 @@ Error id: "15143"; Message: "Unknown column 't1.UsuarioPerfilId' in 'on clause'"
 			FROM seg_usuarios t1
 			LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
 			WHERE t1.IdUsuario = 436";
+Error id: "9537"; Message: "Unknown column 't1.IdEstacion_fk' in 'on clause'"; Query: "
+            SELECT t1.IdUsuario, t1.IdUsuario AS icons, t2.NoEstacion, t2.EstacionServicio, CONCAT(t1.Nombre,' ',t1.ApellidoPaterno,' ',t1.ApellidoMaterno) AS Gerente, t1.Email AS correogpv, t1.Email AS supervisor, t1.EsActivo
+            FROM seg_usuarios t1
+					LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+            
+            ORDER BY  t1.IdUsuario
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "14995"; Message: "Unknown column 't2.IUsuario_fk' in 'on clause'"; Query: "
+            SELECT t1.IdUsuario, t1.IdUsuario AS icons, t3.NoEstacion, t3.EstacionServicio, CONCAT(t1.Nombre,' ',t1.ApellidoPaterno,' ',t1.ApellidoMaterno) AS Gerente, t1.Email AS correogpv, t1.Email AS supervisor, t1.EsActivo
+            FROM seg_usuarios t1
+					LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IUsuario_fk
+					LEFT JOIN estaciones t3 ON t2.IdEstacion_fk = t3.IdEstacion
+            
+            ORDER BY  t1.IdUsuario
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "16927"; Message: "Unknown column 't2.IUsuario_fk' in 'on clause'"; Query: "
+            SELECT t1.IdUsuario, t1.IdUsuario AS icons, t3.NoEstacion, t3.EstacionServicio, CONCAT(t1.Nombre,' ',t1.ApellidoPaterno,' ',t1.ApellidoMaterno) AS Gerente, t1.Email AS correogpv, t1.Email AS supervisor, t1.EsActivo
+            FROM seg_usuarios t1
+					LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IUsuario_fk
+					LEFT JOIN estaciones t3 ON t2.IdEstacion_fk = t3.IdEstacion
+            
+            ORDER BY  t1.IdUsuario
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "10059"; Message: "Unknown column 'EsActivo' in 'where clause'"; Query: "SELECT IdEstacion, EstacionServicio, NoEstacion FROM estaciones WHERE EsActivo = 1";
+Error id: "17704"; Message: ""; Query: "";
+Error id: "23270"; Message: "Unknown column 'IdEstacion_fk' in 'field list'"; Query: "SELECT Username, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono, IdEstacion_fk, EmailSupervisor
+				FROM seg_usuarios WHERE IdUsuario = 436";
+Error id: "18796"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '436' at line 5"; Query: "SELECT t1.Username, t1.Nombre, t1.ApellidoPaterno, t1.ApellidoMaterno, t1.passwd, t1.UsuarioPerfilId_fk, t1.EsActivo, t1.Email, 
+		t1.telefono, t1.EmailSupervisor, t2.IdEstacion_fk
+		FROM seg_usuarios t1
+		LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
+		WHERE IdUsuario 436";
+Error id: "3992"; Message: "Unknown column 't2.IdEstacion_fk' in 'on clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+                    LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+                    LEFT JOIN estaciones t3 ON t2.IdEstacion_fk  = t3.IdEstacion 
+            WHERE  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "10462"; Message: "Unknown column 't2.IdEstacion_fk' in 'on clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+                    LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+                    LEFT JOIN estaciones t3 ON t2.IdEstacion_fk  = t3.IdEstacion 
+            WHERE  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "17326"; Message: "Unknown column 't2.IdEstacion_fk' in 'on clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+                    LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+                    LEFT JOIN estaciones t3 ON t2.IdEstacion_fk  = t3.IdEstacion 
+            WHERE  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "9201"; Message: "Unknown column 't2.IdEstacion_fk' in 'on clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+                    LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+                    LEFT JOIN estaciones t3 ON t2.IdEstacion_fk  = t3.IdEstacion 
+            WHERE  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "16053"; Message: "Unknown column 't3.IdEstacion_fk' in 'on clause'"; Query: "SELECT t1.Folio, t1.Estatus, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
+		t1.MotRechazo, t1.ObGenerales, t4.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email, t3.Telefono
+		FROM solicitudes t1 
+		LEFT JOIN areas t2 ON t1.IdAreaSolicita_fk = t2.IdArea
+		LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+		LEFT JOIN estaciones t4 ON t3.IdEstacion_fk = t4.IdEstacion
+		WHERE IdSolicitud = 55";
+Error id: "27344"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '87' at line 2"; Query: "SELECT EstacionServicio, NoEstacion, EsActivo 
+                FROM estaciones = 87";
+Error id: "20506"; Message: "Unknown column 'UsuarioPerfilId' in 'field list'"; Query: "
+            SELECT UsuarioPerfilId, UsuarioPerfilId AS icons, NombrePerfil
+            FROM   estaciones
+            WHERE  EsActivo = 0
+            ORDER BY  UsuarioPerfilId
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "15039"; Message: "Unknown column 'UsuarioPerfilId' in 'field list'"; Query: "
+            SELECT UsuarioPerfilId, UsuarioPerfilId AS icons, NombrePerfil
+            FROM   estaciones
+            WHERE  EsActivo = 0
+            ORDER BY  UsuarioPerfilId
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "16028"; Message: "Unknown column 'Es_activa' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12 AND Es_activa = 1";
+Error id: "30759"; Message: "Unknown column 'Es_activa' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12 AND Es_activa = 1";
+Error id: "15060"; Message: "Unknown column 'Es_activa' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12 AND Es_activa = 1";
