@@ -105,10 +105,10 @@ class PDF extends FPDF {
 		$folio = $a_data['Folio'];
 		$this->SetFillColor(180, 180, 180);
 		$this->SetFont('Arial', 'B', 9);
-		$this->SetLine("Partida", 5, 75, 20, 'C', 0, 'B');
-		$this->SetLine("Referencia", 25, 75, 125, 'L', 0, 'B');
-		$this->SetLine("Descripcion", 75, 75, 87, 'L', 0, 'B');
-		$this->SetLine("Cantidad", 162, 75, 50, 'L', 0, 'B');
+		// $this->SetLine("Partida", 5, 75, 20, 'C', 0, 'B');
+		$this->SetLine("Referencia", 5, 75, 125, 'L', 0, 'B');
+		$this->SetLine("Descripcion", 57, 75, 118, 'L', 0, 'B');
+		$this->SetLine("Cantidad", 175, 75, 35, 'C', 0, 'B');
    
     }
 
@@ -202,13 +202,14 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 			FROM solicitudes t1
 			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
 			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
-			ORDER BY IdSolicitud DESC LIMIT 1";
+			WHERE t1.IdSolicitud = $id_solicitud";
 	$a_datos_hd = DbQryToRow($qry);
 
 	// $id_solciitud = $a_datos_hd['IdSolicitud'];
 	
 	//OBTIENE LOS DATOS DE LOS PRODUCTOS 
-	$qry = "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+	$qry = "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad 
+			FROM solicitudes t1 
 			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
 			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
 			WHERE t1.IdSolicitud = $id_solicitud";
@@ -218,18 +219,18 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 	global $a_data;
 	$a_data = array();
 
-	$a_data['title'] = "CorpoGas";
+	$a_data['title'] = "Orden de Compra";
 	$a_data['Folio'] = $a_datos_hd['Folio'];
 	$a_data['Fecha'] = $a_datos_hd['Fecha'];
 	$a_data['EstacionServicio'] = $a_datos_hd['EstacionServicio'];
 	$a_data['NoEstacion'] = $a_datos_hd['NoEstacion'];
-	$a_data['Gerente'] = $a_datos_hd['Gerente'];
+	$a_data['Gerente'] =  $a_datos_hd['Gerente'];
 	$a_data['Email'] = $a_datos_hd['Email'];
 	$a_data['MatEntregado'] = $a_datos_hd['MatEntregado'];
 	$a_data['AreaInstaloEntrego'] = $a_datos_hd['AreaInstaloEntrego'];
 	$a_data['FolioRemision'] = $a_datos_hd['FolioRemision'];
 	$a_data['Nomenclatura'] = $a_datos_hd['Nomenclatura'];
-	$a_data['Observaciones'] = $a_datos_hd['Observaciones'];
+	$a_data['Observaciones'] =  $a_datos_hd['Observaciones'];
 
 	// comienza pagina
 	$pdf->AddPage();
@@ -256,7 +257,7 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 	// echo print_r($a_refacciones_dt, true);
 	// exit();
 	foreach ($a_refacciones_dt as $a_line) {
-		$id_partida = $a_line['IdPartida'];
+		// $id_partida = $a_line['IdPartida'];
 		$referencia = $a_line['Referencia'];
 		$descripcion = utf8_encode($a_line['Descripcion']);
 		$cantidad = $a_line['Cantidad'];
@@ -265,10 +266,10 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 		$is_fill = (fmod($cont, 2) == 0);
 		$brd = 0;
 		// IMPRIME DATOS DE LOS PRODUCTOS
-		$pdf->SetLine($id_partida, 5, '', 19, 'C', 0, $brd, $is_fill, $ln);
-		$pdf->SetLine($referencia, 25, '', 50, 'L', 0, $brd, $is_fill, $ln);
-		$pdf->SetLine($descripcion, 76, '', 85, 'L', 0, $brd, $is_fill, $ln);
-		$pdf->SetLine($cantidad, 162, '', 50, 'L', 1, $brd, $is_fill, $ln);
+		// $pdf->SetLine($id_partida, 5, '', 19, 'C', 0, $brd, $is_fill, $ln);
+		$pdf->SetLine($referencia, 5, '', 50, 'l', 0, $brd, $is_fill, $ln);
+		$pdf->SetLine($descripcion, 57, '', 116, 'L', 0, $brd, $is_fill, $ln);
+		$pdf->SetLine($cantidad, 175, '', 35, 'C', 1, $brd, $is_fill, $ln);
 		
 		if ($cont > 1) {
 			$pos = $pdf->GetY() - $ln;
@@ -286,10 +287,10 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 			$cont++;
 			$is_fill = (fmod($cont, 2) == 0);
 			// LINEAS DEL PDF 
-			$pdf->SetLine('', 5, '', 19, 'C', 0, $brd, $is_fill, $ln);
-			$pdf->SetLine('', 25, '', 50, 'L', 0, $brd, $is_fill, $ln);
-			$pdf->SetLine('', 76, '', 85, 'L', 0, $brd, $is_fill, $ln);
-			$pdf->SetLine('', 162, '', 50, 'L', 1, $brd, $is_fill, $ln);
+			// $pdf->SetLine('', 5, '', 19, 'C', 0, $brd, $is_fill, $ln);
+			$pdf->SetLine('', 5, '', 50, 'L', 0, $brd, $is_fill, $ln);
+			$pdf->SetLine('', 57, '', 116, 'L', 0, $brd, $is_fill, $ln);
+			$pdf->SetLine('', 175, '', 35, 'L', 1, $brd, $is_fill, $ln);
 			$pos = $pdf->GetY() - $ln;
 			$pdf->Line(5, $pos, 210, $pos);
 		}
@@ -298,36 +299,6 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 	$pos_y = $pdf->GetY();
 
 	$pdf->SetY($pos_y);
-
-	// $subtotal = $a_data['subtotal'];
-	// $subtotal = $subtotal_dt; //$a_data['total']; // ojo, no muestra monto antes de IVA
-	// $total_factura = $total;
-
-	// nombre de moneda
-	// $moneda_en_letras = '';
-	// $a_data['moneda'];
-	// $moneda_en_letras = (!strlen($moneda_en_letras)) ? 'MXN' : $moneda_en_letras; // pesos mexicanos por default
-	// $qry = "SELECT NombreCorto, CdMonedaEnLetras FROM knl_monedas WHERE Moneda = '$moneda_en_letras'";
-	// $a_moneda = DbQryToRow($qry);
-	// $nombre_moneda = ""; // $a_moneda['NombreCorto'];
-	// $cd_moneda_letras = '';
-	// $a_moneda['CdMonedaEnLetras'];
-	// $nombre_moneda = (strlen($nombre_moneda)) ? $nombre_moneda : "pesos"; // Pesos por default
-
-	// numero en letras
-	// $en_letras = new EnLetras();
-	// if ($total_factura == 1) {
-		// if (substr($nombre_moneda, -1) == 's') {
-			// $nombre_moneda = substr($nombre_moneda, 0, -1);
-		// }
-	// }
-	// $num_letras = strtoupper($en_letras->ValorEnLetras($total_factura, $nombre_moneda, $cd_moneda_letras));
-	// $num_letras = "";
-
-	// limpia espacios dobles
-	// while (strpos($num_letras, '  ')) {
-		// $num_letras = str_replace('  ', ' ', $num_letras);
-	// }
 
 	// posicion de subtotal
 	$pdf->SetDrawColor(190, 190, 190);
@@ -341,24 +312,27 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 	
 	// mensaje junto al total o subtotal
 	$pos_msg = 245;
-	// $pdf->SetMultiLine("A la vista la cantidad se�alada, importe de mercanc�as recibidas de conformidad", 5, $pos_msg, 150, 'C', 1, 0, $ln);
-	// $pdf->Ln(); // ??
 	$observaciones = $a_data['Observaciones'];
 	$pdf->SetFont('Arial', 'B', 9);
 	$pdf->SetLine("Observaciones:", 5, $pos_msg,  20, 'L', 1);
 	$pdf->SetFont('Arial', '', 9);
 	$pdf->SetLine($observaciones, 5, 250, 207, 'L', 0, 'T', 1, 7);
-	$fecha_show = DtDbLgToShowLong($fecha_show, true);
-	$pdf->SetLine($fecha_show, 5, 260, 207, 'L');
-	
+	$fecha_footer = DtDbLgToShowLong($fecha_show, true);
+	$pdf->SetLine($fecha_footer, 5, 260, 207, 'L');
 
-	$filename_b = str_pad(0, 6, 0, STR_PAD_LEFT);
+
+	// $filename_b = str_pad(0, 6, 0, STR_PAD_LEFT);
+	$fecha = FechaPersonalizada($fecha_show);
+	$NoEstacion  = $a_data['NoEstacion'];
+	$filename_b = $fecha.'_'.$NoEstacion;
 	$filename = "$filename_b" . ".pdf";
 	// las notas solo se guardan si el parametro is_show_nota = 0
 	if ($is_show_venta == 1) {
 		// envia salida a la pantalla
-		$pdf->Output();
-		$pdf->Output("I", "venta_" . $filename_b . ".pdf");
+		// $pdf->Output();
+		// $pdf->Output('I', 'pdf_downloads/pedido_'.$filename_b.'.pdf');	
+		/* no permite repetir los archivos */
+		$pdf->Output('F', '../pdf_downloads/pedido_'.$filename_b.'.pdf');
 	} else {
 		// guarda archivo
 		$pdf->Output($filename);
@@ -368,9 +342,10 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 
 
 // $id_venta = '1';
-$id_solicitud = 55;
-$fecha_show =  DtDbToday();
-// $id_solicitud = $_REQUEST['IdSolicitud'];
+// $id_solicitud = 72;
+// $fecha_show =  DtDbToday();
+$fecha_show = $_REQUEST['fecha'];
+$id_solicitud = $_REQUEST['IdSolicitud'];
 $is_show = 1; // para que se muestre por pantalla (no se grabara el PDF)
 generaVentaPdf($id_solicitud, $is_show, $fecha_show);
 ?>

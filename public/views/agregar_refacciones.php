@@ -13,8 +13,8 @@ segVerifyAuth($app);
 
 
 $app = basename(__FILE__);
-
-$a_head_data = array('Partida', 'Referencia', 'Descripcion', 'Cantidad', 'Acciones');
+// Partida
+$a_head_data = array('#','Referencia', 'Descripcion', 'Cantidad', 'Acciones');
 $a_head_data_refacciones = array('#','Referencia', 'Descripcion', 'Categoria', 'Cantidad', 'Imagen');
 
 /* obtiene el ultimo id de la tabla solicitudes */
@@ -60,8 +60,6 @@ foreach ($a_solicitud as $row) {
     $observaciones = utf8_encode($row['Observaciones']);
 
 }
-
-
 
 
 ?>

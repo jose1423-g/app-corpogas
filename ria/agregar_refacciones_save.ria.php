@@ -57,26 +57,36 @@ if ($op == 'ShowImg') {
 
     if (strlen($resp)) {
         $datos = json_decode($data_json, true);   
-        $qry = "SELECT IdPartida FROM productos_solicitud ORDER BY IdPartida DESC LIMIT 1";
-        $i  =  DbGetFirstFieldValue($qry);
-        $i = $i + 1;
-        foreach ($datos as $id => $cantidad) {
-            $qry = "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES ($i, $id, $cantidad, $id_solicitud)";
-            $res_upd = DbExecute($qry);
-            DbCommit();
-            if (is_string($res_upd)) {
-                $msg = 'Error al  agregar los productos:' . $res_upd;
-                $result = -1;
-            } else {
-                if (!$res_upd) {
-                    $msg = 'Error al  agregar los productos';
+        $qry = "SELECT MAX(IdPartida) FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
+        $valor =  DbGetFirstFieldValue($qry);
+        if (!empty($datos)) {
+            if (!$valor) {
+                $i = 0;
+            }
+                $i = $valor;
+            foreach ($datos as $id => $cantidad) {
+                $i = $i + 1;
+                $qry = "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES ($i, $id, $cantidad, $id_solicitud)";
+                $res_upd = DbExecute($qry);
+                DbCommit();
+                if (is_string($res_upd)) {
+                    $msg = 'Error al  agregar los productos:' . $res_upd;
                     $result = -1;
                 } else {
-                    $msg = 'Productos agregados';
-                    $result = 1;
-                }
-            }        
+                    if (!$res_upd) {
+                        $msg = 'Error al  agregar los productos';
+                        $result = -1;
+                    } else {
+                        $msg = 'Productos agregados';
+                        $result = 1;
+                    }
+                }        
+            }
+        } else {
+            $msg = 'Ups no has selecciona ningun producto';
+            $result = -1;
         }
+        
     } else {
         $qry = "SELECT * FROM solicitudes WHERE IdSolicitud = $id_solicitud AND IdCategoria_fk IS NOT NULL";
         $value  =  DbGetFirstFieldValue($qry);
@@ -95,26 +105,35 @@ if ($op == 'ShowImg') {
                     $msg = 'Error al enviar la solicitud';
                     $result = -1;
                 } else {
-                    $datos = json_decode($data_json, true);   
-                    $i = 0;
-                    foreach ($datos as $id => $cantidad) {
-                        $i = $i + 1;
-                        $qry = "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES ($i, $id, $cantidad, $id_solicitud)";
-                        $res_upd = DbExecute($qry);
-                        DbCommit();
-                        if (is_string($res_upd)) {
-                            $msg = 'Error al enviar los datos:' . $res_upd;
-                            $result = -1;
-                        } else {
-                            if (!$res_upd) {
-                                $msg = 'Error al enviar los datos';
+                    $datos = json_decode($data_json, true);
+                    if (!empty($datos)) {
+                        if (!$valor) {
+                            $i = 0;
+                        }
+                            $i = $valor;
+                        foreach ($datos as $id => $cantidad) {
+                            $i = $i + 1;
+                            $qry = "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES ($i, $id, $cantidad, $id_solicitud)";
+                            $res_upd = DbExecute($qry);
+                            DbCommit();
+                            if (is_string($res_upd)) {
+                                $msg = 'Error al enviar los datos:' . $res_upd;
                                 $result = -1;
                             } else {
-                                $msg = 'Solicitud enviada con exito';
-                                $result = 1;
-                            }
-                        }        
+                                if (!$res_upd) {
+                                    $msg = 'Error al enviar los datos';
+                                    $result = -1;
+                                } else {
+                                    $msg = 'Productos agregados';
+                                    $result = 1;
+                                }
+                            }        
+                        }
+                    } else {
+                        $msg = 'Ups no has selecciona ningun producto';
+                        $result = -1;
                     }
+                        
                 }
             } 
         }
@@ -126,8 +145,8 @@ if ($op == 'ShowImg') {
 } else if ($op == 'ShowProducts') {
     $qry = "SELECT * FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
     $id_solicitud  =  DbGetFirstFieldValue($qry);
-
-    $qry = "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+    // t2.IdPartida,
+    $qry = "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
             FROM solicitudes t1
             LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
             LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
@@ -139,12 +158,14 @@ if ($op == 'ShowImg') {
     foreach ($a_producto as $row){
         $a_data_line = array();
     
-        $id_partida = $id = $a_data_line['IdPartida'] = (string) $row['IdPartida'];
+        $id = $a_data_line['Id'] = (string) $row['Id'];
+        // $id_partida = $a_data_line['IdPartida'] = (string) $row['IdPartida'];
         $referencia =  $a_data_line['Referencia'] =  (string) utf8_encode($row['Referencia']);
         $refaccion =  $a_data_line['NombreRefaccion'] = (string) utf8_encode($row['NombreRefaccion']);
         $cantidad =  $a_data_line['Cantidad'] = (string)  utf8_encode($row['Cantidad']);
         $icons =  $a_data_line['icons'] = (string) $row['icons'];
-        if (!strlen($id_partida)) {
+
+        if (!strlen($id)) {
             $a_data_line[] = '';
         } else if (!strlen($referencia)) {
             $a_data[] =  $a_data;
@@ -154,8 +175,12 @@ if ($op == 'ShowImg') {
             $a_data[] =  $a_data;
         } else if (!strlen($icons)) {
             $a_data[] =  $a_data;
+        // } else if (!strlen($id)){
+        //     $a_data[] =  $a_data;
         } else {
-        $a_data_line['IdPartida'] = (string) $row['IdPartida'];
+
+        $a_data_line['Id'] = (string) $row['Id'];
+        // $a_data_line['IdPartida'] = (string) $row['IdPartida'];
         $a_data_line['Referencia'] =  (string) utf8_encode($row['Referencia']);
         $a_data_line['NombreRefaccion'] = (string) utf8_encode($row['NombreRefaccion']);
         $a_data_line['Cantidad'] = (string)  utf8_encode($row['Cantidad']);
@@ -212,7 +237,7 @@ if ($op == 'ShowImg') {
         $result = -1;
     }
 
-    $qry = "DELETE FROM productos_solicitud WHERE IdPartida = $id_partida";
+    $qry = "DELETE FROM productos_solicitud WHERE Id = $id_partida";
     $res_upd = DbExecute($qry);
 
     if (is_string($res_upd)) {
@@ -225,6 +250,21 @@ if ($op == 'ShowImg') {
         } else {
             $msg = 'Productos eliminado con exito';
             $result = 1;
+            $qry = "SELECT MAX(IdSolicitud) FROM solicitudes";
+            $id_solicitud = DbGetFirstFieldValue($qry);
+            $qry = "SELECT * FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
+            $data = DbGetFirstFieldValue($qry);
+            if (!$data) {
+                $qry = "UPDATE solicitudes SET IdCategoria_fk = NULL WHERE IdSolicitud = $id_solicitud";
+                $res_upd = DbExecute($qry);  
+                // echo $qry;
+                // exit();
+                // $msg = '';
+                $result = 1; 
+                  
+
+                
+            } 
         }
     }   
     $a_ret = array('result' => $result, 'msg' => $msg);

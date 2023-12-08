@@ -37,7 +37,7 @@
         <!-- nav hidden end -->
         <li class="nav-item mt-4 menu-item mb-4">
             <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="seg_estaciones.php">
-                <i class="nav-icon fs-5 fas fa-home"></i>
+                <i class="nav-icon fs-5 fas fa-plus"></i>
                 <p class="d-none ms-3 mb-0">Nueva estacion</p>
             </a>
         </li>

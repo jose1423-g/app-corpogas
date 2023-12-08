@@ -33,15 +33,10 @@ if ($op == 'loadEstacion') {
 	} else {
 		$qry = "SELECT EstacionServicio, NoEstacion, EsActivo 
                 FROM estaciones WHERE IdEstacion = $id_estacion";
-            // echo $qry;
-            // exit();
 		$a_estacion = DbQryToRow($qry);
 
 		$estacion = utf8_encode($a_estacion['EstacionServicio']);
 		$a_estacion['EstacionServicio'] = $estacion;
-
-		// $nombre = utf8_encode($a_estacion['IdUsuario_fk']);
-		// $a_estacion['IdUsuario_fk'] = $nombre;
 		
 		$a_estacion['result'] = 1;
 		$a_estacion['msg'] = $msg;
@@ -66,7 +61,8 @@ if ($op == 'loadEstacion') {
 
 		if (strlen($id_estacion)) {
 		
-			$categoria = utf8_decode($categoria);
+			// $categoria = utf8_decode($categoria);
+			$estacion = utf8_decode($estacion);
 			// if (!strlen($id_usuarios_fk)) {
 			// 	$id_usuarios_fk = 'NULL';
 			// }
@@ -92,12 +88,13 @@ if ($op == 'loadEstacion') {
 			}
 		} else {
 
-			$categoria = utf8_decode($categoria);
+			// $categoria = utf8_decode($categoria);
 
-			if (!strlen($id_usuarios_fk)) {
-				$id_usuarios_fk = 'NULL';
-			}
+			// if (!strlen($id_usuarios_fk)) {
+			// 	$id_usuarios_fk = 'NULL';
+			// }
 
+			$estacion = utf8_decode($estacion);
 			// $qry = "SELECT MAX(IdMedico) AS id_medico_last FROM Medicos";
 			// $id_medico_last = DbGetFirstFieldValue($qry);
 			// $id_medico_next = $id_medico_last + 1;

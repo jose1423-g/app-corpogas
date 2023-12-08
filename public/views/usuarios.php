@@ -28,7 +28,7 @@ $a_estaciones = DbQryToArray($qry, true);
 $estaciones;
 foreach ($a_estaciones as $row) {
     $id = $row['IdEstacion'];
-    $nombre = utf8_decode($row['EstacionServicio']);
+    $nombre = utf8_encode($row['EstacionServicio']);
     $numero = $row['NoEstacion'];
     $estaciones .= "<option value='$id'>$numero $nombre</option>";
 }
@@ -109,8 +109,7 @@ foreach ($a_estaciones as $row) {
 											<div class="form-group">
 												<label class="form-label fw-bold" for="IdEstacion_fk">Estacion de servicio</label>
 												<select class="form-control" name="IdEstacion_fk" id="IdEstacion_fk" >
-													<option value="">-- estacion --</option>
-												<?php echo $estaciones; ?>
+													<?php echo $estaciones; ?>
 												</select>
 											</div>
 										</div>

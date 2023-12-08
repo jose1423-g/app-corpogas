@@ -478,4 +478,14 @@ function getMonthName($month, $is_short = false) {
 	
 	return $month_name;
 }
+
+function FechaPersonalizada($fecha) {
+    // Convierte la fecha de 'dd/mm/aaaa' a 'aaaa-mm-dd' para asegurar el formato correcto
+    $fecha_formato_correcto = date('Y-m-d', strtotime(str_replace('/', '-', $fecha)));
+
+        // Convierte la fecha al formato deseado: dd_mm_aaaa
+    return date('d_m_Y', strtotime($fecha_formato_correcto));
+}
+
+
 ?>

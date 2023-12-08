@@ -57,7 +57,11 @@ $(document).ready(function() {
 	});
 
 	$('#button-search').on('click', function(){
+		$('#table-refacciones tbody .valores').val('');
+		valores = {};
 		$('#table-refacciones').DataTable().ajax.reload();
+		// limpia los campos por cada busqueda 
+		
 	});
 
 	$('#btn-add').on( 'click', function () {
@@ -237,17 +241,18 @@ $(document).ready(function() {
 		"columnDefs": [
 			{
 				"targets": [ 0 ],
-				"visible": true,
+				"visible": false,
 				"searchable": false
 			},
 			{
-				"targets": [ 0,1,2,3,4 ],
+				"targets": [ 1,2,3,4 ],
 				"className": 'text-center'
 			}
 		],
 		// "order": [[3, "desc"]],
 		"columns": [
-			{ "data": "IdPartida" },
+			{ "data": "Id" },
+			// { "data": "IdPartida" },
 			{ "data": "Referencia" },
 			{ "data": "NombreRefaccion" },
 			{ "data": "Cantidad" },
@@ -262,7 +267,6 @@ $(document).ready(function() {
 			data = table_solicitud.row( this ).data();
 		}
 		let id_partida =  $(this).attr('data-id');
-
 		let msg_confirmacion = "Estas seguro de eliminar el producto";
 
 		if (!confirm(msg_confirmacion)) return false;
@@ -320,120 +324,5 @@ $(document).ready(function() {
 			}
 		})
 	})
-
-
-
-	// $('#grid-table tbody').on( 'click', '.btn-delete', function () {
-	// 	$('#DataModal').modal('show');
-		
-	// 	var data = table.row($(this).parents('tr')).data();
-	// 	if (data == undefined) {
-	// 		data = table.row( this ).data();
-	// 	}
-    //     // $("#id_categoria").val(data[0])
-	// 	productDelete(data[0])
-	// });
-
-    // function  productDelete (IdCotizacionDt) {
-	// 	if (!confirm(confirmacion)) return false;
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "../../ria/orden_productos.save.ria.php",
-    //         data: {
-    //             IdCotizacionDt: IdCotizacionDt,
-    //             op: 'delete'
-    //         },
-    //         success: function (data) {
-    //             var data = jQuery.parseJSON(data);
-	// 			var result = data.result;
-    //             if (result == 1) {
-	// 				toastr.success(data.msg);
-	// 				// $('#DataModal').modal('hide');
-	// 				$('#grid-table').DataTable().ajax.reload();
-	// 			} else {
-	// 				if (result == -1) {
-	// 					toastr.warning(data.msg);
-	// 				} else {
-	// 					toastr.info(data.msg);
-	// 				}
-	// 			}
-    //         }
-    //     });
-    // }
 	
-	// // clean form
-	// $('#btn-clear').on('click', function(){
-	// 	// $('#DataModal').modal('show');
-	// 	$("#IdProveedor_fk").val('');
-	// 	$("#IdArticulo_fk").val('');
-	// 	$("#Cantidad").val('');
-	// 	$("#Notas").val('');
-	// 	// $('#EsActivo').prop('checked', true);
-	// });
-
-	// // $('#IdUsuario_fk').select2({
-	// // 	// theme: 'bootstrap4',
-	// // 	dropdownParent: $('#DataModal'),
-	// // 	language: 'es',
-	// // 	allowClear: true,
-	// // 	placeholder: 'Selecciona un valor',
-	// // });
-
-
-	// $('#btn-save').on('click', function(){
-	// 	// alert("hoolis")
-	// 	var parametros = $('#form-data').serialize();
-	// 	parametros = parametros + "&op=save";
-	// 	$.ajax({
-	// 			type: "POST",
-	// 			url: "../../ria/orden_productos.save.ria.php",
-	// 			data: parametros,
-	// 			success: function(data){
-	// 				var data = jQuery.parseJSON(data);
-	// 				var result = data.result;
-	// 				if (result == 1) {
-	// 					toastr.success(data.msg);
-	// 					// $('#DataModal').modal('hide');
-	// 					$('#grid-table').DataTable().ajax.reload();
-	// 				} else {
-	// 					if (result == -1) {
-	// 						toastr.warning(data.msg);
-	// 					} else {
-	// 						toastr.info(data.msg);
-	// 					}
-	// 				}
-	// 			}
-	// 	});
-	// 	event.preventDefault();
-		
-	// });
-
-	// $("#btn-delete").on('click', function () {
-	// 	id_categoria =  $("#id_categoria").val();
-	// 	if (!confirm(confirmacion)) return false;
-	// 	$.ajax({
-    //         type: "get",
-    //         url: "../../ria/seg_categorias_save.ria.php",
-    //         data: {
-    //             id_categoria: id_categoria,
-    //             op: 'delete'
-    //         },
-    //         success: function (data) {
-    //             var data = jQuery.parseJSON(data);
-	// 			var result = data.result;
-	// 			if (result == 1) {
-	// 				toastr.success(data.msg);
-	// 				$('#DataModal').modal('hide');
-	// 				$('#grid-table').DataTable().ajax.reload();
-	// 			} else {
-	// 				if (result == -1) {
-	// 					toastr.warning(data.msg);
-	// 				} else {
-	// 					toastr.info(data.msg);
-	// 				}
-	// 			}
-    //         }
-    //     });
-	// })
-
 } );

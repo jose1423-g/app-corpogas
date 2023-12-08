@@ -17,12 +17,32 @@ $id_user = SessGetUserId();
 $a_head_data = array('#', 'Acciones', 'Folio', 'Estacion', 'Estatus', 'Fecha Creacion');
 $a_head_data_refacciones = array('Partida', 'Referencia', 'Descripcion', 'Cantidad');
 
+$qry = "SELECT IdEstacion, EstacionServicio FROM estaciones";
+$a_estaciones = DbQryToArray($qry, true);
+$estacion;
+foreach($a_estaciones as $row){
+    $id = $row['IdEstacion'];
+    $nombre = utf8_encode($row['EstacionServicio']);
+    $estacion .= "<option value='$id'>$nombre</option>";
+}
 
+$fecha = DtDbToday();
 
 ?>
 
 <?php include('../layouts/main.php'); ?>
 <?php include('../layouts/main_content.php') ?>
+
+
+    <div class="position-absolute top-50 start-50 translate-middle w-25 d-none" id="spinner" style="z-index: 2000">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="fecha_val" id="fecha_val" value="<?php echo $fecha ?>">
 
 	<div class="row px-5">
 		<div class="col-12">
@@ -122,46 +142,29 @@ $a_head_data_refacciones = array('Partida', 'Referencia', 'Descripcion', 'Cantid
 			</div>
 		</div>
 
-        <!-- search --> 
-        <!-- <div class="col-12 shadow-sm bg-white rounded-2 py-2">
-            <div class="py-2 border-bottom">
-                <h4><?php echo $app_title ?></h4>
-            </div>
-			<div class="row pt-2 justify-content-center">
-				<div class="col-4">
-					<div class="form-group">
-						<label class="form-label fw-bold" for="Folio">Folio</label>
-						<input class="form-control form-control-sm" name="Folio" id="Folio">
-					</div> 
-				</div>
-				<div class="col-4">
-					<label class="form-label fw-bold" for="s_mostrar">Estatus</label>
-					<div class="input-group mb-3">
-						<select class="form-select form-select-sm" name="s_mostrar" id="s_mostrar">
-                            <option value=""></option>    
-                            <option value="2">Pendiente Revision</option>
-                            <option value="3">Rechazadas</option>
-                            <option value="3">Abiertas</option>
-                        </select>    
-						<button class="btn btn-outline-info bg-info btn-sm" type="button" id="btn-search"><i class="fas fa-search"></i></button>
-					</div>
-				</div>
-			</div>
-        </div> -->
-		
+
 		<!-- table -->
 		<div class="col-12 conten bg-white mt-3 shadow-sm rounded-2 py-2">			
 			<section class="content-header">
 				<div class="row justify-content-end">
                     <h1 class="fs-4"><?php echo $app_title; ?></h1>
                     <div class="col-4">
+                        <label class="form-label fw-bold" for="s_estacion">Estaciones</label>
+                        <div class="input-group mb-3">
+                            <select class="form-select form-select-sm" name="s_estacion" id="s_estacion">
+                                <option value=""></option>
+                                <?php echo $estacion ?>
+                            </select>    
+                        </div>
+				    </div>
+                    <div class="col-3">
                         <label class="form-label fw-bold" for="s_mostrar">Estatus</label>
                         <div class="input-group mb-3">
-                            <select class="form-select form-select-sm" name="s_mostrar" id="s_mostrar">
+                            <select class="form-select" name="s_mostrar" id="s_mostrar">
                                 <option value=""></option>    
-                                <option value="2">Pendiente Revision</option>
+                                <option value="">Pendiente Revision</option>
                                 <option value="3">Rechazadas</option>
-                                <option value="3">Abiertas</option>
+                                <option value="4">Abiertas</option>
                             </select>    
                             <button class="btn btn-outline-info bg-info btn-sm" type="button" id="btn-search"><i class="fas fa-search"></i></button>
                         </div>

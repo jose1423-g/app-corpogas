@@ -5,6 +5,7 @@ require_once("$SYS_ROOT/php/knl/db.inc.php");
 require_once("$SYS_ROOT/php/knl/file_uploader.php");
 require_once("$SYS_ROOT/php/knl/locale.inc.php");
 require_once("$SYS_ROOT/php/knl/dates.inc.php");
+require_once("$SYS_ROOT/php/knl/phpext.inc.php");
 	
 session_start();
 
@@ -15,23 +16,14 @@ $id_user = SessGetUserId();
 $op = (isset($_REQUEST['op'])) ? $_REQUEST['op'] : '';
 
 $id_solicitud = (isset($_REQUEST['id_solicitud'])) ? $_REQUEST['id_solicitud'] : "";
-// $referencia = (isset($_REQUEST['Referencia'])) ? $_REQUEST['Referencia'] : "";
-// $no_serie = (isset($_REQUEST['NoSerie'])) ? $_REQUEST['NoSerie'] : "";
-// $id_categoria = (isset($_REQUEST['IdCategoria_fk'])) ? $_REQUEST['IdCategoria_fk'] : "";
-// $img = (isset($_FILES['uploadedfile'])) ? $_FILES['uploadedfile'] : "";
-// $es_activo = (isset($_REQUEST['EsActivo'])) ? $_REQUEST['EsActivo'] : "";
-
 
 $msg = "";
 $result = 0;
 
-// $fecha_hoy = "";
-// $fecha_hoy =  DtDbToday($fecha_hoy);
+$fecha_hoy = "";
+$fecha_hoy =  DtDbToday($fecha_hoy);
 
-$minutos = date('i');
-
-
-
+// $minutos = date('i');
 
 if ($op == 'loadSolicitud') {
 	if (!strlen($id_solicitud)) {
@@ -59,6 +51,9 @@ if ($op == 'loadSolicitud') {
 			$a_datos['Estatus'] = $estatus;
 		} else if ($estatus == 3) {
 			$estatus = "<span class='text-danger'>Pendiente Revision</span>";
+			$a_datos['Estatus'] = $estatus;
+		} else if ($estatus == 4) {
+			$estatus = "<span class='text-success'>Aceptada</span>";
 			$a_datos['Estatus'] = $estatus;
 		}
 
@@ -112,16 +107,210 @@ if ($op == 'loadSolicitud') {
 		$a_data_line['Referencia'] =  (string) utf8_encode($row['Referencia']);
 		$a_data_line['NombreRefaccion'] = (string) utf8_encode($row['NombreRefaccion']);
 		$a_data_line['Cantidad'] = (string)  utf8_encode($row['Cantidad']);
-		// $a_data_line['icons'] = (string) $row['icons'];
-
-		// $icons =  "<button type='button' class='btn btn-danger btn-sm btn-delete-product' data-id='$id'><i class='fas fa-trash-alt'></i></button>";
-		// $a_data_line['icons'] = $icons;
 
 		$a_data[] = $a_data_line; 
 		}        
 	}
 	$json =  json_encode(array('data' => $a_data), true);
 	echo $json;	
-} 
+} else if ($op == 'aprobar') {
+
+	if (!strlen($id_solicitud)) {
+		$msg = "Error al aprobar la solicitud.";
+		$result = -1;
+	} else if(!strlen($id_user)){
+		$msg = "Su session ha expirado.";
+		$result = -1;
+	} else {
+
+		$qry = "UPDATE solicitudes 
+				SET Estatus = 4, 
+				FechaAprobacion = $fecha_hoy 
+				WHERE IdSolicitud = $id_solicitud";
+		$res_ins = DbExecute($qry, true);
+		DbCommit();
+		if (is_string($res_ins)) {
+			$msg = 'Error al aprobar la solcitud: ' . $res_ins;
+			$result = -1;
+			$datos['msg'] = $msg;
+			$datos['result'] = $result;
+			$a_ret = $datos;
+			echo json_encode($a_ret);
+			exit();
+		} else {
+			if (!$res_ins) {
+				$msg = 'Error al aprobar la solicitud';
+				$result = -1;
+				$datos['msg'] = $msg;
+				$datos['result'] = $result;
+				$a_ret = $datos;
+				echo json_encode($a_ret);
+				exit();
+			} else { 
+				$directorio = '../pdf_downloads/'; 
+				$archivos = scandir($directorio, SCANDIR_SORT_DESCENDING); // Obtener la lista de archivos en la carpeta				
+				$ultimo_archivo = reset($archivos); // Obtener el último archivo descargado
+
+				// if (!strlen($ultimo_archivo)) {
+				// 	$msg = "si tiene archivo";
+				// 	$result = -1;
+				// 	$datos['msg'] = $msg;
+				// 	$datos['result'] = $result;
+				// 	$a_ret = $datos;
+				// 	echo json_encode($a_ret);
+				// 	exit();
+				// } else {
+				// 	$msg = "Error no hay archivo";
+				// 	$result = -1;
+				// 	$datos['msg'] = $msg;
+				// 	$datos['result'] = $result;
+				// 	$a_ret = $datos;
+				// 	echo json_encode($a_ret);
+				// 	echo $ultimo_archivo;
+				// 	exit();
+				// }
+
+				if (strlen($ultimo_archivo)) {
+
+					$qry = "SELECT IdUsuario_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+					$id_usuario =  DbGetFirstFieldValue($qry);
+
+					if (!strlen($id_usuario)) {
+
+						$msg = "Ups ocurrio un error al enviar el pdf";
+						$result = -1;
+						$datos['msg'] = $msg;
+						$datos['result'] = $result;
+						$a_ret = $datos;
+						echo json_encode($a_ret);
+						exit();
+
+					} else {
+
+						$qry = "SELECT Email, EmailSupervisor FROM seg_usuarios WHERE IdUsuario = $id_usuario";
+						$a_usuarios = DbQryToRow($qry);
+						$email = $a_usuarios['Email'];
+						$email_supervisor =$a_usuarios['EmailSupervisor'];
+
+						$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_usuario";
+						$id_estacion =  DbGetFirstFieldValue($qry);
+					
+						$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";
+						$a_estaciones = DbQryToRow($qry);
+						$estacion = $a_estaciones['EstacionServicio'];
+						$no_estacion = $a_estaciones['NoEstacion'];
+
+						$qry = "SELECT Folio FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+						$a_solicitudes = DbQryToRow($qry);
+						$folio = $a_solicitudes['Folio'];
+
+						$mail_to = $email.','.$email_supervisor; // destinatarios jctg1@hotmail.com
+						$files[] = '../pdf_downloads/'.$ultimo_archivo;
+						$mail_from = 'cubobale@hotmail.com'; //responder a 
+						$mail_from_name = 'CORPOGAS'; //nombre de la empresa
+						$mail_subject = 'Refacciones '.$no_estacion.' '.$estacion;
+						$mensaje_de_alerta = '';
+						$mail_text_body =  'Estimado(a) usuario de compras, a continuacion se adjunta la solicitud de refacciones en formato pdf correspondiente a la estacion '.$no_estacion.' '.$estacion;
+						$mail_html_body = "<html>
+											<head>
+											<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />
+											<title>Refacciones $no_estacion $estacion</title>
+											</head>
+											<body>
+												<h3>$mail_subject</h3>
+												<p>$mail_text_body</p>
+											</body>
+											</html>";
+						$mail_host = 'smtp.googlemail.com';
+						$mail_port = '587';
+						$mail_username = 'caja@qds.mx'; //aparece al lado del nombre de la empresa Corpogas
+						$mail_passwd = 'q5caj4s';
+						$mail_smtp_secure = 'tls';
+						$mail_firma_url = "";
+						$mail_backup = '';// destinatario
+						$zp = 0;
+						$tamanio  = count($files);
+						if ($tamanio > 0) {
+		
+							$result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);
+							if ($result == 0) {
+								$qry = "UPDATE solicitudes 
+										SET Estatus = 2, 
+										FechaAprobacion = $fecha_hoy 
+										WHERE IdSolicitud = $id_solicitud";
+								$res_ins = DbExecute($qry, true);
+								DbCommit();
+								$msg = "no se logro enviar el correo";
+								$result = - 1;
+								$datos['msg'] = $msg;
+								$datos['result'] = $result;
+								$a_ret = $datos;
+								echo json_encode($a_ret);
+								exit();
+							} else {
+								if (file_exists($directorio.''.$ultimo_archivo)) {//verifica que exista el archivo
+									if (unlink($directorio.''.$ultimo_archivo)) {// Intentar borrar el archivo
+										$msg = "Correo enviado";
+										$result = 1;
+										$datos['msg'] = $msg;
+										$datos['result'] = $result;
+										$a_ret = $datos;
+										echo json_encode($a_ret);
+										exit();
+									} else {
+										$qry = "UPDATE solicitudes 
+												SET Estatus = 2 
+												WHERE IdSolicitud = $id_solicitud";
+										$res_ins = DbExecute($qry, true);
+										DbCommit();
+										$msg = "Error el correo fue enviado sin el pdf intente nuevamente";
+										$result = -1;
+										$datos['msg'] = $msg;
+										$datos['result'] = $result;
+										$a_ret = $datos;
+										echo json_encode($a_ret);
+										exit();
+									}
+								} else {
+									$msg = "Error la ruta especificada no existe";
+									$result = -1;
+									$datos['msg'] = $msg;
+									$datos['result'] = $result;
+									$a_ret = $datos;
+									echo json_encode($a_ret);
+									exit();
+								}
+								
+							}
+						} else {
+							$qry = "UPDATE solicitudes 
+									SET Estatus = 2 
+									WHERE IdSolicitud = $id_solicitud";
+							$res_ins = DbExecute($qry, true);
+							DbCommit();
+							$msg = "Ups no pudimos enviar su correo intente nuevamente";
+							$result = -1;
+							$datos['msg'] = $msg;
+							$datos['result'] = $result;
+							$a_ret = $datos;
+							echo json_encode($a_ret);
+							exit();	
+
+						}
+						
+					}
+				} else {
+					$msg = "Ups no pudimos agregar el pdf al correo";
+					$result = -1;
+					$datos['msg'] = $msg;
+					$datos['result'] = $result;
+					$a_ret = $datos;
+					echo json_encode($a_ret);
+					exit();	
+				}
+			}
+		}
+	}
+}
 
 ?>

@@ -82,7 +82,7 @@ if (!strlen($id_user)) {
                 }
                 $row[] = $html;
 			} else if ( $aColumns[$i] == "EstacionServicio" ){
-				$estacion = utf8_decode($aRow[ $aColumns[$i] ]);
+				$estacion = utf8_encode($aRow[ $aColumns[$i] ]);
 				$row[] = $estacion;
 			} else if ($aColumns[$i] == "icons") {
 				$icons = '<div style="cursor:pointer;" title="Editar"><span class="fas fa-pen-square text-primary fs-5 btn-edit" aria-hidden="true"></span></div>';

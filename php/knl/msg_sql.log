@@ -554,3 +554,274 @@ Error id: "15039"; Message: "Unknown column 'UsuarioPerfilId' in 'field list'"; 
 Error id: "16028"; Message: "Unknown column 'Es_activa' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12 AND Es_activa = 1";
 Error id: "30759"; Message: "Unknown column 'Es_activa' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12 AND Es_activa = 1";
 Error id: "15060"; Message: "Unknown column 'Es_activa' in 'where clause'"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12 AND Es_activa = 1";
+Error id: "2378"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion AS Descripcion, t2.Cantidad FROM solicitudes t1 
+			LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+			LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+			WHERE t1.IdSolicitud = ";
+Error id: "6022"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+    ' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+             Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "9521"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT * FROM solicitudes WHERE IdEstacion_fk = 89 OR IdEstacion_fk = 89 AND SEL' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE  Estatus = 2 AND SELECT * FROM solicitudes WHERE IdEstacion_fk = 89 OR IdEstacion_fk = 89 AND SELECT * FROM solicitudes WHERE IdEstacion_fk = 90 OR IdEstacion_fk = 90
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "29718"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') OR (t1.IdEstacion_fk = ) AND (t1.IdEstacion_fk = ) OR (t1.IdEstacion_fk = )
+ ' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE  Estatus = 2 AND (t1.IdEstacion_fk = ) OR (t1.IdEstacion_fk = ) AND (t1.IdEstacion_fk = ) OR (t1.IdEstacion_fk = )
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "4642"; Message: "Unknown column 't4.IdUsuario_fk' in 'where clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE  Estatus = 2 AND  t1.IdUsuario_fk = 436 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 89 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 90
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "28756"; Message: "FUNCTION t4.IdEstacion does not exist"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            (t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90) AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "21738"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90) AND  Estatus = 2
+            ' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            (t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 89)(t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90) AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "2119"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8' at line 7"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            (t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90) AND (t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90) AND 
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "7165"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8' at line 7"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            (t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90) AND (t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90) AND 
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "9179"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND t3.IdUsuario_fk = 436 AND t3' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND 
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "12530"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE  Estatus = 2t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 89t3.IdUsuario_fk' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE  Estatus = 2t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 89t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND WHERE  Estatus = 2t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 89t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND 
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "20887"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND t3.IdUsuario_fk = 436 AND t3' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND  AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "28548"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90t3.IdUsuario_fk = 436 AND t3.IdEs' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "5819"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND  Estatus = 2
+            OR' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "17587"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90
+            ORDER BY  t1.IdSoli' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "22488"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8' at line 7"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE  Estatus = 2 AND 
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "17219"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90
+            ORDER BY  t1.IdSoli' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "13059"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 90 AND t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk =  AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "23684"; Message: "Column 'IdUsuario_fk' in where clause is ambiguous"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE t1.IdEstacion_fk = 90 AND IdUsuario_fk = 436 AND  Estatus = 2
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "19565"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8' at line 7"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t4.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
+					LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion 
+            WHERE  Estatus = 2 AND t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "10691"; Message: "Unknown column 't3.IdUsuario_fk' in 'where clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t3.IdUsuario_fk = 436 AND t3.IdEstacion_fk = 89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "11131"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT * FROM solicitudes WHERE IdSolicitud = 72 AND IdCategoria_fk = ";
+Error id: "10291"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT * FROM solicitudes WHERE IdSolicitud = 72 AND IdCategoria_fk = ";
+Error id: "22512"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1"; Query: "SELECT * FROM solicitudes WHERE IdSolicitud = 72 AND IdCategoria_fk = ";
+Error id: "16745"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72";
+Error id: "2030"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72";
+Error id: "5263"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72";
+Error id: "10872"; Message: "Unknown column 't2.IdSolicitud' in 'on clause'"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud = 72 ORDER BY t2.IdPartida ASC";
+Error id: "21841"; Message: "Unknown column 't2.IdSolicitud' in 'on clause'"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud = 72 ORDER BY t2.IdPartida ASC";
+Error id: "11672"; Message: "Unknown column 't2.IdSolicitud' in 'on clause'"; Query: "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud = 72 ORDER BY t2.IdPartida ASC";
+Error id: "12726"; Message: "Unknown column 't1.Id' in 'field list'"; Query: "SELECT t1.Id, t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud = 72 ORDER BY t2.IdPartida ASC";
+Error id: "27121"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72";
+Error id: "12554"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = 0 WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = 0 WHERE IdSolicitud = 72";
+Error id: "25152"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = '' WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = '' WHERE IdSolicitud = 72";

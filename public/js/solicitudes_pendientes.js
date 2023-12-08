@@ -18,6 +18,7 @@ $(document).ready(function() {
             "data": function(d) {
                 d.Folio = $('#Folio').val();
                 d.s_mostrar = $('#s_mostrar').val();
+				d.s_estacion = $('#s_estacion').val();
             }
         },
         "language": {
@@ -77,7 +78,7 @@ $(document).ready(function() {
                 if (result == 1) {
 					$("#folio").text(data.Folio);
                     $("#Estatus").html(data.Estatus);
-                    $("#fecha").html(data.Fecha);
+                    $("#fecha").text(data.Fecha);
                     $("#matentregados").html(data.MatEntregado);
                     $("#areasolicita").html(data.AreaSolicita);
                     $("#matcompleto").html(data.EntregoMatCompleto);
@@ -91,21 +92,25 @@ $(document).ready(function() {
                     $("#telefono").html(data.Telefono);
 					$('#table-refacciones').DataTable().ajax.reload();	
                 } else {
-					
+					if (result == -1) {
+						toastr.warning(data.msg);
+					} else {
+						toastr.info(data.msg);
+					}	
 				}
             }
         });
     }
 	
-	$('#button-add').on('click', function(){
-		$('#DataModal').modal('show');
+	// $('#button-add').on('click', function(){
+	// 	$('#DataModal').modal('show');
 		
-		// clean form
-		$("#id_categoria").val('');
-		$("#Categoria").val('');
-		$("#IdUsuario_fk").val('');
-		$('#EsActivo').prop('checked', true);
-	});
+	// 	// clean form
+	// 	$("#id_categoria").val('');
+	// 	$("#Categoria").val('');
+	// 	$("#IdUsuario_fk").val('');
+	// 	$('#EsActivo').prop('checked', true);
+	// });
 
 	var table_solicitud = $('#table-refacciones').DataTable( {
 		"responsive": true,
@@ -147,5 +152,77 @@ $(document).ready(function() {
 			// { "data": "icons" }
 		]
 	});
+
+
+	$('#s_estacion').select2({
+		theme: 'bootstrap4',
+		// dropdownParent: $('#DataModal'),
+		language: 'es',
+		allowClear: true,
+		placeholder: 'Selecciona un valor',
+	});
+
+	$("#btn-aprobar").on('click', function () {
+		$("#spinner").removeClass('d-none');
+		let fecha = $("#fecha_val").val();
+		let id_solicitud = $("#id_solicitud").val()
+		downloadspdf(id_solicitud, fecha);	
+		$.ajax({
+			type: "post",
+            url: "../../ria/solicitudes_pendientes_save.ria.php",
+            data: {
+                id_solicitud: id_solicitud,
+                op: 'aprobar'
+            },
+            success: function (data) {
+                var data = jQuery.parseJSON(data);
+				var result = data.result;
+                if (result == 1) {
+					toastr.success(data.msg);
+					show_load();					
+					$('#grid-table').DataTable().ajax.reload();
+					$('#DataModal').modal('hide');
+                } else {
+					if (result == -1) {
+						toastr.warning(data.msg);
+						show_load();				
+					} else {
+						toastr.info(data.msg);
+					}
+				}
+            }
+
+		})
+	});
+
+	function  show_load() {
+		$("#spinner").addClass('d-none');		
+	}
+
+	function downloadspdf(id_solicitud, fecha) {
+
+		$.ajax({
+			type: "POST",
+			url: "../../archivospdf/solicitud.php",
+			data: {
+				IdSolicitud: id_solicitud,
+				fecha: fecha
+			},
+			success: function(data){
+				var data = jQuery.parseJSON(data);
+				var result = data.result;
+				if (result == 1) {
+					// toastr.success(data.msg);
+					window.location.href = "../views/index.php";
+				} else {
+					if (result == -1) {
+						toastr.warning(data.msg);
+					} else {
+						toastr.info(data.msg);
+					}
+				}
+			}
+		})
+	}
 	
 } );

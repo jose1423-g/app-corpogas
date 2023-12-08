@@ -26,7 +26,7 @@ $qry  = "SELECT t3.EstacionServicio, t3.NoEstacion, t1.Nombre, t1.ApellidoPatern
         WHERE t1.IdUsuario = $id_user";
 $a_servicio = DbQryToArray($qry, true);
 foreach ($a_servicio as $row){
-    $estacion_servicio = utf8_encode($row['EstacionServicio']);
+    $estacion_servicio =  utf8_encode($row['EstacionServicio']);
     $num_estacion = $row['NoEstacion'];
     $nombre_gerente = $row['Nombre'] ." ". $row['ApellidoPaterno'] ." ". $row['APellidoMaterno'];
     $nombre_gerente = utf8_encode($nombre_gerente);
@@ -43,9 +43,6 @@ foreach ($a_areas as $row) {
     $nombre = $row['Nombre'];
     $html_areas .= "<option value='$id'>$nombre</option>";
 }
-
-
-
 
 ?>
 <?php include('../layouts/main.php');  ?>

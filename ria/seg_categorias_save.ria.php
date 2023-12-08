@@ -33,7 +33,6 @@ if ($op == 'loadCategoria') {
 	} else {
 		$qry = "SELECT t1.Categoria, t1.EsActivo,  t1.IdUsuario_fk  
 				FROM productos_categorias t1
-				-- LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
 				WHERE IdCategoria = $id_categoria";
 		$a_categoria = DbQryToRow($qry);
 

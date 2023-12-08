@@ -512,6 +512,8 @@ function multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $m
 	    echo 'Error: ' . $mail->ErrorInfo;
 	    exit;
         */
+        // return $mail->ErrorInfo;
+
         if (isset($zip_file)) {
             unlink($zip_file);
         }

@@ -90,7 +90,7 @@ if (!strlen($id_user)) {
                 $row[] = $html;
             } else if ($aColumns[$i] == "EstacionServicio") {
                 $estacion = $aRow[ $aColumns[$i] ];
-                $row[] = utf8_decode($estacion);
+                $row[] = utf8_encode($estacion);
 
 			} else if ( $aColumns[$i] != ' ' ) {
 				/* General output */
