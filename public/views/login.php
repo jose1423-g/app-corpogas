@@ -7,11 +7,6 @@ require_once("$SYS_ROOT/php/knl/phpext.inc.php");
 
 session_start();
 
-// cia (page title)
-// $qry = "SELECT PagesTitle FROM empresa WHERE EmpresaID = 1";
-// $title = DbGetFirstFieldValue($qry);
-// $title = (strlen($title)) ? $title : "Doxa";
-
 $custom_alert = "";
 $error_alert = "";
 if (isset($_POST['login'])) {
@@ -31,7 +26,7 @@ if (isset($_POST['login'])) {
 					$ret = setLogin($id_user, DtDbToday(), TmDbStamp());
 					// ok
 					if ($ret == 1) {
-						redirect('nueva_solicitud.php');
+						redirect('index.php');
 					} else {
 						$error_alert = 'Datos de acceso incorrectos'; // no hay acceso al nombre de session???
 					}

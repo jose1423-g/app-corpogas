@@ -51,11 +51,7 @@ if (!strlen($id_user)) {
         $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
         $custom_where .= "t1.IdCategoria_fk = $IdCategoria_fk";
     } 
-	// else {
-	// 	$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-    //     $custom_where .= "t1.IdCategoria_fk = 0";
-	// }
-
+	
 	
 	// new function for paging
 	$start = (isset($_GET['start'])) ? $_GET['start'] : '';
@@ -89,7 +85,15 @@ if (!strlen($id_user)) {
 				$icons = '<button type="button" class="btn btn-primary btn-sm btn-img"><i class="fas fa-eye"></i></button>';
 				$row[] = $icons;
 			} else if ($aColumns[$i] == "icons" ){
-                $icons = '<button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>';
+				$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+				$perfil  =  DbGetFirstFieldValue($qry);
+				if ($perfil == 13) {
+					$icons = '';	
+				} else if ($perfil == 16){
+					$icons = '<button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>';
+				} else if ($perfil == 12){
+					$icons = '<button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>';
+				}
 				$row[] = $icons;
             } else if ( $aColumns[$i] != ' ' ) {
 				/* General output */

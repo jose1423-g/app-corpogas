@@ -8,9 +8,11 @@ session_start();
 
 
 $app = basename(__FILE__);
-$app_title = 'Gerentes';
+$app_title = 'Usuarios';
 $usuarios_active = 'active';
 segVerifyAuth($app);
+
+$id_user = SessGetUserId();
 
 $a_head_data = array('#', 'Sel', 'E.S', 'Razon Social', 'Gerente', 'Correo de GPV', 'Correo del Supervisor', 'EsActivo');
 
@@ -31,6 +33,19 @@ foreach ($a_estaciones as $row) {
     $nombre = utf8_encode($row['EstacionServicio']);
     $numero = $row['NoEstacion'];
     $estaciones .= "<option value='$id'>$numero $nombre</option>";
+}
+
+$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+$perfil  =  DbGetFirstFieldValue($qry);
+if ($perfil == 13) {
+	$btn_save = '';
+	$btn_new = '';
+} else if ($perfil == 16) {
+	$btn_save = '<button type="button" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>';
+	$btn_new = '<button type="button" id="btn-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
+} else if ($perfil == 12) {
+	$btn_save = '<button type="button" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>';
+	$btn_new = '<button type="button" id="btn-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
 }
 
 ?>
@@ -129,7 +144,8 @@ foreach ($a_estaciones as $row) {
 								</div> 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-									<button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>
+									<!-- <button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button> -->
+									<?php echo $btn_save; ?>
 								</div>
 							</form>
 						</div>
@@ -159,7 +175,8 @@ foreach ($a_estaciones as $row) {
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
-					<button type="button" id="btn-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>
+					<!-- <button type="button" id="btn-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button> -->
+					<?php echo $btn_new; ?>
 				</div>
 				<div class="col-sm-6">
 				</div>

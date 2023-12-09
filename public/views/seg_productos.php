@@ -6,15 +6,12 @@ require_once("$SYS_ROOT/php/knl/seg_sys.inc.php");
 
 session_start();
 
-// // cia (page title)
-// $qry = "SELECT PagesTitle FROM empresa WHERE EmpresaID = 1";
-// $title = DbGetFirstFieldValue($qry);
-// $title = (strlen($title)) ? $title : "Doxa";
-
 $app = basename(__FILE__);
 $app_title = 'Usuarios';
 $usuarios_active = 'active';
 segVerifyAuth($app);
+
+$id_user = SessGetUserId();
 
 $a_head_data = array('#', 'sel', 'Descripcion', 'Clave', 'Categoria', 'Activo', 'FechaCaptura', 'CapturadoPor');
 
@@ -27,6 +24,19 @@ foreach ($a_categoria as $row){
     $html_categoria .= "<option value='$id'>$categoria</option>";
 }
 
+
+$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+$perfil  =  DbGetFirstFieldValue($qry);
+if ($perfil == 13) {
+	$btn_save = '';
+	// $btn_new = '';
+} else if ($perfil == 16) {
+	$btn_save = '<button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>';
+	// $btn_new = '<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
+} else if ($perfil == 12) {
+	$btn_save = '<button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>';
+	// $btn_new = '<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
+}
 
 
 ?>
@@ -88,7 +98,8 @@ foreach ($a_categoria as $row){
                 </div> 
                 <div class="py-2 d-flex justify-content-end">
                     <button type="button" class="btn btn-warning btn-sm me-2" id="btn-clear">Limpiar formulario</button>
-                    <button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>
+                    <!-- <button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button> -->
+                    <?php echo $btn_save; ?>
                 </div>
             </form>
         </div>

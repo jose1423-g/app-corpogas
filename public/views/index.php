@@ -17,8 +17,10 @@ segVerifyAuth($app);
 <?php include('../layouts/main.php');  ?>
 <?php include('../layouts/main_content.php')  ?>
 
-    <div class="row px-5">
-       <h1>PROGAS</h1>
+    <div class="row justify-content-center">
+       <div class="col-2">
+            <h1 class="text-primary">PROGAS</h1>
+       </div>
     </div>
 
 <?php include('../layouts/main_content_end.php')  ?>

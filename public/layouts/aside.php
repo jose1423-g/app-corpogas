@@ -74,18 +74,18 @@
         <!-- nav hidden end -->
         
         <li class="nav-item mt-4 menu-item">
-            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="seg_productos.php">
-                <!-- <i class="nav-icon fs-5 fas fa-home"></i> -->
-                <i class="nav-icon fs-5 fas fa-plus"></i>
-                <p class="d-none ms-3 mb-0">Nuevo producto</p>
-            </a>
-        </li>
-        <li class="nav-item mt-4 menu-item">
             <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="seg_categorias.php">
                 <i class="nav-icon fs-5 fas fa-list-alt"></i>
                 <p class="d-none ms-3 mb-0">Categorias</p>
             </a>
         </li> 
+        <li class="nav-item mt-4 menu-item">
+            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="seg_productos.php">
+                <!-- <i class="nav-icon fs-5 fas fa-home"></i> -->
+                <i class="nav-icon fs-5 fas fa-plus"></i>
+                <p class="d-none ms-3 mb-0">Nueva Refaccion</p>
+            </a>
+        </li>
         <li class="nav-item mt-4 menu-item">
             <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="lista_productos.php">
                 <!-- <i class="nav-icon fs-5 fas fa-home"></i> -->
@@ -93,36 +93,5 @@
                 <p class="d-none ms-3 mb-0">Productos</p>
             </a>
         </li>
-        <!-- <li class="nav-item mt-4 menu-item">
-            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="solicitudes_pendientes.php">
-                <i class="nav-icon fs-5 fas fa-home"></i>
-                <p class="d-none ms-3 mb-0">Lista productos</p>
-            </a>
-        </li> -->
-        <!-- 
-        <li class="nav-item mb-4 menu-item">
-            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="proveedores.php">
-                <i class="nav-icon fs-5 fas fa-file-alt"></i>
-                <p class="d-none ms-3 mb-0">proveedores</p>
-            </a>
-        </li> 
-        <li class="nav-item mb-4 menu-item">
-            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="seg_aplicaciones.php">
-                <i class="nav-icon fs-5 fas fa-file-alt"></i>
-                <p class="d-none ms-3 mb-0">seg Aplicaciones</p>
-            </a>
-        </li> --> 
-        <!-- <li class="nav-item mb-4 menu-item">
-            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="usuarios.php">
-                <i class="nav-icon fs-5 fas fa-home"></i>
-                <p class="d-none ms-3 mb-0">Usuarios</p>
-            </a>
-        </li>
-        <li class="nav-item mb-4 menu-item">
-            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="agregar_refacciones.php">
-                <i class="nav-icon fs-5 fas fa-file-alt"></i>
-                <p class="d-none ms-3 mb-0">Lista productos</p>
-            </a>
-        </li>  -->
     </ul>
 </aside>

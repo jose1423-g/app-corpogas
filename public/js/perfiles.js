@@ -124,32 +124,4 @@ $(document).ready(function() {
 		
 	});
 
-	// $("#btn-delete").on('click', function () {
-	// 	id_categoria =  $("#id_categoria").val();
-	// 	if (!confirm(confirmacion)) return false;
-	// 	$.ajax({
-    //         type: "get",
-    //         url: "../../ria/seg_estaciones_save.ria.php",
-    //         data: {
-    //             id_categoria: id_categoria,
-    //             op: 'delete'
-    //         },
-    //         success: function (data) {
-    //             var data = jQuery.parseJSON(data);
-	// 			var result = data.result;
-	// 			if (result == 1) {
-	// 				toastr.success(data.msg);
-	// 				$('#DataModal').modal('hide');
-	// 				$('#grid-table').DataTable().ajax.reload();
-	// 			} else {
-	// 				if (result == -1) {
-	// 					toastr.warning(data.msg);
-	// 				} else {
-	// 					toastr.info(data.msg);
-	// 				}
-	// 			}
-    //         }
-    //     });
-	// })
-
 } );

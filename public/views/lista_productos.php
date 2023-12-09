@@ -20,7 +20,7 @@ segVerifyAuth($app);
 // $g_nombre_usuario = GetUserName($id_user, 'NA');
 
 // // read data (grid)
-$a_head_data = array('IdProducto', 'Descripcion', 'Referencia', 'No Serie', 'Categoria', 'Imagen', 'Sel');
+$a_head_data = array('IdProducto', 'Descripcion', 'Referencia', 'No Serie', 'Categoria', 'Imagen', 'Acción');
 // $a_grid_data = array();
 
 /* Categoria */

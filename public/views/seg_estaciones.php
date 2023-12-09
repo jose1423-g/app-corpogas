@@ -15,6 +15,18 @@ $id_user = SessGetUserId();
 
 $a_head_data = array('#', 'Sel', 'Estacion de servicio', 'Num de estacion', 'Estatus');
 
+$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+$perfil  =  DbGetFirstFieldValue($qry);
+if ($perfil == 13) {
+	$btn_save = '';
+	$btn_new = '';
+} else if ($perfil == 16) {
+	$btn_save = '<button type="button" name="button-save" id="button-save" class="btn btn-sm btn-primary">Guardar</button>';
+	$btn_new = '<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
+} else if ($perfil == 12) {
+	$btn_save = '<button type="button" name="button-save" id="button-save" class="btn btn-sm btn-primary">Guardar</button>';
+	$btn_new = '<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
+}
 
 ?>
 
@@ -61,7 +73,8 @@ $a_head_data = array('#', 'Sel', 'Estacion de servicio', 'Num de estacion', 'Est
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
 								<!-- <button type="button" class="btn btn-danger btn-sm" id="btn-delete">Eliminar</button> -->
-								<button type="button" name="button-save" id="button-save" class="btn btn-sm btn-primary">Guardar</button>
+								<!-- <button type="button" name="button-save" id="button-save" class="btn btn-sm btn-primary">Guardar</button> -->
+								<?php echo $btn_save; ?>
 							</div>
 							</form>
 						</div>
@@ -105,7 +118,8 @@ $a_head_data = array('#', 'Sel', 'Estacion de servicio', 'Num de estacion', 'Est
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
-					<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>
+					<!-- <button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button> -->
+					<?php echo $btn_new; ?>
 				</div>
 				<div class="col-sm-6">
 				</div>

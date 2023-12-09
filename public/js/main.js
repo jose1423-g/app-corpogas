@@ -27,8 +27,6 @@ $(document).ready(function () {
         $("#content-perfiles").toggle('active');
     })    
 
-
-
 });
 
 
