@@ -39,14 +39,13 @@ if (!strlen($id_user)) {
 	$sTable = "solicitudes";
 	
 	// custom from
+	$custom_from = "FROM solicitudes t1 
+						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk";
 	// $custom_from = "FROM solicitudes t1 
 	// 				LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
-	// 				LEFT JOIN seg_estacionesusuario t3 ON t2.IdUsuario = t3.IdUsuario_fk
-	// 				LEFT JOIN estaciones t4 ON t3.IdEstacion_fk  = t4.IdEstacion ";
-	$custom_from = "FROM solicitudes t1 
-					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
-					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
-					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk";
+	// 				LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+	// 				LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk";
 						
 	$custom_where = "";
     $folio = (isset($_GET['Folio'])) ? $_GET['Folio'] : '';
@@ -83,19 +82,33 @@ if (!strlen($id_user)) {
 	}
 
 	if (strlen($s_estacion)) {
-		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-		// $custom_where .= "t1.IdEstacion_fk = $s_estacion AND t1.IdUsuario_fk = $id_user";	
-		$custom_where .= "t4.IdUsuario_fk = $id_user AND t4.IdEstacion_fk = $s_estacion";
-    } else {
-
+	
 		$qry = "SELECT * FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_user";
 		$a_estaciones = DbQryToRow($qry);
 		$id_estacion = $a_estaciones['IdEstacion_fk'];
+		$estaciones = explode(',', $id_estacion);
 
+		
+
+		if (in_array($s_estacion, $estaciones)) {
+			$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+			$custom_where .= "t1.IdEstacion_fk LIKE '%$s_estacion%'";	
+		} else {
+			$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+			$custom_where .= "t1.IdEstacion_fk LIKE '%-1%'";	
+		}
+			
+
+    } else {
+		
+		$qry = "SELECT * FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_user";
+		$a_estaciones = DbQryToRow($qry);
+		$id_estacion = $a_estaciones['IdEstacion_fk'];
+		$estaciones = explode(',', $id_estacion);
+		
 		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-		$custom_where .= "t4.IdUsuario_fk = $id_user AND t4.IdEstacion_fk = $id_estacion";
+		$custom_where .= "t1.IdEstacion_fk LIKE '%$estaciones[0]%'";	
 	}
-
 
 
 	// echo $custom_where;

@@ -151,25 +151,6 @@ if ($op == 'loadSolicitud') {
 				$archivos = scandir($directorio, SCANDIR_SORT_DESCENDING); // Obtener la lista de archivos en la carpeta				
 				$ultimo_archivo = reset($archivos); // Obtener el último archivo descargado
 
-				// if (!strlen($ultimo_archivo)) {
-				// 	$msg = "si tiene archivo";
-				// 	$result = -1;
-				// 	$datos['msg'] = $msg;
-				// 	$datos['result'] = $result;
-				// 	$a_ret = $datos;
-				// 	echo json_encode($a_ret);
-				// 	exit();
-				// } else {
-				// 	$msg = "Error no hay archivo";
-				// 	$result = -1;
-				// 	$datos['msg'] = $msg;
-				// 	$datos['result'] = $result;
-				// 	$a_ret = $datos;
-				// 	echo json_encode($a_ret);
-				// 	echo $ultimo_archivo;
-				// 	exit();
-				// }
-
 				if (strlen($ultimo_archivo)) {
 
 					$qry = "SELECT IdUsuario_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";
@@ -229,9 +210,11 @@ if ($op == 'loadSolicitud') {
 						$mail_firma_url = "";
 						$mail_backup = '';// destinatario
 						$zp = 0;
-						$tamanio  = count($files);
-						if ($tamanio > 0) {
-		
+						// $tamanio  = count($files);
+						$ruta = $directorio.''.$ultimo_archivo;
+						// echo $ruta;
+						// exit();
+						if (file_exists($ruta)) {
 							$result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);
 							if ($result == 0) {
 								$qry = "UPDATE solicitudes 
@@ -248,8 +231,9 @@ if ($op == 'loadSolicitud') {
 								echo json_encode($a_ret);
 								exit();
 							} else {
-								if (file_exists($directorio.''.$ultimo_archivo)) {//verifica que exista el archivo
-									if (unlink($directorio.''.$ultimo_archivo)) {// Intentar borrar el archivo
+								$ruta = $directorio.''.$ultimo_archivo;
+								if (file_exists($ruta)) {//verifica que exista el archivo
+									if (unlink($ruta)) {// Intentar borrar el archivo
 										$msg = "Correo enviado";
 										$result = 1;
 										$datos['msg'] = $msg;

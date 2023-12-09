@@ -825,3 +825,145 @@ Error id: "12726"; Message: "Unknown column 't1.Id' in 'field list'"; Query: "SE
 Error id: "27121"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = 'NULL' WHERE IdSolicitud = 72";
 Error id: "12554"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = 0 WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = 0 WHERE IdSolicitud = 72";
 Error id: "25152"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM solcitudes SET IdCategoria_fk = '' WHERE IdSolicitud = 72' at line 1"; Query: "UPDATE FROM solcitudes SET IdCategoria_fk = '' WHERE IdSolicitud = 72";
+Error id: "4544"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            ' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 90, 89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "6264"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            L' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 90,89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "16121"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            L' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 90,89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "7368"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            L' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 90,89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "24929"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            L' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 90,89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "24126"; Message: "Unknown column 'Array' in 'where clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = Array
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "13471"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 89
+            ORDER BY  t1.IdSoli' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+					LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
+					LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk
+            WHERE  Estatus = 2 AND t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk LIKE '%89%'t4.IdUsuario_fk = 436 AND t4.IdEstacion_fk = 89
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "13446"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8' at line 6"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk
+            WHERE  Estatus = 2 AND 
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "4203"; Message: "Unknown column '2t1.IdEstacion_fk' in 'where clause'"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk
+            WHERE  Estatus = 2t1.IdEstacion_fk LIKE '%%'
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "24903"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "15732"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "12957"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "4882"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "19171"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "15584"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "23449"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "20062"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "12863"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "18188"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "6229"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "29290"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "13147"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "18424"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "25809"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "19254"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "10807"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "27556"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "32013"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "25794"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "13011"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "7696"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "23817"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "2830"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "10543"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "2876"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";
+Error id: "16581"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 91)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 10, , 91)";

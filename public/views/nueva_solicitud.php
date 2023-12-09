@@ -66,7 +66,7 @@ foreach ($a_areas as $row) {
                             <h2>1. Nueva Solicitud de Refacciones</h2>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar y Agreagar Refacciones</button>
+                            <button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button>
                             <button type="button" class="btn btn-danger btn-sm " id="cancelar">Cancelar</button>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ segVerifyAuth($app);
 <?php include('../layouts/main_content.php')  ?>
 
     <div class="row px-5">
-       <h1>CORPOGAS</h1>
+       <h1>PROGAS</h1>
     </div>
 
 <?php include('../layouts/main_content_end.php')  ?>

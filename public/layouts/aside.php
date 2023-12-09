@@ -3,15 +3,15 @@
         <li class="nav-item mb-4 menu-item">
             <a class="border-bottom d-flex justify-content-center align-items-center text-white text-decoration-none px-3" style="height: 3rem;" href="index.php">
                 <i class="nav-icon fs-5 fas fa-home"></i>
-                <p class="d-none ms-3 mb-0">Titulo</p>
+                <p class="d-none ms-3 mb-0">PROGAS</p>
             </a>
         </li>
-        <li class="nav-item mb-4 menu-item">
+        <!-- <li class="nav-item mb-4 menu-item">
             <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="index.php">
                 <i class="nav-icon fs-5 fas fa-home"></i>
                 <p class="d-none ms-3 mb-0">Home</p>
             </a>
-        </li> 
+        </li>  -->
         <!-- nav hidden -->
         <li class="nav-item  menu-item" id="solicitudes">
             <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="#">
@@ -41,6 +41,13 @@
                 <p class="d-none ms-3 mb-0">Nueva estacion</p>
             </a>
         </li>
+        <li class="nav-item menu-item mb-4">
+            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="usuarios.php">
+                <!-- <i class="nav-icon fs-5 fas fa-home"></i> -->
+                <i class="nav-icon fs-5 fas fa-user"></i>
+                <p class="d-none ms-3 mb-0">Usuarios</p>
+            </a>
+        </li>
         <!-- nav hidden -->
         <li class="nav-item  menu-item" id="perfiles">
             <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="#">
@@ -65,13 +72,7 @@
             </li>
         </div>
         <!-- nav hidden end -->
-        <li class="nav-item mt-4 menu-item">
-            <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="usuarios.php">
-                <!-- <i class="nav-icon fs-5 fas fa-home"></i> -->
-                <i class="nav-icon fs-5 fas fa-user"></i>
-                <p class="d-none ms-3 mb-0">Usuarios</p>
-            </a>
-        </li>
+        
         <li class="nav-item mt-4 menu-item">
             <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="seg_productos.php">
                 <!-- <i class="nav-icon fs-5 fas fa-home"></i> -->

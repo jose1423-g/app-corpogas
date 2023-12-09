@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
 					$ret = setLogin($id_user, DtDbToday(), TmDbStamp());
 					// ok
 					if ($ret == 1) {
-						redirect('index.php');
+						redirect('nueva_solicitud.php');
 					} else {
 						$error_alert = 'Datos de acceso incorrectos'; // no hay acceso al nombre de session???
 					}
@@ -74,7 +74,7 @@ if (strlen($error_alert)) {
     <div class="container">
         <div class="row justify-content-center align-items-center vh-100">
             <div class="col-auto col-lg-3">
-            <h2 class="text-primary text-center mb-4">CORPOGAS</h2>
+            <h2 class="text-primary text-center mb-4">PROGAS</h2>
 				<?php
 						if (strlen($error_alert)) { 
 							echo $error_alert;

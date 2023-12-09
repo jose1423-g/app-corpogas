@@ -105,15 +105,15 @@ foreach ($a_estaciones as $row) {
 												<input type="text" name="telefono" id="telefono" class="form-control" >
 											</div>
 										</div>
-										<div class="col-6">
+										<div class="col-7">
 											<div class="form-group">
 												<label class="form-label fw-bold" for="IdEstacion_fk">Estacion de servicio</label>
-												<select class="form-control" name="IdEstacion_fk" id="IdEstacion_fk" >
+												<select class="form-control" name="IdEstacion_fk[]" id="IdEstacion_fk" multiple="multiple">
 													<?php echo $estaciones; ?>
 												</select>
 											</div>
 										</div>
-										<div class="col-6">
+										<div class="col-5">
 											<div class="form-group">
 												<label class="form-label fw-bold" for="EmailSupervisor">Email supervisor</label>
 												<input type="email" name="EmailSupervisor" id="EmailSupervisor" class="form-control" >

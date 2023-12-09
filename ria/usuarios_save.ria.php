@@ -22,6 +22,10 @@ $usuario_perfil_id = (isset($_REQUEST['UsuarioPerfilId_fk'])) ? $_REQUEST['Usuar
 $email = (isset($_REQUEST['Email'])) ? $_REQUEST['Email'] : "";
 $telefefono = (isset($_REQUEST['telefono'])) ? $_REQUEST['telefono'] : "";
 $id_estacion = (isset($_REQUEST['IdEstacion_fk'])) ? $_REQUEST['IdEstacion_fk'] : "";
+
+
+$estaciones = implode(",", $id_estacion);
+
 $email_supervisor = (isset($_REQUEST['EmailSupervisor'])) ? $_REQUEST['EmailSupervisor'] : "";
 $es_activo = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
 
@@ -74,6 +78,18 @@ if ($op == 'loadUsuario') {
 		$email_supervisor = utf8_encode($a_usuarios['EmailSupervisor']);
 		$a_usuarios['EmailSupervisor'] = $email_supervisor;
 
+		$id_estacion = $a_usuarios['IdEstacion_fk'];
+		$estaciones = explode(',', $id_estacion);
+		// echo $id_estacion;
+		// exit();
+		// $estaciones = str_replace('"', "", $id_estacion);
+		// Convertir el string a un número entero
+		// $estaciones = implode(",", $estacion);
+		// $id_estacion = intval($estaciones);
+		
+		$a_usuarios['IdEstacion_fk'] = $estaciones;
+
+
 
 		$a_usuarios['result'] = 1;
 		$a_usuarios['msg'] = $msg;
@@ -108,9 +124,9 @@ if ($op == 'loadUsuario') {
 	} else if (!strlen($telefefono)){
 		$msg = 'El campo telefono es requerido';
 		$result = -1;
-	} else if (!strlen($id_estacion)){
-		$msg = 'El campo estacion de servicio es requerido';
-		$result = -1;
+	// } else if (!strlen($id_estacion)){
+	// 	$msg = 'El campo estacion de servicio es requerido';
+	// 	$result = -1;
 	} else if (!strlen($email_supervisor)){
 		$msg = 'El campo email supervisor es requerido';
 		$result = -1;
@@ -147,7 +163,7 @@ if ($op == 'loadUsuario') {
 					// $qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
 					// $id_usuario = DbGetFirstFieldValue($qry);
 					$qry = "UPDATE seg_estacionesusuario 
-							SET IdEstacion_fk = $id_estacion 
+							SET IdEstacion_fk = '$estaciones' 
 							WHERE IdUsuario_fk = $id_usuario"; 
 					$res_ins = DbExecute($qry, true);
 					DbCommit();
@@ -168,7 +184,6 @@ if ($op == 'loadUsuario') {
 
 		} else {
 			$passwd = crypt($passwd, "doxasystems");
-
 			$qry = "INSERT INTO seg_usuarios (UserName, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono, EmailSupervisor)
 					VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono', '$email_supervisor')";
 			$res_ins = DbExecute($qry, true);
@@ -182,8 +197,8 @@ if ($op == 'loadUsuario') {
 					$result = -1;
 				} else {    
 					$qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
-					$id_usuario = DbGetFirstFieldValue($qry);
-					$qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, $id_estacion)";
+					$id_usuario = DbGetFirstFieldValue($qry);					
+					$qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, '$estaciones')";
 					$res_ins = DbExecute($qry, true);
 					DbCommit();
 					if (is_string($res_ins)) {

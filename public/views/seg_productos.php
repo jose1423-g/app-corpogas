@@ -87,7 +87,7 @@ foreach ($a_categoria as $row){
                     </div>
                 </div> 
                 <div class="py-2 d-flex justify-content-end">
-                    <button type="button" class="btn btn-warning btn-sm me-2" id="btn-clear">Borrar</button>
+                    <button type="button" class="btn btn-warning btn-sm me-2" id="btn-clear">Limpiar formulario</button>
                     <button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>
                 </div>
             </form>

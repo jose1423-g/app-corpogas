@@ -148,6 +148,7 @@ foreach ($a_solicitud as $row) {
             </div><!-- end -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-sm" id="btn-agregar">Agregar</button>
+                <button type="button" class="btn btn-danger btn-sm" id="btn-exit">Salir</button>
             </div>
             </div>
         </div>
@@ -160,8 +161,7 @@ foreach ($a_solicitud as $row) {
                     <div class="d-flex align-items-center mb-3">
                         <h2 class="">2. Agregar Refacciones</h2>
                     </div>
-                    <h4>Armado de Solicitud</h4>
-
+                    <!-- <h4>Armado de Solicitud</h4> -->
                 </div>
                 <div class="col-12 mb-2">
                     <h4>Informacion de la solicitud</h4>
@@ -205,9 +205,13 @@ foreach ($a_solicitud as $row) {
                 <div class="col-12 mb-2 mt-3">
                     <h4>Informacion de Estacion</h4>
                 </div>
-                <div class="col-12 d-flex">
+                <div class="col-7 d-flex">
                     <span class="text-secondary fw-bold me-2 mb-1">Estacion de servicio:</span><p class="fw-bold mb-0"><?php echo $estacion_servicio ?></p>
                 </div>
+                <div class="col-4 d-flex">
+                    <span class="text-secondary fw-bold me-2 mb-1">No. Estacion::</span><p class="fw-bold mb-0"><?php echo $num_estacion  ?></p>
+                </div>
+                <!-- No. Estacion: -->
                 <div class="col-6 d-flex">
                     <span class="text-secondary fw-bold me-2 mb-1">Gerente punto de venta:</span><p class="fw-bold mb-0"><?php echo $nombre ?></p>
                 </div>

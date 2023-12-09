@@ -97,6 +97,14 @@ $(document).ready(function() {
 		$('#table-refacciones').DataTable().ajax.reload();
 	})
 
+	$("#btn-exit").on('click', function () {
+		$("#add-modal").modal('hide');
+		$('#table-refacciones tbody .valores').val('');
+		$('#IdCategoria_fk').val(null).trigger('change');
+		$('#Descripcion').val('');
+		$('#table-refacciones').DataTable().ajax.reload();
+	})
+
 	$('#IdCategoria_fk').select2({
 		// theme: 'bootstrap4',
 		dropdownParent: $('#add-modal'),

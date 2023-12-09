@@ -50,10 +50,11 @@ if (!strlen($id_user)) {
 	if (strlen($IdCategoria_fk)) {
         $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
         $custom_where .= "t1.IdCategoria_fk = $IdCategoria_fk";
-    } else {
-		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-        $custom_where .= "t1.IdCategoria_fk = 0";
-	}
+    } 
+	// else {
+	// 	$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+    //     $custom_where .= "t1.IdCategoria_fk = 0";
+	// }
 
 	
 	// new function for paging
