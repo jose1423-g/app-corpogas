@@ -15,6 +15,7 @@ $id_estacion = (isset($_REQUEST['IdEstacion'])) ? $_REQUEST['IdEstacion'] : '';
 $estacion = (isset($_REQUEST['EstacionServicio'])) ? $_REQUEST['EstacionServicio'] : '';
 $num_estacion = (isset($_REQUEST['NoEstacion'])) ? $_REQUEST['NoEstacion'] : '';
 $estatus = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
+$email_supervisor = (isset($_REQUEST['EmailSupervisor'])) ? $_REQUEST['EmailSupervisor'] : "";
 
 $fecha_hoy = "";
 $fecha_hoy =  DtDbToday($fecha_hoy);
@@ -31,7 +32,7 @@ if ($op == 'loadEstacion') {
 		$msg = 'Su sesion ha expirado';
 		$result = -1;
 	} else {
-		$qry = "SELECT EstacionServicio, NoEstacion, EsActivo 
+		$qry = "SELECT EstacionServicio, NoEstacion, EsActivo, EmailSupervisor 
                 FROM estaciones WHERE IdEstacion = $id_estacion";
 		$a_estacion = DbQryToRow($qry);
 
@@ -54,6 +55,9 @@ if ($op == 'loadEstacion') {
     } else if (!strlen($num_estacion)) {
         $msg = 'El campo numero de la estacion es requerido';
 		$result = -1;
+	} else if (!strlen($email_supervisor)) {
+        $msg = 'El campo email supervisor es requerido';
+		$result = -1;
 	} else if (!strlen($id_user)) {
 		$msg = 'Su sesion ha expirado';
 		$result = -1;
@@ -69,6 +73,7 @@ if ($op == 'loadEstacion') {
 			$qry = "UPDATE estaciones 
                     SET EstacionServicio = '$estacion', 
                     NoEstacion = '$num_estacion', 
+					EmailSupervisor = '$email_supervisor',
                     EsActivo = $estatus
                     WHERE IdEstacion = $id_estacion";
 					
@@ -88,18 +93,12 @@ if ($op == 'loadEstacion') {
 			}
 		} else {
 
-			// $categoria = utf8_decode($categoria);
-
-			// if (!strlen($id_usuarios_fk)) {
-			// 	$id_usuarios_fk = 'NULL';
-			// }
-
 			$estacion = utf8_decode($estacion);
 			// $qry = "SELECT MAX(IdMedico) AS id_medico_last FROM Medicos";
 			// $id_medico_last = DbGetFirstFieldValue($qry);
 			// $id_medico_next = $id_medico_last + 1;
 
-			$qry = "INSERT INTO estaciones (EstacionServicio, NoEstacion, EsActivo) VALUES ('$estacion','$num_estacion',$estatus)";
+			$qry = "INSERT INTO estaciones (EstacionServicio, NoEstacion, EsActivo, EmailSupervisor) VALUES ('$estacion','$num_estacion',$estatus, '$email_supervisor')";
 			$res_ins = DbExecute($qry, true);
 			DbCommit();
 			if (is_string($res_ins)) {

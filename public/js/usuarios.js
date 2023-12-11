@@ -75,7 +75,7 @@ $(document).ready(function() {
 					$("#Email").val(data.Email);
 					$("#telefono").val(data.telefono);
 					$('#IdEstacion_fk').val(data.IdEstacion_fk).trigger('change');
-					$("#EmailSupervisor").val(data.EmailSupervisor);
+					// $("#EmailSupervisor").val(data.EmailSupervisor);
 					
 					// $("#EsActivo").val(data.EsActivo);
 					if (data.EsActivo == 1) {
@@ -138,7 +138,7 @@ $(document).ready(function() {
 		$("#telefono").val('');
 		// $('#IdEstacion_fk').val('');
 		$('#IdEstacion_fk').val(null).trigger('change');
-		$("#EmailSupervisor").val('');
+		// $("#EmailSupervisor").val('');
 		$("#EsActivo").prop('checked', true);
 	}
 

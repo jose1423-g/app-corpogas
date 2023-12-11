@@ -6,6 +6,7 @@ require_once("$SYS_ROOT/php/knl/file_uploader.php");
 require_once("$SYS_ROOT/php/knl/locale.inc.php");
 require_once("$SYS_ROOT/php/knl/dates.inc.php");
 require_once("$SYS_ROOT/php/knl/phpext.inc.php");
+require_once("$SYS_ROOT/archivospdf/solicitud.php");
 	
 session_start();
 
@@ -16,9 +17,12 @@ $id_user = SessGetUserId();
 $op = (isset($_REQUEST['op'])) ? $_REQUEST['op'] : '';
 
 $id_solicitud = (isset($_REQUEST['id_solicitud'])) ? $_REQUEST['id_solicitud'] : "";
+$fecha_show = (isset($_REQUEST['fecha'])) ? $_REQUEST['fecha'] : "";
+
 
 $msg = "";
 $result = 0;
+$is_show = 1;
 
 $fecha_hoy = "";
 $fecha_hoy =  DtDbToday($fecha_hoy);
@@ -147,6 +151,8 @@ if ($op == 'loadSolicitud') {
 				echo json_encode($a_ret);
 				exit();
 			} else { 
+				generaVentaPdf($id_solicitud, $is_show, $fecha_show);
+
 				$directorio = '../pdf_downloads/'; 
 				$archivos = scandir($directorio, SCANDIR_SORT_DESCENDING); // Obtener la lista de archivos en la carpeta				
 				$ultimo_archivo = reset($archivos); // Obtener el último archivo descargado
@@ -168,52 +174,56 @@ if ($op == 'loadSolicitud') {
 
 					} else {
 
-						$qry = "SELECT Email, EmailSupervisor FROM seg_usuarios WHERE IdUsuario = $id_usuario";
+						$qry = "SELECT Email FROM seg_usuarios WHERE IdUsuario = $id_usuario";
 						$a_usuarios = DbQryToRow($qry);
 						$email = $a_usuarios['Email'];
-						$email_supervisor =$a_usuarios['EmailSupervisor'];
 
 						$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_usuario";
 						$id_estacion =  DbGetFirstFieldValue($qry);
 					
+						$qry = "SELECT EmailSupervisor FROM estaciones WHERE IdEstacion = $id_estacion";
+						$email_supervisor=  DbGetFirstFieldValue($qry);
+
 						$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";
 						$a_estaciones = DbQryToRow($qry);
 						$estacion = $a_estaciones['EstacionServicio'];
 						$no_estacion = $a_estaciones['NoEstacion'];
 
-						$qry = "SELECT Folio FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+						$qry = "SELECT Folio, IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";
 						$a_solicitudes = DbQryToRow($qry);
 						$folio = $a_solicitudes['Folio'];
+						$id_categoria = $a_solicitudes['IdCategoria_fk'];
+
+						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria = $id_categoria";
+						$categoria =  DbGetFirstFieldValue($qry);
 
 						$mail_to = $email.','.$email_supervisor; // destinatarios jctg1@hotmail.com
 						$files[] = '../pdf_downloads/'.$ultimo_archivo;
-						$mail_from = 'cubobale@hotmail.com'; //responder a 
+						$mail_from = $email_supervisor; //responder a 
 						$mail_from_name = 'CORPOGAS'; //nombre de la empresa
-						$mail_subject = 'Refacciones '.$no_estacion.' '.$estacion;
+						$mail_subject = $categoria.' '.$no_estacion;
 						$mensaje_de_alerta = '';
 						$mail_text_body =  'Estimado(a) usuario de compras, a continuacion se adjunta la solicitud de refacciones en formato pdf correspondiente a la estacion '.$no_estacion.' '.$estacion;
 						$mail_html_body = "<html>
 											<head>
 											<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />
-											<title>Refacciones $no_estacion $estacion</title>
+											<title>$mail_subject</title>
 											</head>
 											<body>
-												<h3>$mail_subject</h3>
 												<p>$mail_text_body</p>
 											</body>
 											</html>";
-						$mail_host = 'smtp.googlemail.com';
+						$mail_host = 'smtp.gmail.com';
 						$mail_port = '587';
-						$mail_username = 'caja@qds.mx'; //aparece al lado del nombre de la empresa Corpogas
-						$mail_passwd = 'q5caj4s';
+						$mail_username = 'doxasystems.mail@gmail.com'; //aparece al lado del nombre de la empresa Corpogas
+						$mail_passwd = 'qptttahefmxcndli';
 						$mail_smtp_secure = 'tls';
 						$mail_firma_url = "";
-						$mail_backup = '';// destinatario
+						$mail_backup = 'compras@gruposynergo.com';// destinatario
 						$zp = 0;
-						// $tamanio  = count($files);
+						
 						$ruta = $directorio.''.$ultimo_archivo;
-						// echo $ruta;
-						// exit();
+
 						if (file_exists($ruta)) {
 							$result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);
 							if ($result == 0) {

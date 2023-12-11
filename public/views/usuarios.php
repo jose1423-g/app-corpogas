@@ -128,13 +128,19 @@ if ($perfil == 13) {
 												</select>
 											</div>
 										</div>
-										<div class="col-5">
+										<!-- <div class="col-5">
 											<div class="form-group">
 												<label class="form-label fw-bold" for="EmailSupervisor">Email supervisor</label>
-												<input type="email" name="EmailSupervisor" id="EmailSupervisor" class="form-control" >
+												<input type="email" name="EmailSupervisor" id="EmailSupervisor" class="form-control">
 											</div>
-										</div>
-										<div class="form-group">
+										</div> -->
+										<!-- <div class="col-5">
+											<div class="form-group">
+												<label class="form-label fw-bold" for="EmailCompras">Email compras</label>
+												<input type="email" name="EmailCompras" id="EmailCompras" class="form-control">
+											</div>
+										</div> -->
+										<div class="form-group col-12">
 											<div class="custom-control custom-switch">
 												<input type="checkbox" class="custom-control-input" name="EsActivo" id="EsActivo">
 												<label class="custom-control-label" for="EsActivo">Usuario Activo</label>

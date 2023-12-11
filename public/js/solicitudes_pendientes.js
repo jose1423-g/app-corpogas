@@ -166,12 +166,13 @@ $(document).ready(function() {
 		$("#spinner").removeClass('d-none');
 		let fecha = $("#fecha_val").val();
 		let id_solicitud = $("#id_solicitud").val()
-		downloadspdf(id_solicitud, fecha);	
+		
 		$.ajax({
 			type: "post",
             url: "../../ria/solicitudes_pendientes_save.ria.php",
             data: {
                 id_solicitud: id_solicitud,
+				fecha: fecha,
                 op: 'aprobar'
             },
             success: function (data) {
@@ -199,30 +200,30 @@ $(document).ready(function() {
 		$("#spinner").addClass('d-none');		
 	}
 
-	function downloadspdf(id_solicitud, fecha) {
+	// function downloadspdf(id_solicitud, fecha) {
 
-		$.ajax({
-			type: "POST",
-			url: "../../archivospdf/solicitud.php",
-			data: {
-				IdSolicitud: id_solicitud,
-				fecha: fecha
-			},
-			success: function(data){
-				var data = jQuery.parseJSON(data);
-				var result = data.result;
-				if (result == 1) {
-					// toastr.success(data.msg);
-					window.location.href = "../views/index.php";
-				} else {
-					if (result == -1) {
-						toastr.warning(data.msg);
-					} else {
-						toastr.info(data.msg);
-					}
-				}
-			}
-		})
-	}
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "../../archivospdf/solicitud.php",
+	// 		data: {
+	// 			IdSolicitud: id_solicitud,
+	// 			fecha: fecha
+	// 		},
+	// 		success: function(data){
+	// 			var data = jQuery.parseJSON(data);
+	// 			var result = data.result;
+	// 			if (result == 1) {
+	// 				// toastr.success(data.msg);
+	// 				window.location.href = "../views/index.php";
+	// 			} else {
+	// 				if (result == -1) {
+	// 					toastr.warning(data.msg);
+	// 				} else {
+	// 					toastr.info(data.msg);
+	// 				}
+	// 			}
+	// 		}
+	// 	})
+	// }
 	
 } );

@@ -72,6 +72,7 @@ $(document).ready(function() {
                 if (result == 1) {
 					$("#EstacionServicio").val(data.EstacionServicio);
                     $("#NoEstacion").val(data.NoEstacion);
+					$("#EmailSupervisor").val(data.EmailSupervisor);
                     if (data.EsActivo == 1) {
                         $('#EsActivo').prop('checked', true);
                     } else {
@@ -93,6 +94,7 @@ $(document).ready(function() {
         $("#IdEstacion").val('');
         $("#EstacionServicio").val('');
         $("#NoEstacion").val('');
+		$("#EmailSupervisor").val('');
 		$('#EsActivo').prop('checked', true);
         // clean form
 		// $("#Categoria").val('');

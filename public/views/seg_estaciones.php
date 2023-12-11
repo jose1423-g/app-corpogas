@@ -61,6 +61,12 @@ if ($perfil == 13) {
 										</div>
 									</div>
 									<div class="col-12">
+											<div class="form-group">
+												<label class="form-label fw-bold" for="EmailSupervisor">Email supervisor</label>
+												<input type="email" name="EmailSupervisor" id="EmailSupervisor" class="form-control">
+											</div>
+										</div>
+									<div class="col-12">
 										<div class="form-group">
 											<div class="custom-control custom-switch">
 												<input type="checkbox" class="custom-control-input" name="EsActivo" id="EsActivo">

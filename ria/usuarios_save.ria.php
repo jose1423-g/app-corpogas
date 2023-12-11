@@ -26,7 +26,7 @@ $id_estacion = (isset($_REQUEST['IdEstacion_fk'])) ? $_REQUEST['IdEstacion_fk'] 
 
 $estaciones = implode(",", $id_estacion);
 
-$email_supervisor = (isset($_REQUEST['EmailSupervisor'])) ? $_REQUEST['EmailSupervisor'] : "";
+// $email_supervisor = (isset($_REQUEST['EmailSupervisor'])) ? $_REQUEST['EmailSupervisor'] : "";
 $es_activo = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
 
 $msg = "";
@@ -41,8 +41,9 @@ if ($op == 'loadUsuario') {
 		$msg = 'Su sesion ha expirado';
 		$result = -1;
 	} else {
+		// t1.EmailSupervisor,
 		$qry = "SELECT t1.Username, t1.Nombre, t1.ApellidoPaterno, t1.ApellidoMaterno, t1.passwd, t1.UsuarioPerfilId_fk, t1.EsActivo, t1.Email, 
-		t1.telefono, t1.EmailSupervisor, t2.IdEstacion_fk
+		t1.telefono, t2.IdEstacion_fk
 		FROM seg_usuarios t1
 		LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
 		WHERE IdUsuario =  $id_usuario";
@@ -75,17 +76,11 @@ if ($op == 'loadUsuario') {
 		$email = utf8_encode($a_usuarios['Email']);
 		$a_usuarios['Email'] = $email;
 
-		$email_supervisor = utf8_encode($a_usuarios['EmailSupervisor']);
-		$a_usuarios['EmailSupervisor'] = $email_supervisor;
+		// $email_supervisor = utf8_encode($a_usuarios['EmailSupervisor']);
+		// $a_usuarios['EmailSupervisor'] = $email_supervisor;
 
 		$id_estacion = $a_usuarios['IdEstacion_fk'];
 		$estaciones = explode(',', $id_estacion);
-		// echo $id_estacion;
-		// exit();
-		// $estaciones = str_replace('"', "", $id_estacion);
-		// Convertir el string a un número entero
-		// $estaciones = implode(",", $estacion);
-		// $id_estacion = intval($estaciones);
 		
 		$a_usuarios['IdEstacion_fk'] = $estaciones;
 
@@ -127,9 +122,9 @@ if ($op == 'loadUsuario') {
 	// } else if (!strlen($id_estacion)){
 	// 	$msg = 'El campo estacion de servicio es requerido';
 	// 	$result = -1;
-	} else if (!strlen($email_supervisor)){
-		$msg = 'El campo email supervisor es requerido';
-		$result = -1;
+	// } else if (!strlen($email_supervisor)){
+	// 	$msg = 'El campo email supervisor es requerido';
+	// 	$result = -1;
 	} else if (!strlen($passwd)){
 		$msg = 'El campo password es requerido';
 		$result = -1;
@@ -147,8 +142,7 @@ if ($op == 'loadUsuario') {
 					UsuarioPerfilId_fk = $usuario_perfil_id, 
 					EsActivo = $es_activo, 
 					Email = '$email', 
-					telefono = '$telefefono', 
-					EmailSupervisor = '$email_supervisor' 
+					telefono = '$telefefono'
 					WHERE IdUsuario = $id_usuario";
 			$res_ins = DbExecute($qry, true);
 			DbCommit();
@@ -184,8 +178,8 @@ if ($op == 'loadUsuario') {
 
 		} else {
 			$passwd = crypt($passwd, "doxasystems");
-			$qry = "INSERT INTO seg_usuarios (UserName, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono, EmailSupervisor)
-					VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono', '$email_supervisor')";
+			$qry = "INSERT INTO seg_usuarios (UserName, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono)
+					VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono')";
 			$res_ins = DbExecute($qry, true);
 			DbCommit();
 			if (is_string($res_ins)) {

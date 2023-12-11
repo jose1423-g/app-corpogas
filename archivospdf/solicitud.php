@@ -344,8 +344,8 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 // $id_venta = '1';
 // $id_solicitud = 72;
 // $fecha_show =  DtDbToday();
-$fecha_show = $_REQUEST['fecha'];
-$id_solicitud = $_REQUEST['IdSolicitud'];
-$is_show = 1; // para que se muestre por pantalla (no se grabara el PDF)
-generaVentaPdf($id_solicitud, $is_show, $fecha_show);
+// $fecha_show = $_REQUEST['fecha'];
+// $id_solicitud = $_REQUEST['IdSolicitud'];
+// $is_show = 1; // para que se muestre por pantalla (no se grabara el PDF)
+// generaVentaPdf($id_solicitud, $is_show, $fecha_show);
 ?>

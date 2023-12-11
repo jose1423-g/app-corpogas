@@ -40,9 +40,9 @@ if ($op == 'save') {
 	} elseif (!strlen($referencia)) {
 		$msg = "El campo referencia es necesario";
 		$result = -1;
-	} elseif (!strlen($no_serie)) {
-		$msg = "El campo No serie es necesario";
-		$result = -1;
+	// } elseif (!strlen($no_serie)) {
+	// 	$msg = "El campo No serie es necesario";
+	// 	$result = -1;
 	} elseif (!strlen($id_categoria)) {
 		$msg = "El campo categoria es necesario";
 		$result = -1;
