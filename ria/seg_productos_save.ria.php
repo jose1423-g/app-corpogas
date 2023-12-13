@@ -28,10 +28,7 @@ $result = 0;
 // $fecha_hoy = "";
 // $fecha_hoy =  DtDbToday($fecha_hoy);
 
-$minutos = date('i');
-
-
-
+// $minutos = date('i');
 
 if ($op == 'save') {
 	if (!strlen($nombre_refaccion)) {
@@ -59,7 +56,7 @@ if ($op == 'save') {
 
 			//tiene algo				
 		if(!empty($_FILES)){
-			$new_name = "refaccion".$minutos;
+			$new_name = $_FILES['name'];
 			$a_result = UploadFileDoc($_FILES, $new_name, "../images/products/");
 			$msg = $a_result['msg'];
 			$result = $a_result['result'];
@@ -70,6 +67,9 @@ if ($op == 'save') {
 			}
 		} 
 
+		if(!strlen($no_serie)){
+			$no_serie = NULL;
+		}
 		$qry = "INSERT INTO productos (NombreRefaccion, Referencia, NoSerie, IdCategoria_fk, img) 
 				VALUES ('$nombre_refaccion', '$referencia', '$no_serie', $id_categoria, '$new_file_name')";
 			$result = DbExecute($qry, true);
