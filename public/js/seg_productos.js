@@ -49,7 +49,7 @@ $(document).ready(function() {
 	$("#btn-clear").on('click', cleanForm);
 
 	function cleanForm() {
-		$("#uploadedfile").val('')
+		// $("#uploadedfile").val('')
 		$("#NombreRefaccion").val('')
 		$("#Referencia").val('')
 		$("#NoSerie").val('')
@@ -60,6 +60,7 @@ $(document).ready(function() {
 	}
 
 	$("#btn-save").on('click',function (e) { 
+		$("#spinner").removeClass('d-none');
 		e.preventDefault();
 		
 		let file =  document.getElementById('uploadedfile').files[0];	
@@ -91,19 +92,24 @@ $(document).ready(function() {
 				var data = jQuery.parseJSON(data);
 				var result = data.result;
 				if (result == 1) {
+					show_load();				
+					cleanForm()
 					toastr.success(data.msg);
-					cleanForm
 				} else {
 					if (result == -1) {
+						show_load();				
 						toastr.warning(data.msg);
 					} else {
+						show_load();				
 						toastr.info(data.msg);
 					}
 				}
 			}
 		});
-
-
 	});
+
+	function  show_load() {
+		$("#spinner").addClass('d-none');		
+	}
 
 } );    

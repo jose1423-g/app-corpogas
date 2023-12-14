@@ -21,7 +21,7 @@ $a_head_data_2 = array( 'id', 'Sel','File Name','Descripcion');
 
 <?php include('../layouts/main_content.php')  ?>
 
-    <div class="row">   
+    <div class="row mb-100">   
         <!-- <div class="col-12"> -->
             <div class="d-block d-md-flex">
                 <div class="col-5">

@@ -51,8 +51,8 @@ if ($op == 'save') {
 		$result = -1;
 	} else {
 		
-		$nombre_refaccion = utf8_encode($nombre_refaccion);
-		$referencia = utf8_encode($referencia);
+		$nombre_refaccion = utf8_decode($nombre_refaccion);
+		$referencia = utf8_decode($referencia);
 
 			//tiene algo				
 		if(!empty($_FILES)){

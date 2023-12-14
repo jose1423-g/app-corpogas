@@ -44,7 +44,7 @@ $fecha = DtDbToday();
 
     <input type="hidden" name="fecha_val" id="fecha_val" value="<?php echo $fecha ?>">
 
-	<div class="row px-5">
+	<div class="row px-5 mb-100">
 		<div class="col-12">
 			<!-- Modal -->
 			<div class="modal fade" id="DataModal" tabindex='-1'>

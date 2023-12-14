@@ -2,4 +2,4 @@
     <?php  include('../layouts/aside.php') ?>
     <div class="w-100 d-block">
         <?php include('../layouts/nav.php') ?>
-        <div class="container-fluid overflow-auto h-150 p-3 mt-2">  
+        <div class="container-fluid overflow-scroll h-150 p-3 mt-2">  

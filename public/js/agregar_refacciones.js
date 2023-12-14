@@ -209,7 +209,7 @@ $(document).ready(function() {
 				var result = data.result;
 				if (result == 1) {
 					$("#spinner").removeClass("d-none")
-					setTimeout(Cancelar, 2000)
+					setTimeout(Cancelar, 2000);
 				} else {
 					if (result == -1) {
 						toastr.warning(data.msg);
@@ -222,7 +222,7 @@ $(document).ready(function() {
 	});
 
 	function Cancelar() {
-		window.location.href = "../views/index.php";
+		window.location.href = "../views/nueva_solicitud.php";
 	}
 
 	/* muestra los productos a solicitar */
@@ -321,7 +321,7 @@ $(document).ready(function() {
 				var result = data.result;
 				if (result == 1) {
 					// toastr.success(data.msg);
-					window.location.href = "../views/index.php";
+					window.location.href = "../views/nueva_solicitud.php";
 				} else {
 					if (result == -1) {
 						toastr.warning(data.msg);
@@ -332,5 +332,8 @@ $(document).ready(function() {
 			}
 		})
 	})
-	
+
+	$("#mas-informacion").on('click', function () {
+		$("#informacion").toggle('d-none');
+	})
 } );

@@ -36,7 +36,7 @@ if (strlen($id_perfil)) {
 
 <?php include('../layouts/main_content.php')  ?>
 
-	<div class="row justify-content-center">   
+	<div class="row justify-content-center mb-100">   
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">

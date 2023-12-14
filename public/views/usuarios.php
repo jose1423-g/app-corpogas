@@ -53,7 +53,7 @@ if ($perfil == 13) {
 <?php include('../layouts/main.php'); ?>
 <?php include('../layouts/main_content.php') ?>
 
-	<div class="row px-5">
+	<div class="row px-5 mb-100">
 		<div class="col-12">
 			<!-- Modal -->
 			<div class="modal fade" id="DataModal">

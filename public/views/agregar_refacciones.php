@@ -154,72 +154,75 @@ foreach ($a_solicitud as $row) {
         </div>
     </div>
 
-    <div class="row px-5 text-small">
+    <div class="row px-5 text-small mb-100">
         <div class="col-12 shadow-sm bg-white rounded-2 py-2">
             <div class="row">
                 <div class="col-12 mb-3 border-bottom border-primary border-2">
                     <div class="d-flex align-items-center mb-3">
-                        <h2 class="">2. Agregar Refacciones</h2>
+                        <h2 class="me-5">2. Agregar Refacciones del folio <?php echo $folio_solicitud; ?></h2>
+                        <button type="button" class="btn btn-info btn-sm  text-white" id="mas-informacion">Mas informacion</button>
                     </div>
                     <!-- <h4>Armado de Solicitud</h4> -->
                 </div>
-                <div class="col-12 mb-2">
-                    <h4>Informacion de la solicitud</h4>
-                </div>
-                <div class="col-12 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Folio de Solicitud:</span><p class="fw-bold mb-0"><?php echo $folio_solicitud ?></p>
-                </div>
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Estatus:</span>
-                    <p class="fw-bold mb-0">
-                        <?php 
-                        if ($estatus == 1) {
-                            echo 'Abierto';
-                        } ?>
-                    </p>
-                </div>
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Fecha de creacion:</span><p class="fw-bold mb-0"><?php echo $fecha ?></p>
-                </div>
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Materiales Entregados:</span><p class="fw-bold mb-0"><?php echo $mat_entregado ?></p>
-                </div>
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Area que solicita:</span><p class="fw-bold mb-0"><?php echo $area ?></p>
-                </div>
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Se entrego material completo:</span><p class="fw-bold mb-0"><?php  ?></p>
-                </div>
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Folio de remision:</span><p class="fw-bold mb-0"><?php echo $folio_remision ?></p>
-                </div>
-                <div class="col-12 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Observaciones:</span><p class="fw-bold mb-0"><?php echo $observaciones ?></p>
-                </div>
-                <div class="col-12 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Motivo de Rechazo:</span><p class="fw-bold mb-0"><?php echo "" ?></p>
-                </div>
-                <div class="col-12 d-flex border-bottom border-primary border-2">
-                    <span class="text-secondary fw-bold me-2 mb-2">Observaciones Generales:</span><p class="fw-bold mb-0"><?php echo "" ?></p>
-                </div>
-                <div class="col-12 mb-2 mt-3">
-                    <h4>Informacion de Estacion</h4>
-                </div>
-                <div class="col-7 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Estacion de servicio:</span><p class="fw-bold mb-0"><?php echo $estacion_servicio ?></p>
-                </div>
-                <div class="col-4 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">No. Estacion::</span><p class="fw-bold mb-0"><?php echo $num_estacion  ?></p>
-                </div>
-                <!-- No. Estacion: -->
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Gerente punto de venta:</span><p class="fw-bold mb-0"><?php echo $nombre ?></p>
-                </div>
-                <div class="col-6 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Correo electronico:</span><p class="fw-bold mb-0"><?php echo $email ?></p>
-                </div>
-                <div class="col-12 d-flex">
-                    <span class="text-secondary fw-bold me-2 mb-1">Telefono/Nextel:</span><p class="fw-bold mb-0"><?php echo $telefono ?></p>
+                <div class="row" id="informacion" style="display: none;">
+                    <div class="col-12 mb-2">
+                        <h4>Informacion de la solicitud</h4>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Folio de Solicitud:</span><p class="fw-bold mb-0"><?php echo $folio_solicitud ?></p>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Estatus:</span>
+                        <p class="fw-bold mb-0">
+                            <?php 
+                            if ($estatus == 1) {
+                                echo 'Abierto';
+                            } ?>
+                        </p>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Fecha de creacion:</span><p class="fw-bold mb-0"><?php echo $fecha ?></p>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Materiales Entregados:</span><p class="fw-bold mb-0"><?php echo $mat_entregado ?></p>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Area que solicita:</span><p class="fw-bold mb-0"><?php echo $area ?></p>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Se entrego material completo:</span><p class="fw-bold mb-0"><?php  ?></p>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Folio de remision:</span><p class="fw-bold mb-0"><?php echo $folio_remision ?></p>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Observaciones:</span><p class="fw-bold mb-0"><?php echo $observaciones ?></p>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Motivo de Rechazo:</span><p class="fw-bold mb-0"><?php echo "" ?></p>
+                    </div>
+                    <div class="col-12 d-flex border-bottom border-primary border-2">
+                        <span class="text-secondary fw-bold me-2 mb-2">Observaciones Generales:</span><p class="fw-bold mb-0"><?php echo "" ?></p>
+                    </div>
+                    <div class="col-12 mb-2 mt-3">
+                        <h4>Informacion de Estacion</h4>
+                    </div>
+                    <div class="col-7 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Estacion de servicio:</span><p class="fw-bold mb-0"><?php echo $estacion_servicio ?></p>
+                    </div>
+                    <div class="col-4 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">No. Estacion::</span><p class="fw-bold mb-0"><?php echo $num_estacion  ?></p>
+                    </div>
+                    <!-- No. Estacion: -->
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Gerente punto de venta:</span><p class="fw-bold mb-0"><?php echo $nombre ?></p>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Correo electronico:</span><p class="fw-bold mb-0"><?php echo $email ?></p>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <span class="text-secondary fw-bold me-2 mb-1">Telefono/Nextel:</span><p class="fw-bold mb-0"><?php echo $telefono ?></p>
+                    </div>
                 </div>
             </div>
         </div> <!-- shadow -->

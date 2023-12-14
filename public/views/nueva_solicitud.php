@@ -57,7 +57,7 @@ foreach ($a_areas as $row) {
         </div>
     </div>
 
-    <div class="row px-5">
+    <div class="row px-5 mb-100">
         <div class="col-12 shadow-sm bg-white rounded-2 py-2">
             <form action="" method="post" id="form-add">
                 <div class="row">
@@ -67,7 +67,7 @@ foreach ($a_areas as $row) {
                         </div>
                         <div>
                             <button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button>
-                            <button type="button" class="btn btn-danger btn-sm " id="cancelar">Cancelar</button>
+                            <!-- <button type="button" class="btn btn-danger btn-sm " id="cancelar">Cancelar</button> -->
                         </div>
                     </div>
                     <div class="col-12 border-bottom border-2 border-primary">
@@ -144,6 +144,9 @@ foreach ($a_areas as $row) {
             </form>
         </div>
     </div><!-- row -->
+    <!-- <div class="h-100"> -->
+        <!-- <h1>holis</h1> -->
+    <!-- </div> -->
 
 <?php include('../layouts/main_content_end.php')  ?>
 

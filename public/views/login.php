@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
 					$ret = setLogin($id_user, DtDbToday(), TmDbStamp());
 					// ok
 					if ($ret == 1) {
-						redirect('index.php');
+						redirect('nueva_solicitud.php');
 					} else {
 						$error_alert = 'Datos de acceso incorrectos'; // no hay acceso al nombre de session???
 					}

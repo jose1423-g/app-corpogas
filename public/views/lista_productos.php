@@ -59,7 +59,7 @@ foreach ($a_categoria as $row){
 			</div>
 		</div>
 	</div>
-	<div class="row px-5">
+	<div class="row px-5 mb-100">
         <!-- search -->
         <div class="col-12 shadow-sm bg-white rounded-2 py-2">
             <div class="py-2 border-bottom">
