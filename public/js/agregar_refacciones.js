@@ -126,7 +126,7 @@ $(document).ready(function() {
 
 	});	  
 
-	/* enviar a revison la solicitud con los productos seleccionados */
+	/* agregar los productos seleccionados */
 	$("#btn-agregar").on('click', function (event) {
 		let data_json = JSON.stringify(valores);
 		let IdCategoria_fk =  $('#IdCategoria_fk').val();
@@ -145,6 +145,9 @@ $(document).ready(function() {
 				if (result == 1) {
 					toastr.success(data.msg);
 					$("#add-modal").modal('hide');
+					$('#table-refacciones tbody .valores').val('');
+					$('#IdCategoria_fk').val(null).trigger('change');
+					$('#Descripcion').val('');
 					$('#table-solicitud').DataTable().ajax.reload();
 				} else {
 					if (result == -1) {

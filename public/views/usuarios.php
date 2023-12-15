@@ -195,6 +195,6 @@ if ($perfil == 13) {
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/usuarios.js?=1.001"></script>
+	<script src="../js/usuarios.js?v=1.001"></script>
 
 <?php include('../layouts/main_end.php'); ?>

@@ -86,6 +86,6 @@ $a_head_data_2 = array( 'id', 'Sel','File Name','Descripcion');
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/seg_perfilesaplicaciones.js"></script>
+<script src="../js/seg_perfilesaplicaciones.js?v=1.001"></script>
 
 <?php include('../layouts/main_end.php'); ?>

@@ -166,7 +166,7 @@ if ($perfil == 13) {
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/seg_categorias.js?=1.001"></script>
+	<script src="../js/seg_categorias.js?v=1.001"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 

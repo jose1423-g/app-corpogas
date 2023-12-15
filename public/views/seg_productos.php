@@ -117,6 +117,6 @@ if ($perfil == 13) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/seg_productos.js"></script>
+<script src="../js/seg_productos.js?v=1.001"></script>
 
 <?php include('../layouts/main_end.php'); ?>

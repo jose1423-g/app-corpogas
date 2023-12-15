@@ -135,7 +135,7 @@ foreach ($a_categoria as $row){
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/lista_productos.js?=1.002"></script>
+	<script src="../js/lista_productos.js?v=1.002"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 

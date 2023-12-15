@@ -138,7 +138,7 @@ if ($perfil == 13) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/seg_estaciones.js?=1.002"></script>
+<script src="../js/seg_estaciones.js?v=1.002"></script>
 
 
 <?php include('../layouts/main_end.php'); ?>

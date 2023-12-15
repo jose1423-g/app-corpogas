@@ -152,6 +152,6 @@ foreach ($a_areas as $row) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/nueva_solicitud.js?=1.002"></script>
+<script src="../js/nueva_solicitud.js?v=1.002"></script>
 
 <?php include('../layouts/main_end.php'); ?>
