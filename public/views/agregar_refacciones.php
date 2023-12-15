@@ -14,8 +14,8 @@ segVerifyAuth($app);
 
 $app = basename(__FILE__);
 // Partida
-$a_head_data = array('#','Referencia', 'Descripcion', 'Cantidad', 'Acciones');
-$a_head_data_refacciones = array('#','Referencia', 'Descripcion', 'Categoria', 'Cantidad', 'Imagen');
+$a_head_data = array('#','Referencia', 'Descripción', 'Cantidad', 'Acciones');
+$a_head_data_refacciones = array('#','Referencia', 'Descripción', 'Categoria', 'Cantidad', 'Imagen');
 
 /* obtiene el ultimo id de la tabla solicitudes */
 $qry = "SELECT IdSolicitud FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
@@ -66,6 +66,8 @@ foreach ($a_solicitud as $row) {
 <?php include('../layouts/main.php');  ?>
 <?php include('../layouts/main_content.php')  ?>
 
+    <input type="hidden" name="id_solicitud" id="id_solicitud" value="<?php echo $id_solicitud; ?>">
+
     <div class="position-absolute top-50 start-50 translate-middle w-25 d-none" id="spinner" style="z-index: 2000">
         <div class="d-flex justify-content-center">
             <div class="spinner-border" role="status">
@@ -88,6 +90,7 @@ foreach ($a_solicitud as $row) {
 			</div>
 		</div>
 	</div>
+
     <!-- add refacciones -->
     <div class="modal fade" id="add-modal" tabindex="-1" style="z-index: 1600">
         <div class="modal-dialog modal-lg">
@@ -101,15 +104,15 @@ foreach ($a_solicitud as $row) {
                 <div class="shadow-sm bg-white rounded-2 py-2">
                     <div class="row justify-content-center">
                         <div class="col-4 mb-3">
-                            <label class="form-label" for="Descripcion">Nombre</label>
-                            <input type="text" class="form-control form-control-sm" name="Descripcion" id="Descripcion">
-                        </div>
-                        <div class="col-4 mb-3">
                             <label class="form-label" for="IdCategoria_fk">Categoria</label>
                             <select class="form-control form-control-sm" name="IdCategoria_fk" id="IdCategoria_fk">
                                 <option value=""></option>    
                                 <?php echo $html; ?>
                             </select>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="form-label" for="Descripcion">Nombre</label>
+                            <input type="text" class="form-control form-control-sm" name="Descripcion" id="Descripcion">
                         </div>
                         <div class="col-3">
                             <label class="form-label fw-bold" for="Ordenar">Ordenar</label>
@@ -117,7 +120,7 @@ foreach ($a_solicitud as $row) {
                                 <select class="form-select form-select-sm" name="Ordenar" id="Ordenar">
                                     <option value=""></option>    
                                     <option value="1">Categoria</option>
-                                    <option value="2">Descripcion</option>
+                                    <option value="2">Descripción</option>
                                 </select>
                                 <button class="btn btn-outline-info bg-info btn-sm" type="button" id="button-search"><i class="fas fa-search"></i></button>
                             </div>
@@ -160,7 +163,7 @@ foreach ($a_solicitud as $row) {
                 <div class="col-12 mb-3 border-bottom border-primary border-2">
                     <div class="d-flex align-items-center mb-3">
                         <h2 class="me-5">2. Agregar Refacciones del folio <?php echo $folio_solicitud; ?></h2>
-                        <button type="button" class="btn btn-info btn-sm  text-white" id="mas-informacion">Mas informacion</button>
+                        <button type="button" class="btn btn-info btn-sm  text-white" id="mas-informacion">Mas información</button>
                     </div>
                     <!-- <h4>Armado de Solicitud</h4> -->
                 </div>
@@ -261,6 +264,6 @@ foreach ($a_solicitud as $row) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/agregar_refacciones.js"></script>
+<script src="../js/agregar_refacciones.js?=1.002"></script>
 
 <?php include('../layouts/main_end.php'); ?>

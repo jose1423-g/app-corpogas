@@ -1,0 +1,46 @@
+Error id: "13153"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.IdPartida ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t2.IdPartida ASC";
+Error id: "9060"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.IdPartida ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t2.IdPartida ASC";
+Error id: "14797"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.IdPartida ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t2.IdPartida ASC";
+Error id: "22295"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.IdPartida ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t2.IdPartida ASC";
+Error id: "18180"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.IdPartida ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t2.IdPartida ASC";
+Error id: "19005"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.Id ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t2.Id ASC";
+Error id: "7814"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t2.Id ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t2.Id ASC";
+Error id: "9453"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY t1.Id ASC' at line 5"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud =  ORDER BY t1.Id ASC";
+Error id: "32347"; Message: ""; Query: "";
+Error id: "14072"; Message: "Unknown column 't1.Id' in 'order clause'"; Query: "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
+            FROM solicitudes t1
+            LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
+            LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
+            WHERE t1.IdSolicitud = 106 ORDER BY t1.Id ASC";

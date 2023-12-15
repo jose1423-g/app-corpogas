@@ -13,7 +13,7 @@ segVerifyAuth($app);
 
 $id_user = SessGetUserId();
 
-$a_head_data = array('#', 'Sel', 'Estacion de servicio', 'Num de estacion', 'Estatus');
+$a_head_data = array('#', 'Sel', 'Estación de servicio', 'Num de estación', 'Estatus');
 
 $qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
 $perfil  =  DbGetFirstFieldValue($qry);
@@ -138,7 +138,7 @@ if ($perfil == 13) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/seg_estaciones.js"></script>
+<script src="../js/seg_estaciones.js?=1.002"></script>
 
 
 <?php include('../layouts/main_end.php'); ?>

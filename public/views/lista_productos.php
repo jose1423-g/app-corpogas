@@ -20,7 +20,7 @@ segVerifyAuth($app);
 // $g_nombre_usuario = GetUserName($id_user, 'NA');
 
 // // read data (grid)
-$a_head_data = array('IdProducto', 'Descripcion', 'Referencia', 'No Serie', 'Categoria', 'Imagen', 'Acción');
+$a_head_data = array('IdProducto', 'Descripción', 'Referencia', 'No Serie', 'Categoría', 'Imagen', 'Acción');
 // $a_grid_data = array();
 
 /* Categoria */
@@ -32,7 +32,6 @@ foreach ($a_categoria as $row){
     $des = $row['Categoria'];
     $html .= "<option value='$id'>$des</option>";
 }
-
 
 
 ?>
@@ -67,26 +66,26 @@ foreach ($a_categoria as $row){
             </div>
 			<div class="row pt-2 justify-content-center">
 				<div class="col-3">
-					<div class="form-group">
-						<label class="form-label fw-bold" for="Descripcion">Descripcion</label>
-						<input class="form-control" name="Descripcion" id="Descripcion">
-					</div> 
-				</div>
-                <div class="col-3">
-					<div class="form-group">
-						<label class="form-label fw-bold" for="Referenecia">Referenecia</label>
-						<input class="form-control" name="Referenecia" id="Referenecia">
-					</div> 
-				</div>
-                <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="IdCategoria_fk">Categoria</label>
+                        <label class="form-label fw-bold" for="IdCategoria_fk">Categoría</label>
                         <select class="form-control" name="IdCategoria_fk" id="IdCategoria_fk">
                             <option value=""></option>
                             <?php echo $html; ?>
                         </select>
                     </div>
                 </div>
+				<div class="col-3">
+					<div class="form-group">
+						<label class="form-label fw-bold" for="Descripcion">Descripción</label>
+						<input class="form-control" name="Descripcion" id="Descripcion">
+					</div> 
+				</div>
+                <div class="col-3">
+					<div class="form-group">
+						<label class="form-label fw-bold" for="Referenecia">Referencia</label>
+						<input class="form-control" name="Referenecia" id="Referenecia">
+					</div> 
+				</div>
                 <div class="col-3">
                     <label class="form-label fw-bold" for="Ordenar">Ordenar</label>
                     <div class="input-group mb-3">
@@ -136,7 +135,7 @@ foreach ($a_categoria as $row){
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/lista_productos.js"></script>
+	<script src="../js/lista_productos.js?=1.002"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 

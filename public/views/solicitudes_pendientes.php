@@ -28,6 +28,20 @@ foreach($a_estaciones as $row){
 
 $fecha = DtDbToday();
 
+$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+$perfil  =  DbGetFirstFieldValue($qry);
+if ($perfil == 13) {
+	$btn_save = '';
+	$btn_new = '';
+} else if ($perfil == 16) {
+	$btn_save = '<button type="button" class="btn btn-primary btn-sm" id="btn-aprobar">Aprobar</button>';
+    $btn_rechazar = '<button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button>';
+	// $btn_new = '';
+} else if ($perfil == 12) {
+	$btn_save = '<button type="button" class="btn btn-primary btn-sm" id="btn-aprobar">Aprobar</button>';
+    $btn_rechazar = '<button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button>';
+}
+
 ?>
 
 <?php include('../layouts/main.php'); ?>
@@ -51,7 +65,7 @@ $fecha = DtDbToday();
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Infromacion de la solcitud</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Información de la solcitud</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body p-0">
@@ -93,7 +107,7 @@ $fecha = DtDbToday();
                                     </div>
                                         <div class="border-bottom border-1 border-primary mb-2"></div>
                                     <div class="col-12 d-flex">
-                                        <span class="text-secondary fw-bold me-2 mb-1">Estacion de Servicio:</span><p class="fw-bold mb-0" id="noestacion"></p>
+                                        <span class="text-secondary fw-bold me-2 mb-1">Estación de Servicio:</span><p class="fw-bold mb-0" id="noestacion"></p>
                                     </div>
                                     <div class="col-6 d-flex">
                                         <span class="text-secondary fw-bold me-2 mb-1">Gerente Punto de Venta:</span><p class="fw-bold mb-0" id="gerente"></p>
@@ -130,8 +144,10 @@ $fecha = DtDbToday();
 							</div> 
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-								<button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button>
-                                <button type="button" class="btn btn-primary btn-sm" id="btn-aprobar">Aprobar</button>
+								<?php echo $btn_rechazar; ?>
+                                <?php echo $btn_save; ?>
+                                <!-- <button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button> -->
+                                <!-- <button type="button" class="btn btn-primary btn-sm" id="btn-aprobar">Aprobar</button> -->
 								<!-- <button type="button" name="button-save" id="button-save" class="btn btn-sm btn-primary">Guardar</button> -->
 
 							</div>
@@ -201,7 +217,7 @@ $fecha = DtDbToday();
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/solicitudes_pendientes.js?=1.001"></script>
+	<script src="../js/solicitudes_pendientes.js?=1.002"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 

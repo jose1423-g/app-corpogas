@@ -12,6 +12,7 @@ $id_user = SessGetUserId();
 
 $op = (isset($_REQUEST['op'])) ? $_REQUEST['op'] : '';
 $id_producto =  (isset($_REQUEST['Id_producto'])) ? $_REQUEST['Id_producto'] : '';
+$id_solicitud =  (isset($_REQUEST['IdSolicitud'])) ? $_REQUEST['IdSolicitud'] : '';
 $id_partida =  (isset($_REQUEST['id_partida'])) ? $_REQUEST['id_partida'] : '';
 $id_categoria = (isset($_REQUEST['IdCategoria_fk'])) ? $_REQUEST['IdCategoria_fk'] : '';
 $data_json = (isset($_REQUEST['data_json'])) ? $_REQUEST['data_json'] : '';
@@ -143,14 +144,14 @@ if ($op == 'ShowImg') {
     exit();
 
 } else if ($op == 'ShowProducts') {
-    $qry = "SELECT * FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
-    $id_solicitud  =  DbGetFirstFieldValue($qry);
+    // $qry = "SELECT MAX(IdSolicitud) FROM solicitudes";
+    // $id_solicitud  =  DbGetFirstFieldValue($qry);
     // t2.IdPartida,
     $qry = "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
             FROM solicitudes t1
             LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
             LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
-            WHERE t1.IdSolicitud = $id_solicitud ORDER BY t2.IdPartida ASC";
+            WHERE t1.IdSolicitud = $id_solicitud ORDER BY t2.Id ASC";
     $a_producto = DbQryToArray($qry, true);	
     
     $a_data = array();

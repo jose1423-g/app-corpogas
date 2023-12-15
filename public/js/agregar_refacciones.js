@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	// mensajes especificos
-	var confirmacion = 'Estas seguro de eliminar esta solcitud?'; // ADHOC
+	var confirmacion = 'Estas seguro de eliminar esta solicitud?'; // ADHOC
 
 	// $('#datetimepicker1').datetimepicker({
 	// 	format: 'L',
@@ -144,6 +144,7 @@ $(document).ready(function() {
 				var result = data.result;
 				if (result == 1) {
 					toastr.success(data.msg);
+					$("#add-modal").modal('hide');
 					$('#table-solicitud').DataTable().ajax.reload();
 				} else {
 					if (result == -1) {
@@ -236,7 +237,7 @@ $(document).ready(function() {
 			"url": "../../ria/agregar_refacciones_save.ria.php", // ADHOC
 			"data": function(d) {
 				d.op = 'ShowProducts';
-				// d.id_solicitud = $('#Descripcion').val();
+				d.IdSolicitud = $('#id_solicitud').val();
 				// d.= $('#s_Mostrar').val();
 			}
 		},
@@ -321,7 +322,7 @@ $(document).ready(function() {
 				var result = data.result;
 				if (result == 1) {
 					// toastr.success(data.msg);
-					window.location.href = "../views/nueva_solicitud.php";
+					window.location.href = "../views/solicitudes_pendientes.php";
 				} else {
 					if (result == -1) {
 						toastr.warning(data.msg);
@@ -331,7 +332,7 @@ $(document).ready(function() {
 				}
 			}
 		})
-	})
+	});
 
 	$("#mas-informacion").on('click', function () {
 		$("#informacion").toggle('d-none');

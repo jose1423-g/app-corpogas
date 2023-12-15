@@ -71,16 +71,16 @@ foreach ($a_areas as $row) {
                         </div>
                     </div>
                     <div class="col-12 border-bottom border-2 border-primary">
-                        <h4>Detalle de Estacion de Servicio</h4>
+                        <h4>Detalle de la Estación de Servicio</h4>
                     </div>
                     <div class="col-12 mb-3 mt-3">
-                        <h4>Informacion de Estacion</h4>
+                        <h4>Información de Estación</h4>
                     </div>
                     <div class="col-6 d-flex">
-                        <span class="text-secondary fw-bold me-2 mb-1">Nombre de la estacion de Servicio:</span><p class="fw-bold mb-0"><?php echo $estacion_servicio; ?></p>
+                        <span class="text-secondary fw-bold me-2 mb-1">Nombre de la estación de Servicio:</span><p class="fw-bold mb-0"><?php echo $estacion_servicio; ?></p>
                     </div>
                     <div class="col-6 d-flex">
-                        <span class="text-secondary fw-bold me-2 mb-1">No. Estacion:</span><p class="fw-bold mb-0"><?php echo $num_estacion; ?></p>
+                        <span class="text-secondary fw-bold me-2 mb-1">No. Estación:</span><p class="fw-bold mb-0"><?php echo $num_estacion; ?></p>
                     </div>
                     <div class="col-6 d-flex">
                         <span class="text-secondary fw-bold me-2 mb-1">Gerente punto de venta:</span><p class="fw-bold mb-0"><?php echo $nombre_gerente; ?></p>
@@ -95,7 +95,7 @@ foreach ($a_areas as $row) {
             
                 <div class="row">
                     <div class="col-12 mt-3 mb-3">
-                        <h4>Informacion de la solicitud</h4>
+                        <h4>Información de la solicitud</h4>
                     </div>
                     <div class="col-12 d-flex">
                         <span class="text-secondary fw-bold me-2 mb-1">Folio de Solicitud:</span><p class="fw-bold mb-0">CMG - Nueva</p>
@@ -130,7 +130,7 @@ foreach ($a_areas as $row) {
                     </div>
                     <div class="col-4">
                         <div class="mb-3">
-                            <label class="form-label" for="FolioRemision">Numero de remision</label>
+                            <label class="form-label" for="FolioRemision">Numero de remisión</label>
                             <input type="text" class="form-control form-control-sm" name="FolioRemision" id="FolioRemision" readonly>
                         </div>
                     </div>
@@ -152,6 +152,6 @@ foreach ($a_areas as $row) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/nueva_solicitud.js"></script>
+<script src="../js/nueva_solicitud.js?=1.002"></script>
 
 <?php include('../layouts/main_end.php'); ?>
