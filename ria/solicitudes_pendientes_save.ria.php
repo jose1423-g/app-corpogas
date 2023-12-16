@@ -38,7 +38,7 @@ if ($op == 'loadSolicitud') {
 		$result = -1;
 	} else {
 
-		$qry = "SELECT t1.Folio, t1.Estatus, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
+		$qry = "SELECT t1.Folio, t1.Estatus, t1.Estatus AS Status, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
 		t1.MotRechazo, t1.ObGenerales, t5.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email, t3.Telefono
 		FROM solicitudes t1 
 		LEFT JOIN areas t2 ON t1.IdAreaSolicita_fk = t2.IdArea
@@ -302,6 +302,46 @@ if ($op == 'loadSolicitud') {
 					echo json_encode($a_ret);
 					exit();	
 				}
+			}
+		}
+	}
+} else if ($op == 'rechazar'){
+	if (!strlen($id_solicitud)) {
+		$msg = "Error al aprobar la solicitud.";
+		$result = -1;
+	} else if(!strlen($id_user)){
+		$msg = "Su session ha expirado.";
+		$result = -1;
+	} else {
+		$estatus  = 3;
+		$qry = "UPDATE solicitudes SET Estatus = $estatus, FechaAprobacion = '$fecha_show' WHERE IdSolicitud =  $id_solicitud";
+		$res_ins = DbExecute($qry, true);
+		DbCommit();
+		if (is_string($res_ins)) {
+			$msg = 'Error al rechazar la solcitud: ' . $res_ins;
+			$result = -1;
+			$datos['msg'] = $msg;
+			$datos['result'] = $result;
+			$a_ret = $datos;
+			echo json_encode($a_ret);
+			exit();
+		} else {
+			if (!$res_ins) {
+				$msg = 'Error al rechazar la solicitud';
+				$result = -1;
+				$datos['msg'] = $msg;
+				$datos['result'] = $result;
+				$a_ret = $datos;
+				echo json_encode($a_ret);
+				exit();
+			} else {
+				$msg = 'Solicitud rechazada con exito';
+				$result = 1;
+				$datos['msg'] = $msg;
+				$datos['result'] = $result;
+				$a_ret = $datos;
+				echo json_encode($a_ret);
+				exit();
 			}
 		}
 	}

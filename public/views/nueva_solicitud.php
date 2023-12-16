@@ -44,6 +44,15 @@ foreach ($a_areas as $row) {
     $html_areas .= "<option value='$id'>$nombre</option>";
 }
 
+$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+$perfil  =  DbGetFirstFieldValue($qry);
+if ($perfil == 13) {
+    $btn_save = '<button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button>';
+} else if ($perfil == 16) {
+	$btn_save = '';
+}
+
+
 ?>
 <?php include('../layouts/main.php');  ?>
 <?php include('../layouts/main_content.php')  ?>
@@ -61,20 +70,19 @@ foreach ($a_areas as $row) {
         <div class="col-12 shadow-sm bg-white rounded-2 py-2">
             <form action="" method="post" id="form-add">
                 <div class="row">
-                    <div class="col-12 mb-3 d-flex justify-content-between align-items-center">
+                    <div class="col-12 d-flex justify-content-between align-items-center">
                         <div>
-                            <h2>1. Nueva Solicitud de Refacciones</h2>
+                            <h4>1. Nueva Solicitud de Refacciones</h4>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button>
-                            <!-- <button type="button" class="btn btn-danger btn-sm " id="cancelar">Cancelar</button> -->
+                            <!-- <button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button> -->
                         </div>
                     </div>
                     <div class="col-12 border-bottom border-2 border-primary">
-                        <h4>Detalle de la Estación de Servicio</h4>
+                        <h5>Detalle de la Estación de Servicio</h5>
                     </div>
-                    <div class="col-12 mb-3 mt-3">
-                        <h4>Información de Estación</h4>
+                    <div class="col-12 mt-1">
+                        <h5>Información de Estación</h5>
                     </div>
                     <div class="col-6 d-flex">
                         <span class="text-secondary fw-bold me-2 mb-1">Nombre de la estación de Servicio:</span><p class="fw-bold mb-0"><?php echo $estacion_servicio; ?></p>
@@ -94,8 +102,8 @@ foreach ($a_areas as $row) {
                 </div><!-- row -->
             
                 <div class="row">
-                    <div class="col-12 mt-3 mb-3">
-                        <h4>Información de la solicitud</h4>
+                    <div class="col-12 mt-1">
+                        <h5>Información de la solicitud</h5>
                     </div>
                     <div class="col-12 d-flex">
                         <span class="text-secondary fw-bold me-2 mb-1">Folio de Solicitud:</span><p class="fw-bold mb-0">CMG - Nueva</p>
@@ -111,7 +119,7 @@ foreach ($a_areas as $row) {
                         <input type="hidden" value="<?php echo $fecha_hoy ?>" name="Fecha" id="Fecha">
                     </div>
                     <div class="col-4">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label class="form-label" for="MatEntregado">Materiales entregados</label>
                             <select class="form-select form-select-sm" name="MatEntregado" id="MatEntregado">
                                 <option value="No">No</option>
@@ -120,7 +128,7 @@ foreach ($a_areas as $row) {
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label class="form-label" for="IdAreaSolicita_fk">Area que Solicita</label>
                             <select class="form-select form-select-sm" name="IdAreaSolicita_fk" id="IdAreaSolicita_fk">
                                 <option value="92">Estacion</option>
@@ -129,29 +137,30 @@ foreach ($a_areas as $row) {
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label class="form-label" for="FolioRemision">Numero de remisión</label>
                             <input type="text" class="form-control form-control-sm" name="FolioRemision" id="FolioRemision" readonly>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label class="form-label" for="Observaciones">Observaciones</label>
                             <textarea class="form-control form-control-sm" name="Observaciones" id="Observaciones"></textarea>
                         </div>
+                    </div>
+                    <div class="col-5 d-flex align-items-center">
+                        <?php echo $btn_save; ?> 
+                        <!-- <button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button> -->
                     </div>
                 </div>
             </form>
         </div>
     </div><!-- row -->
-    <!-- <div class="h-100"> -->
-        <!-- <h1>holis</h1> -->
-    <!-- </div> -->
 
 <?php include('../layouts/main_content_end.php')  ?>
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/nueva_solicitud.js?v=1.002"></script>
+<script src="../js/nueva_solicitud.js?v=1.003"></script>
 
 <?php include('../layouts/main_end.php'); ?>

@@ -264,6 +264,6 @@ foreach ($a_solicitud as $row) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/agregar_refacciones.js?v=1.003"></script>
+<script src="../js/agregar_refacciones.js?v=1.004"></script>
 
 <?php include('../layouts/main_end.php'); ?>

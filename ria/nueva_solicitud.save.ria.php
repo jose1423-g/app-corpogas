@@ -45,7 +45,6 @@ if ($op == 'save') {
 		if (!strlen($area_instalo_entrego)) {
 			$area_instalo_entrego = 'NULL';
 		}
-
 		/* quitar Folio, Estatus */
 		$qry = "INSERT INTO solicitudes (Folio, Fecha, IdEstacion_fk, IdUsuario_fk, MatEntregado, IdAreaSolicita_fk, FolioRemision, Estatus, AreaInstaloEntrego, Nomenclatura, Observaciones) 
 		VALUES 

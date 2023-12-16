@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	// mensajes especificos
-	var confirmacion = '¿Desea eliminar esta categoria?'; // ADHOC (no se deben eliminar usuarios)
+	var confirmacion = '¿Estas seguro de rechazar esta solicitud?'; // ADHOC (no se deben eliminar usuarios)
 
 	$('#datetimepicker1').datetimepicker({
 		format: 'L',
@@ -91,6 +91,25 @@ $(document).ready(function() {
                     $("#email").html(data.Email);
                     $("#telefono").html(data.Telefono);
 					$('#table-refacciones').DataTable().ajax.reload();	
+
+
+					if (data.Status == 2) {
+						$('#btn-aprobar').prop('disabled', false);
+						$('#btn-rechazar').prop('disabled', false);
+					}
+
+					if (data.Status == 3) {
+						$('#btn-aprobar').prop('disabled', true);
+						$('#btn-rechazar').prop('disabled', true);
+					} 
+
+					if (data.Status == 4) {
+						$('#btn-aprobar').prop('disabled', true);
+						$('#btn-rechazar').prop('disabled', true);
+					}
+
+					
+
                 } else {
 					if (result == -1) {
 						toastr.warning(data.msg);
@@ -130,8 +149,8 @@ $(document).ready(function() {
 			"url": "../../vendor/datatables/lang/Spanish.json"
 		},
 		"bInfo" : true, // Mostrando registros del 1 al 10 de un total de 
-		"pageLength": 10,
-		"lengthMenu": [[10, 20, 25, 50, 100, 200,500], [10, 20, 25, 50, 100, 200, 500]],
+		"pageLength": 3,
+		"lengthMenu": [[3, 5, 10, 20, 25, 50, 100, 200,500], [3, 5, 10, 20, 25, 50, 100, 200, 500]],
 		"columnDefs": [
 			{
 				"targets": [ 0 ],
@@ -196,34 +215,75 @@ $(document).ready(function() {
 		})
 	});
 
+	$("#btn-aprobar").on('click', function () {
+		$("#spinner").removeClass('d-none');
+		let fecha = $("#fecha_val").val();
+		let id_solicitud = $("#id_solicitud").val()
+		
+		$.ajax({
+			type: "post",
+            url: "../../ria/solicitudes_pendientes_save.ria.php",
+            data: {
+                id_solicitud: id_solicitud,
+				fecha: fecha,
+                op: 'aprobar'
+            },
+            success: function (data) {
+                var data = jQuery.parseJSON(data);
+				var result = data.result;
+                if (result == 1) {
+					toastr.success(data.msg);
+					show_load();					
+					$('#grid-table').DataTable().ajax.reload();
+					$('#DataModal').modal('hide');
+                } else {
+					if (result == -1) {
+						toastr.warning(data.msg);
+						show_load();				
+					} else {
+						toastr.info(data.msg);
+					}
+				}
+            }
+
+		})
+	});
+
+	$("#btn-rechazar").on('click', function () {
+		let fecha = $("#fecha_val").val();
+		let id_solicitud = $("#id_solicitud").val()
+
+		if (!confirm(confirmacion)) return false;
+
+		$.ajax({
+			type: "post",
+            url: "../../ria/solicitudes_pendientes_save.ria.php",
+            data: {
+                id_solicitud: id_solicitud,
+				fecha: fecha,
+                op: 'rechazar'
+            },
+            success: function (data) {
+                var data = jQuery.parseJSON(data);
+				var result = data.result;
+                if (result == 1) {
+					toastr.success(data.msg);		
+					$('#grid-table').DataTable().ajax.reload();
+					$('#DataModal').modal('hide');
+                } else {
+					if (result == -1) {
+						toastr.warning(data.msg);	
+					} else {
+						toastr.info(data.msg);
+					}
+				}
+            }
+
+		})
+	});
+
 	function  show_load() {
 		$("#spinner").addClass('d-none');		
 	}
-
-	// function downloadspdf(id_solicitud, fecha) {
-
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: "../../archivospdf/solicitud.php",
-	// 		data: {
-	// 			IdSolicitud: id_solicitud,
-	// 			fecha: fecha
-	// 		},
-	// 		success: function(data){
-	// 			var data = jQuery.parseJSON(data);
-	// 			var result = data.result;
-	// 			if (result == 1) {
-	// 				// toastr.success(data.msg);
-	// 				window.location.href = "../views/index.php";
-	// 			} else {
-	// 				if (result == -1) {
-	// 					toastr.warning(data.msg);
-	// 				} else {
-	// 					toastr.info(data.msg);
-	// 				}
-	// 			}
-	// 		}
-	// 	})
-	// }
 	
 } );

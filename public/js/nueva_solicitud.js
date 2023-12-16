@@ -31,8 +31,8 @@ $(document).ready(function() {
 		window.location.href = "../views/agregar_refacciones.php";
 	}
 
-	$("#cancelar").on('click', function () {
-		window.location.href = "../views/index.php";
-	})
+	// $("#cancelar").on('click', function () {
+	// 	window.location.href = "../views/index.php";
+	// })
 
 } );

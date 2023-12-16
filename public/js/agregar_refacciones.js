@@ -144,11 +144,15 @@ $(document).ready(function() {
 				var result = data.result;
 				if (result == 1) {
 					toastr.success(data.msg);
+					valores = {};
+					// $('#table-refacciones').DataTable().ajax.reload();
 					$("#add-modal").modal('hide');
 					$('#table-refacciones tbody .valores').val('');
 					$('#IdCategoria_fk').val(null).trigger('change');
 					$('#Descripcion').val('');
 					$('#table-solicitud').DataTable().ajax.reload();
+					$('#table-refacciones').DataTable().ajax.reload();
+					
 				} else {
 					if (result == -1) {
 						toastr.warning(data.msg);
