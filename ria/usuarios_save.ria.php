@@ -22,12 +22,10 @@ $usuario_perfil_id = (isset($_REQUEST['UsuarioPerfilId_fk'])) ? $_REQUEST['Usuar
 $email = (isset($_REQUEST['Email'])) ? $_REQUEST['Email'] : "";
 $telefefono = (isset($_REQUEST['telefono'])) ? $_REQUEST['telefono'] : "";
 $id_estacion = (isset($_REQUEST['IdEstacion_fk'])) ? $_REQUEST['IdEstacion_fk'] : "";
-
+$es_activo = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
 
 $estaciones = implode(",", $id_estacion);
 
-// $email_supervisor = (isset($_REQUEST['EmailSupervisor'])) ? $_REQUEST['EmailSupervisor'] : "";
-$es_activo = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
 
 $msg = "";
 $result = 0;
@@ -48,12 +46,6 @@ if ($op == 'loadUsuario') {
 		LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
 		WHERE IdUsuario =  $id_usuario";
 		$a_usuarios = DbQryToRow($qry);
-
-		// $user_name = utf8_encode($user_name);
-		// $apellido_paterno = utf8_encode($apellido_paterno);
-		// $apellido_materno = utf8_encode($apellido_materno);
-		// $nombre = utf8_encode($nombre);
-		// $passwd = utf8_encode($passwd);
 		
 		$user_name = utf8_encode($a_usuarios['Username']);
 		$a_usuarios['Username'] = $user_name;
@@ -70,14 +62,9 @@ if ($op == 'loadUsuario') {
 		$pass = utf8_encode($a_usuarios['passwd']);
 		$a_usuarios['passwd'] = $pass;
 
-		$perfil = utf8_encode($a_usuarios['UsuarioPerfilId_fk']);
-		$a_usuarios['UsuarioPerfilId_fk'] = $perfil;
-
 		$email = utf8_encode($a_usuarios['Email']);
 		$a_usuarios['Email'] = $email;
 
-		// $email_supervisor = utf8_encode($a_usuarios['EmailSupervisor']);
-		// $a_usuarios['EmailSupervisor'] = $email_supervisor;
 
 		$id_estacion = $a_usuarios['IdEstacion_fk'];
 		$estaciones = explode(',', $id_estacion);
@@ -95,6 +82,7 @@ if ($op == 'loadUsuario') {
 	}
 
 } else if ($op == 'save') {
+	$id_estacion_long = count($id_estacion); 
 	if (!strlen($id_user)) {
 		$msg = 'Su sesion ha expirado';
 		$result = -1;
@@ -103,12 +91,6 @@ if ($op == 'loadUsuario') {
 		$result = -1;
 	} else if (!strlen($nombre)){
 		$msg = 'El campo nombre es requerido';
-		$result = -1;
-	} else if (!strlen($apellido_paterno)){
-		$msg = 'El campo apellido paterno es requerido';
-		$result = -1;
-	} else if (!strlen($apellido_materno)){
-		$msg = 'El campo apellido materno es requerido';
 		$result = -1;
 	} else if (!strlen($usuario_perfil_id)){
 		$msg = 'El campo perfil es requerido';
@@ -119,20 +101,27 @@ if ($op == 'loadUsuario') {
 	} else if (!strlen($telefefono)){
 		$msg = 'El campo telefono es requerido';
 		$result = -1;
-	// } else if (!strlen($id_estacion)){
+	// } else if ($id_estacion_long == 1){
 	// 	$msg = 'El campo estacion de servicio es requerido';
-	// 	$result = -1;
-	// } else if (!strlen($email_supervisor)){
-	// 	$msg = 'El campo email supervisor es requerido';
 	// 	$result = -1;
 	} else if (!strlen($passwd)){
 		$msg = 'El campo password es requerido';
 		$result = -1;
 	} else {
 
-		if (strlen($id_usuario)) {
-			// $passwd = crypt($passwd, "doxasystems");
+		$nombre = utf8_decode($nombre);
+		$apellido_paterno =  utf8_decode($apellido_paterno);
+		$apellido_materno =  utf8_decode($apellido_materno);
 
+		if (!strlen($apellido_paterno)) {
+			$apellido_paterno = '';
+		}
+
+		if (!strlen($apellido_materno)) {
+			$apellido_materno = '';
+		}
+
+		if (strlen($id_usuario)) {
 			$qry = "UPDATE seg_usuarios 
 					SET UserName = '$user_name', 
 					Nombre = '$nombre', 
@@ -154,8 +143,6 @@ if ($op == 'loadUsuario') {
 					$msg = 'Error al actualizar el usuario';
 					$result = -1;
 				} else {    
-					// $qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
-					// $id_usuario = DbGetFirstFieldValue($qry);
 					$qry = "UPDATE seg_estacionesusuario 
 							SET IdEstacion_fk = '$estaciones' 
 							WHERE IdUsuario_fk = $id_usuario"; 
@@ -177,37 +164,46 @@ if ($op == 'loadUsuario') {
 			}
 
 		} else {
-			$passwd = crypt($passwd, "doxasystems");
-			$qry = "INSERT INTO seg_usuarios (UserName, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono)
-					VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono')";
-			$res_ins = DbExecute($qry, true);
-			DbCommit();
-			if (is_string($res_ins)) {
-				$msg = 'Error al crear el usuario: ' . $res_ins;
+			$qry = "SELECT UserName FROM seg_usuarios WHERE UserName = '$user_name'";
+			$user = DbGetFirstFieldValue($qry);
+			// echo $data;
+			if (isset($user)) {
+				$msg = 'El usuario ya existe intente con otro';
 				$result = -1;
+				
 			} else {
-				if (!$res_ins) {
-					$msg = 'Error al crear el usuario';
+
+				$passwd = crypt($passwd, "doxasystems");
+				$qry = "INSERT INTO seg_usuarios (UserName, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono)
+						VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono')";
+				$res_ins = DbExecute($qry, true);
+				DbCommit();
+				if (is_string($res_ins)) {
+					$msg = 'Error al crear el usuario: ' . $res_ins;
 					$result = -1;
-				} else {    
-					$qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
-					$id_usuario = DbGetFirstFieldValue($qry);					
-					$qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, '$estaciones')";
-					$res_ins = DbExecute($qry, true);
-					DbCommit();
-					if (is_string($res_ins)) {
-						$msg = 'Error al crear el usuario.: ' . $res_ins;
+				} else {
+					if (!$res_ins) {
+						$msg = 'Error al crear el usuario';
 						$result = -1;
-					} else {
-						if (!$res_ins) {
-							$msg = 'Error al crear el usuario.';
+					} else {    
+						$qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
+						$id_usuario = DbGetFirstFieldValue($qry);					
+						$qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, '$estaciones')";
+						$res_ins = DbExecute($qry, true);
+						DbCommit();
+						if (is_string($res_ins)) {
+							$msg = 'Error al crear el usuario.: ' . $res_ins;
 							$result = -1;
 						} else {
-							$msg = 'Usuario creado correctamente';
-							$result = 1;
+							if (!$res_ins) {
+								$msg = 'Error al crear el usuario.';
+								$result = -1;
+							} else {
+								$msg = 'Usuario creado correctamente';
+								$result = 1;
+							}
 						}
 					}
-					// $id_usuario = LastIdAutoTable('Medicos');
 				}
 			}
 		}

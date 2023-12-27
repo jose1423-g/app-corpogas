@@ -15,9 +15,9 @@ $title = "";
 $id_user = SessGetUserId();
 // $g_nombre_usuario = GetUserName($id_user, 'NA');
 $a_user = GetUserData($id_user);
-$g_nombre_usuario = trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno']);
-$nombre_usuario = trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno'] . ' ' . $a_user['ApellidoMaterno']);
-$user_name = $a_user['UserName'];
+$g_nombre_usuario = utf8_encode(trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno']));
+$nombre_usuario = utf8_encode(trim($a_user['Nombre'] . ' ' . $a_user['ApellidoPaterno'] . ' ' . $a_user['ApellidoMaterno']));
+$user_name = utf8_encode($a_user['UserName']);
 $id_perfil = $a_user['UsuarioPerfilId_fk'];
 
 $perfil = "";

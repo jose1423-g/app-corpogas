@@ -1,0 +1,33 @@
+Error id: "29611"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE  EsActivo = 1
+            ORDER BY  IdEstacion
+                    asc
+' at line 3"; Query: "
+            SELECT IdEstacion, IdEstacion AS icons, EstacionServicio, NoEstacion, EsActivo
+            FROM   estaciones
+            WHERE (IdEstacion LIKE '%h%' OR EstacionServicio LIKE '%h%' OR NoEstacion LIKE '%h%' OR EsActivo LIKE '%h%' )WHERE  EsActivo = 1
+            ORDER BY  IdEstacion
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "324"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE  EsActivo = 1
+            ORDER BY  IdEstacion
+                    asc
+' at line 3"; Query: "
+            SELECT IdEstacion, IdEstacion AS icons, EstacionServicio, NoEstacion, EsActivo
+            FROM   estaciones
+            WHERE (IdEstacion LIKE '%h%' OR EstacionServicio LIKE '%h%' OR NoEstacion LIKE '%h%' OR EsActivo LIKE '%h%' )WHERE  EsActivo = 1
+            ORDER BY  IdEstacion
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "29229"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE  EsActivo = 1
+            ORDER BY  IdEstacion
+                    asc
+' at line 3"; Query: "
+            SELECT IdEstacion, IdEstacion AS icons, EstacionServicio, NoEstacion, EsActivo
+            FROM   estaciones
+            WHERE (IdEstacion LIKE '%h%' OR EstacionServicio LIKE '%h%' OR NoEstacion LIKE '%h%' OR EsActivo LIKE '%h%' )WHERE  EsActivo = 1
+            ORDER BY  IdEstacion
+                    asc
+            LIMIT 0, 8
+        ";

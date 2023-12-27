@@ -18,6 +18,7 @@ $passwd_actual = (isset($_REQUEST['passwd_actual'])) ? utf8_decode($_REQUEST['pa
 $passwd_nuevo = (isset($_REQUEST['passwd_nuevo'])) ? utf8_decode($_REQUEST['passwd_nuevo']) : '';
 $passwd_confirma = (isset($_REQUEST['passwd_confirma'])) ? utf8_decode($_REQUEST['passwd_confirma']) : '';
 
+
 $msg = '';
 $result = 0;
 

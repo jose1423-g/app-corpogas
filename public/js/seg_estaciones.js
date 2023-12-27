@@ -11,8 +11,8 @@ $(document).ready(function() {
         "responsive": true,
 		"autoWidth": true,
 		"processing": true,
-        "serverSide": true,
-		"searching": true,
+        "searching": true,
+		// "serverSide": true,
 		"ajax": {
             "url":"../../ria/seg_estaciones.ria.php", // ADHOC
             "data": function(d) {
@@ -73,6 +73,8 @@ $(document).ready(function() {
 					$("#EstacionServicio").val(data.EstacionServicio);
                     $("#NoEstacion").val(data.NoEstacion);
 					$("#EmailSupervisor").val(data.EmailSupervisor);
+					$("#NombreCorto").val(data.NombreCorto);
+					$("#TelSupervisor").val(data.TelSupervisor);
                     if (data.EsActivo == 1) {
                         $('#EsActivo').prop('checked', true);
                     } else {

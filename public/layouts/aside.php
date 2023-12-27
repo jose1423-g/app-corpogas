@@ -1,7 +1,7 @@
 <aside class="vh-100 bg-dark text-white menu z-3" id="content-menu" style="width: 4.5rem;">
     <ul class="nav flex-column">
         <li class="nav-item mb-4 menu-item">
-            <a class="border-bottom d-flex justify-content-center align-items-center text-white text-decoration-none px-3" style="height: 3rem;" href="index.php">
+            <a class="border-bottom d-flex justify-content-center align-items-center text-white text-decoration-none px-3" style="height: 3rem;" href="nueva_solicitud.php">
                 <i class="nav-icon fs-5 fas fa-home"></i>
                 <p class="d-none ms-3 mb-0">PROGAS</p>
             </a>

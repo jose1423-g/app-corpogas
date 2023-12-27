@@ -54,6 +54,12 @@ if ($perfil == 13) {
 											<input type="text" class="form-control form-control-sm" id="EstacionServicio" name="EstacionServicio">
 										</div>
 									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label class="form-label fw-bold" for="NombreCorto">Nombre corto de la estación</label>
+											<input type="email" name="NombreCorto" id="NombreCorto" class="form-control">
+										</div>
+									</div>
                                     <div class="col-12">
 										<div class="form-group">
 											<label class="form-label fw-bold" for="NoEstacion">Numero de la estacion</label>
@@ -61,11 +67,17 @@ if ($perfil == 13) {
 										</div>
 									</div>
 									<div class="col-12">
-											<div class="form-group">
-												<label class="form-label fw-bold" for="EmailSupervisor">Email supervisor</label>
-												<input type="email" name="EmailSupervisor" id="EmailSupervisor" class="form-control">
-											</div>
+										<div class="form-group">
+											<label class="form-label fw-bold" for="EmailSupervisor">Email supervisor</label>
+											<input type="email" name="EmailSupervisor" id="EmailSupervisor" class="form-control">
 										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label class="form-label fw-bold" for="TelSupervisor">Telefono supervisor</label>
+											<input type="email" name="TelSupervisor" id="TelSupervisor" class="form-control">
+										</div>
+									</div>
 									<div class="col-12">
 										<div class="form-group">
 											<div class="custom-control custom-switch">
@@ -138,7 +150,7 @@ if ($perfil == 13) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/seg_estaciones.js?v=1.002"></script>
+<script src="../js/seg_estaciones.js?v=1.003"></script>
 
 
 <?php include('../layouts/main_end.php'); ?>

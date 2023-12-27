@@ -16,6 +16,8 @@ $estacion = (isset($_REQUEST['EstacionServicio'])) ? $_REQUEST['EstacionServicio
 $num_estacion = (isset($_REQUEST['NoEstacion'])) ? $_REQUEST['NoEstacion'] : '';
 $estatus = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
 $email_supervisor = (isset($_REQUEST['EmailSupervisor'])) ? $_REQUEST['EmailSupervisor'] : "";
+$nombre_corto = (isset($_REQUEST['NombreCorto'])) ? $_REQUEST['NombreCorto'] : "";
+$tel_supervisor = (isset($_REQUEST['TelSupervisor'])) ? $_REQUEST['TelSupervisor'] : "";
 
 $fecha_hoy = "";
 $fecha_hoy =  DtDbToday($fecha_hoy);
@@ -32,13 +34,16 @@ if ($op == 'loadEstacion') {
 		$msg = 'Su sesion ha expirado';
 		$result = -1;
 	} else {
-		$qry = "SELECT EstacionServicio, NoEstacion, EsActivo, EmailSupervisor 
+		$qry = "SELECT EstacionServicio, NoEstacion, EsActivo, EmailSupervisor, NombreCorto, TelSupervisor
                 FROM estaciones WHERE IdEstacion = $id_estacion";
 		$a_estacion = DbQryToRow($qry);
 
 		$estacion = utf8_encode($a_estacion['EstacionServicio']);
 		$a_estacion['EstacionServicio'] = $estacion;
-		
+
+		$nombre_corto = utf8_encode($a_estacion['NombreCorto']);
+		$a_estacion['NombreCorto'] = $nombre_corto;
+
 		$a_estacion['result'] = 1;
 		$a_estacion['msg'] = $msg;
 		$a_ret = $a_estacion;
@@ -58,23 +63,26 @@ if ($op == 'loadEstacion') {
 	} else if (!strlen($email_supervisor)) {
         $msg = 'El campo email supervisor es requerido';
 		$result = -1;
+	} else if (!strlen($nombre_corto)) {
+		$msg = 'El campo nombre corto de la estacion es requerido';
+		$result = -1;
 	} else if (!strlen($id_user)) {
 		$msg = 'Su sesion ha expirado';
 		$result = -1;
 	} else {
 
+		$estacion = utf8_decode($estacion);
+		$nombre_corto = utf8_decode($nombre_corto);
+
 		if (strlen($id_estacion)) {
-		
-			// $categoria = utf8_decode($categoria);
-			$estacion = utf8_decode($estacion);
-			// if (!strlen($id_usuarios_fk)) {
-			// 	$id_usuarios_fk = 'NULL';
-			// }
+	
 			$qry = "UPDATE estaciones 
                     SET EstacionServicio = '$estacion', 
                     NoEstacion = '$num_estacion', 
 					EmailSupervisor = '$email_supervisor',
-                    EsActivo = $estatus
+                    EsActivo = $estatus,
+					NombreCorto = '$nombre_corto',
+					TelSupervisor = '$tel_supervisor'
                     WHERE IdEstacion = $id_estacion";
 					
 			$res_upd = DbExecute($qry, true);
@@ -93,12 +101,9 @@ if ($op == 'loadEstacion') {
 			}
 		} else {
 
-			$estacion = utf8_decode($estacion);
-			// $qry = "SELECT MAX(IdMedico) AS id_medico_last FROM Medicos";
-			// $id_medico_last = DbGetFirstFieldValue($qry);
-			// $id_medico_next = $id_medico_last + 1;
-
-			$qry = "INSERT INTO estaciones (EstacionServicio, NoEstacion, EsActivo, EmailSupervisor) VALUES ('$estacion','$num_estacion',$estatus, '$email_supervisor')";
+			$qry = "INSERT INTO estaciones (EstacionServicio, NoEstacion, EsActivo, EmailSupervisor, NombreCorto, TelSupervisor) 
+					VALUES 
+					('$estacion','$num_estacion',$estatus, '$email_supervisor', '$nombre_corto', '$tel_supervisor')";
 			$res_ins = DbExecute($qry, true);
 			DbCommit();
 			if (is_string($res_ins)) {
@@ -109,9 +114,6 @@ if ($op == 'loadEstacion') {
 					$msg = 'Error al agregar la estacion';
 					$result = -1;
 				} else {    
-                    // $id_usuario = LastIdAutoTable('Medicos');
-					// $qry = "SELECT MAX(IdMedico) AS id_medico_last FROM Medicos";
-					// $id_usuario = DbGetFirstFieldValue($qry);
                     $msg = 'Estacion agregada con exito';
                     $result = 1;
 				}

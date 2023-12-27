@@ -182,7 +182,7 @@ if ($op == 'loadSolicitud') {
 						$id_estacion =  DbGetFirstFieldValue($qry);
 					
 						$qry = "SELECT EmailSupervisor FROM estaciones WHERE IdEstacion = $id_estacion";
-						$email_supervisor=  DbGetFirstFieldValue($qry);
+						$email_supervisor = DbGetFirstFieldValue($qry);
 
 						$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";
 						$a_estaciones = DbQryToRow($qry);
