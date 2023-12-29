@@ -97,6 +97,8 @@ $(document).ready(function() {
         $("#EstacionServicio").val('');
         $("#NoEstacion").val('');
 		$("#EmailSupervisor").val('');
+		$("#NombreCorto").val('');
+		$("#TelSupervisor").val('');
 		$('#EsActivo').prop('checked', true);
         // clean form
 		// $("#Categoria").val('');

@@ -15,9 +15,9 @@ if (!strlen($id_user)) {
 	 * you want to insert a non-database field (for example a counter or static image)
 	 */
 	 
-	$aColumns = array('t1.IdUsuario', 't1.IdUsuario AS icons', 't3.NoEstacion', 't3.EstacionServicio', "CONCAT(t1.Nombre,' ',t1.ApellidoPaterno,' ',t1.ApellidoMaterno) AS Gerente",
-	't1.Email AS correogpv', 't1.Email AS supervisor', 't1.EsActivo');
-	$aColumnsClean = array( 'IdUsuario', 'icons', 'NoEstacion', 'EstacionServicio', 'Gerente', 'correogpv', 'supervisor','EsActivo');
+	$aColumns = array('t1.IdUsuario', 't1.IdUsuario AS icons', "CONCAT(t1.Nombre,' ',t1.ApellidoPaterno,' ',t1.ApellidoMaterno) AS Gerente",
+	't2.NombrePerfil', 't1.Email AS correogpv', 't1.EsActivo');
+	$aColumnsClean = array( 'IdUsuario', 'icons', 'Gerente', 'NombrePerfil', 'correogpv', 'EsActivo');
 
 	// especifico
 	// ..
@@ -30,21 +30,14 @@ if (!strlen($id_user)) {
 	
 	// custom from
 	$custom_from = "FROM seg_usuarios t1
-					LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
-					LEFT JOIN estaciones t3 ON t2.IdEstacion_fk = t3.IdEstacion";
+					LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId_fk = t2.UsuarioPerfilId";
+
+	// $custom_from = "FROM seg_usuarios t1
+	// 				LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
+	// 				LEFT JOIN estaciones t3 ON t2.IdEstacion_fk = t3.IdEstacion";
+
 						
 	$custom_where = "";
-	// si es usuario actual no es admin, oculta los usuarios con perfil admin
-	// $qry = "SELECT t2.EsAdmin
-	// 		FROM seg_usuarios t1
-	// 		LEFT JOIN seg_usuarioperfil t2 ON t1.UsuarioPerfilId = t2.UsuarioPerfilId
-	// 		WHERE t1.IdUsuario = $id_user";
-	// $es_admin = DbGetFirstFieldValue($qry);
-	
-	// if ($es_admin != 1) {
-	// 	$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-	// 	$custom_where .= "t2.EsAdmin = 0";
-	// }
 	
 	// new function for paging
 	$start = (isset($_GET['start'])) ? $_GET['start'] : '';
@@ -81,9 +74,9 @@ if (!strlen($id_user)) {
                     $html = '<center><i class="far fa-square"></i></center>';
                 }
                 $row[] = $html;
-			} else if ( $aColumns[$i] == "EstacionServicio" ){
-				$estacion = utf8_encode($aRow[ $aColumns[$i] ]);
-				$row[] = $estacion;
+			} else if ( $aColumns[$i] == "Gerente" ){
+				$gerente= utf8_encode($aRow[ $aColumns[$i] ]);
+				$row[] = $gerente;
 			} else if ($aColumns[$i] == "icons") {
 				$icons = '<div style="cursor:pointer;" title="Editar"><span class="fas fa-pen-square text-primary fs-5 btn-edit" aria-hidden="true"></span></div>';
 				$row[] = $icons;

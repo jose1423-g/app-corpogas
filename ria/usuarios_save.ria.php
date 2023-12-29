@@ -24,8 +24,11 @@ $telefefono = (isset($_REQUEST['telefono'])) ? $_REQUEST['telefono'] : "";
 $id_estacion = (isset($_REQUEST['IdEstacion_fk'])) ? $_REQUEST['IdEstacion_fk'] : "";
 $es_activo = (isset($_REQUEST['EsActivo'])) ? 1 : 0;
 
-$estaciones = implode(",", $id_estacion);
+$check_app = (isset($_REQUEST['check_app'])) ? $_REQUEST['check_app'] : '';
 
+$s_is_show_all = (isset($_GET['s_is_show_all'])) ? $_GET['s_is_show_all'] : '';
+
+// $estaciones = implode(",", $id_estacion);
 
 $msg = "";
 $result = 0;
@@ -66,12 +69,9 @@ if ($op == 'loadUsuario') {
 		$a_usuarios['Email'] = $email;
 
 
-		$id_estacion = $a_usuarios['IdEstacion_fk'];
-		$estaciones = explode(',', $id_estacion);
-		
-		$a_usuarios['IdEstacion_fk'] = $estaciones;
-
-
+		// $id_estacion = $a_usuarios['IdEstacion_fk'];
+		// $estaciones = explode(',', $id_estacion);
+		// $a_usuarios['IdEstacion_fk'] = $estaciones;
 
 		$a_usuarios['result'] = 1;
 		$a_usuarios['msg'] = $msg;
@@ -80,6 +80,9 @@ if ($op == 'loadUsuario') {
 		echo json_encode($a_ret);
 		exit();
 	}
+
+	$a_ret = array('result' => $result, 'msg' => $msg);
+	echo json_encode($a_ret);
 
 } else if ($op == 'save') {
 	$id_estacion_long = count($id_estacion); 
@@ -101,9 +104,6 @@ if ($op == 'loadUsuario') {
 	} else if (!strlen($telefefono)){
 		$msg = 'El campo telefono es requerido';
 		$result = -1;
-	// } else if ($id_estacion_long == 1){
-	// 	$msg = 'El campo estacion de servicio es requerido';
-	// 	$result = -1;
 	} else if (!strlen($passwd)){
 		$msg = 'El campo password es requerido';
 		$result = -1;
@@ -143,23 +143,25 @@ if ($op == 'loadUsuario') {
 					$msg = 'Error al actualizar el usuario';
 					$result = -1;
 				} else {    
-					$qry = "UPDATE seg_estacionesusuario 
-							SET IdEstacion_fk = '$estaciones' 
-							WHERE IdUsuario_fk = $id_usuario"; 
-					$res_ins = DbExecute($qry, true);
-					DbCommit();
-					if (is_string($res_ins)) {
-						$msg = 'Error al actualizar el usuario.: ' . $res_ins;
-						$result = -1;
-					} else {
-						if (!$res_ins) {
-							$msg = 'Error al actualizar el usuario.';
-							$result = -1;
-						} else {
-							$msg = 'Usuario actulizado correctamente';
-							$result = 1;
-						}
-					}
+					$msg = 'Usuario actulizado con exito';
+					$result = 1;
+					// $qry = "UPDATE seg_estacionesusuario 
+					// 		SET IdEstacion_fk = '$id_estacion' 
+					// 		WHERE IdUsuario_fk = $id_usuario";
+					// $res_ins = DbExecute($qry, true);
+					// DbCommit();
+					// if (is_string($res_ins)) {
+					// 	$msg = 'Error al actualizar el usuario.: ' . $res_ins;
+					// 	$result = -1;
+					// } else {
+					// 	if (!$res_ins) {
+					// 		$msg = 'Error al actualizar el usuario.';
+					// 		$result = -1;
+					// 	} else {
+					// 		$msg = 'Usuario actulizado correctamente';
+					// 		$result = 1;
+					// 	}
+					// }
 				}
 			}
 
@@ -186,109 +188,140 @@ if ($op == 'loadUsuario') {
 						$msg = 'Error al crear el usuario';
 						$result = -1;
 					} else {    
-						$qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
-						$id_usuario = DbGetFirstFieldValue($qry);					
-						$qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, '$estaciones')";
-						$res_ins = DbExecute($qry, true);
-						DbCommit();
-						if (is_string($res_ins)) {
-							$msg = 'Error al crear el usuario.: ' . $res_ins;
-							$result = -1;
-						} else {
-							if (!$res_ins) {
-								$msg = 'Error al crear el usuario.';
-								$result = -1;
-							} else {
-								$msg = 'Usuario creado correctamente';
-								$result = 1;
-							}
-						}
+						$msg = 'Usuario creado con exito';
+						$result = 1;
+						// $qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
+						// $id_usuario = DbGetFirstFieldValue($qry);					
+						// $qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, '$id_estacion')";
+						// $res_ins = DbExecute($qry, true);
+						// DbCommit();
+						// if (is_string($res_ins)) {
+						// 	$msg = 'Error al crear el usuario.: ' . $res_ins;
+						// 	$result = -1;
+						// } else {
+						// 	if (!$res_ins) {
+						// 		$msg = 'Error al crear el usuario.';
+						// 		$result = -1;
+						// 	} else {
+						// 		$msg = 'Usuario creado correctamente';
+						// 		$result = 1;
+						// 	}
+						// }
 					}
 				}
 			}
 		}
+	}
+	$a_ret = array('result' => $result, 'msg' => $msg);
+	echo json_encode($a_ret);
 
+} else if ($op == 'showEstation') {
+
+	if (!strlen($id_usuario)) {
+		$msg = 'Hubo un error, el perfil no fue seleccionado';
+		$result = -1;
+	} elseif (!strlen($id_user)) {
+		$msg = 'Su sesion ha expirado';
+		$result = -1;
+	} else {
+
+		// $a_values = array();
+		if (strlen($id_usuario)) {
+			$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_usuario";
+			$a_perfiles = DbQryToArray($qry);
+		}
+
+		$qry = "SELECT IdEstacion, IdEstacion AS Sel, EstacionServicio, NoEstacion 
+				FROM estaciones WHERE EsActivo = 1";
+
+		$a_data_b = DbQryToArray($qry, true);
+		$a_data = array();
+		$val = array();
+
+		foreach($a_data_b as $a_dt) {
+			$a_data_line = array();
+			$a_data_line['IdEstacion'] = (string) $a_dt['IdEstacion'];
+		
+			$id_app = $a_dt['Sel'];
+
+			$val['IdEstacion_fk'] = $id_app;
+
+			$checked = 0;
+		
+			if (in_array($val, $a_perfiles)) {
+				$checked = 1;
+			}
+
+			if ($s_is_show_all == 1 or $checked == 1) {
+				$a_data_line['Sel'] = '';
+				if ($checked == 1) {
+					$a_data_line['Sel'] = (string) "<input type='checkbox' data-id='".$id_app."' class='idestacion' name='group_checkbox' value='". $id_app ."' checked>";
+				} else {
+					$a_data_line['Sel'] = (string) "<input type='checkbox' data-id='".$id_app."' class='idestacion' name='group_checkbox' value='". $id_app ."'>";
+				}
+				$a_data_line['EstacionServicio'] = (string) utf8_encode($a_dt['EstacionServicio']);
+				$a_data_line['NoEstacion'] = (string) utf8_encode($a_dt['NoEstacion']);
+				$a_data[] = $a_data_line;
+			}
+		}
+			$json =  json_encode(array('data' => $a_data), true);
+			echo $json;		
+	} 
+
+} else if ($op == 'savePerfil') {
+	if (!strlen($id_usuario)) {
+		$msg = 'Hubo un error, la estacion no fue seleccionado';
+		$result = -1;
+	} elseif (!strlen($id_user)) {
+		$msg = 'Su sesion ha expirado';
+		$result = -1;
+	} else {
+		
+		if ($check_app == 1) {
+			$qry = "INSERT INTO seg_estacionesusuario ( IdUsuario_fk, IdEstacion_fk )VALUES($id_usuario, $id_estacion)";
+			$res_db = DbExecute($qry, true);
+			DbCommit();
+			if (is_string($res_db)) {
+				$msg = 'Error SQL:' . $res_db;
+			} else {
+				if (!$res_db) {
+					$msg = 'error al guardar';
+					$result = -1;
+					$a_ret =  array('result' => $result, 'msg' => $msg);
+					echo json_encode($a_ret);
+					// exit();
+				} else {
+					$result = 1;
+					$msg = 'Dato guardado';
+					$a_ret =  array('result' => $result, 'msg' => $msg);
+					echo json_encode($a_ret);
+				}
+			}
+		} else {
+			$qry = "DELETE FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_usuario AND IdEstacion_fk = $id_estacion";
+			$res_db = DbExecute($qry, true);
+			DbCommit();
+			if (is_string($res_db)) {
+				$msg = 'Error SQL:' . $res_db;
+			} else {
+				if (!$res_db) {
+					$msg = 'No borrado';
+					$result = -1;
+					$a_ret =  array('result' => $result, 'msg' => $msg);
+					echo json_encode($a_ret);
+					// exit();
+				} else {
+					$result = 1;
+					$msg = 'Dato borrado';
+					$a_ret =  array('result' => $result, 'msg' => $msg);
+					echo json_encode($a_ret);
+					// exit();
+				}
+			}
+		} 		
 	}
 }
-// } else {
-// 	// valida datos
-// 	$es_error = 0;
-// 	if (!strlen($user_name)) {
-// 		$es_error = 1;
-// 		$output = "El campo Usuario es necesario";
-// 	} elseif (!strlen($nombre)) {
-// 		$es_error = 1;
-// 		$output = "El campo Nombre es necesario";
-// 	} elseif (!strlen($apellido_paterno)) {
-// 		$es_error = 1;
-// 		$output = "El campo Apellido Paterno es necesario";
-// 	}
-	
-// 	// transforma para guardar o insertar
-	
-// 	// valida que UserName no exista en otro usuario
-	
 
-// 	$user_name_existe = DbGetFirstFieldValue($qry);
-// 	if (strlen($user_name_existe)) {
-// 		$es_error = 1;
-// 		$output = "El nombre de Usuario '$user_name' ya existe";
-// 	}
-
-// 	if ($es_error == 0) {
-// 		// echo "dentro del if";
-// 		// exit();
-// 		if (strlen($id_usuario)) {
-// 			// edicion
-//             if ($is_passwd_mod == 1) {
-//                 $passwd = crypt($passwd, "doxasystems"); // mover a libreria
-//             }
-// 			$qry = "UPDATE seg_usuarios
-// 					SET UserName = '$user_name',
-// 						ApellidoPaterno = '$apellido_paterno',
-// 						ApellidoMaterno = '$apellido_materno',
-// 						Nombre = '$nombre',
-// 						UsuarioPerfilId_fk = $usuario_perfil_id,
-// 						passwd = '$passwd',
-// 						EsActivo = $es_activo
-// 					WHERE IdUsuario = $id_usuario";
-// 			$result = DbExecute($qry, true);
-// 			if ($result) {
-// 				if (is_string($result)) {
-// 					$output = "Hubo un error al guardar los cambios";
-// 				} else {
-// 					$output = "Se guardaron los cambios";
-// 					$result = 1;
-// 				}
-// 			} else {
-// 				$output = "Hubo un error al guardar los cambios";
-// 				$result = -1;
-// 			}
-// 		} else {
-// 			// nuevo
-// 			$passwd = crypt($passwd, "doxasystems"); // mover a libreria
-// 			if (!strlen($usuario_perfil_id)) {
-// 				$usuario_perfil_id = 'NULL';
-// 			}
-// 			$qry = "INSERT INTO seg_usuarios (UserName, ApellidoPaterno, ApellidoMaterno, Nombre, UsuarioPerfilId_fk, passwd, EsActivo)
-// 					VALUES('$user_name', '$apellido_paterno', '$apellido_materno', '$nombre', $usuario_perfil_id, '$passwd', $es_activo)";
-// 			echo $qry;
-// 			exit();
-// 			$result = DbExecute($qry, true);
-// 			if ($result) {
-// 				if (is_string($result)) {
-// 					$output = "Hubo un error al agregar el usuario";
-// 				} else {
-// 					$output = "El usuario se agregó correctamente";
-// 					$result = 1;
-// 				}
-// 			} else {
-// 				$output = "Hubo un error al agregar el usuario";
-// 				$result = -1;
-// 			}
-// 		}
-// 	}
-// }
-$a_ret = array('result' => $result, 'msg' => $msg);
-echo json_encode($a_ret);
+// $a_ret = array('result' => $result, 'msg' => $msg);
+// echo json_encode($a_ret);
 ?>
