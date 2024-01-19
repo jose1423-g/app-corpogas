@@ -33,6 +33,14 @@ if ($perfil == 13) {
 <?php include('../layouts/main.php');  ?>
 <?php include('../layouts/main_content.php')  ?>
 
+<div class="position-absolute top-50 start-50 translate-middle w-25 d-none" id="spinner" style="z-index: 2000">
+	<div class="d-flex justify-content-center">
+		<div class="spinner-border" role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+</div>
+
 <div class="row px-5 mb-100">
 		<div class="col-12">
 			<!-- Modal -->

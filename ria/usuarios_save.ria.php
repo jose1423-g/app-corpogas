@@ -188,8 +188,11 @@ if ($op == 'loadUsuario') {
 						$msg = 'Error al crear el usuario';
 						$result = -1;
 					} else {    
+						// $id_usuario = LastIdAutoTable('seg_usuarios');
+						$qry = "SELECT MAX(IdUsuario) FROM seg_usuarios";
+						$id_usuario = DbGetFirstFieldValue($qry);
 						$msg = 'Usuario creado con exito';
-						$result = 1;
+						$result = 1;						
 						// $qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
 						// $id_usuario = DbGetFirstFieldValue($qry);					
 						// $qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, '$id_estacion')";
@@ -212,15 +215,16 @@ if ($op == 'loadUsuario') {
 			}
 		}
 	}
-	$a_ret = array('result' => $result, 'msg' => $msg);
+	$a_ret = array('result' => $result, 'msg' => $msg,  'idusuario' => $id_usuario);
 	echo json_encode($a_ret);
 
 } else if ($op == 'showEstation') {
 
-	if (!strlen($id_usuario)) {
-		$msg = 'Hubo un error, el perfil no fue seleccionado';
-		$result = -1;
-	} elseif (!strlen($id_user)) {
+	// if (!strlen($id_usuario)) {
+	// 	$msg = 'Hubo un error, el perfil no fue seleccionado';
+	// 	$result = -1;
+	// } else
+	if (!strlen($id_user)) {
 		$msg = 'Su sesion ha expirado';
 		$result = -1;
 	} else {

@@ -31,3 +31,10 @@ Error id: "29229"; Message: "You have an error in your SQL syntax; check the man
                     asc
             LIMIT 0, 8
         ";
+Error id: "23107"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
+Error id: "2240"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
+Error id: "27129"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
+Error id: "11582"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
+Error id: "22431"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
+Error id: "28908"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
+Error id: "14522"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";

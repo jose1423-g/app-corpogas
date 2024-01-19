@@ -117,6 +117,7 @@ $(document).ready(function() {
 
 
 	$('#button-save').on('click', function(){
+		$("#spinner").removeClass('d-none');
 		var parametros = $('#form-data').serialize();
 		parametros = parametros + "&op=save";
 		$.ajax({
@@ -128,6 +129,7 @@ $(document).ready(function() {
 					var result = data.result;
 					if (result == 1) {
 						toastr.success(data.msg);
+						show_load();
 						// $('#DataModal').modal('hide');
 						$('#grid-table').DataTable().ajax.reload();
 					} else {
@@ -142,5 +144,9 @@ $(document).ready(function() {
 		event.preventDefault();
 		
 	});
+
+	function show_load() {
+		$("#spinner").addClass('d-none');		
+	}
 
 } );

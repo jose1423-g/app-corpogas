@@ -53,7 +53,7 @@ if ($perfil == 13) {
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Agregar/Editar Usuarios</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<button type="button" class="btn-close" id="btn-x-close"></button>
 						</div>
 						<div class="modal-body p-0">
 							<form id="form-data" class="form-horizontal" action="" method="post">
@@ -62,7 +62,7 @@ if ($perfil == 13) {
                 				<input type="hidden" name="s_is_show_all" id="s_is_show_all" DISABLED>    
 								<div class="modal-body">
 									<div class="row">
-										<div class="row col-6">
+										<div class="row col-6 h-75">
 											<div class="col-6">
 												<div class="form-group">
 													<label class="form-label fw-bold">Usuario</label>
@@ -152,7 +152,7 @@ if ($perfil == 13) {
 									</div>		
 								</div> 
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+									<button type="button" class="btn btn-secondary btn-sm" id="btn-close">Cerrar</button>
 									<!-- <button type="button" name="button-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button> -->
 									<?php echo $btn_save; ?>
 								</div>

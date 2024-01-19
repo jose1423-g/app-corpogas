@@ -110,6 +110,7 @@ $(document).ready(function() {
 				var result = data.result;
                 if (result == 1) {
 					toastr.success(data.msg);
+					$('#IdUsuario').val(data.idusuario);					
 					$('#grid-table').DataTable().ajax.reload();
 				} else {
 					if (result == -1) {
@@ -271,5 +272,21 @@ $(document).ready(function() {
 			});
 		}	
 	});
+
+	$("#btn-close").on('click', function () {
+		$('#table-estaciones').DataTable().ajax.reload();
+		$('#DataModal').modal('hide');
+		$('#IdUsuario').val('-1');
+		$("#s_is_show_all").val(0)
+		$('#op').val();		
+	})
+
+	$("#btn-x-close").on('click', function () {
+		$('#table-estaciones').DataTable().ajax.reload();
+		$('#DataModal').modal('hide');
+		$('#IdUsuario').val('-1');
+		$("#s_is_show_all").val(0)
+		$('#op').val();		
+	})
 
 } );
