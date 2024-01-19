@@ -73,17 +73,17 @@ if ($op == 'save') {
 		$qry = "INSERT INTO productos (NombreRefaccion, Referencia, NoSerie, IdCategoria_fk, img) 
 				VALUES ('$nombre_refaccion', '$referencia', '$no_serie', $id_categoria, '$new_file_name')";
 			$result = DbExecute($qry, true);
-			if ($result) {
-				if (is_string($result)) {
-					$msg = "Hubo un error al agregar el producto";
+			if (is_string($result)) {
+				$msg = "Hubo un error al agregar el producto". $result;
+				$result = -1;
+			} else {
+				if (!$result) {
+					$msg = "Hubo un error al agregar el producto intente nueva mente";
 					$result = -1;
 				} else {
 					$msg = "El productos se agregó correctamente";
 					$result = 1;
 				}
-			} else {
-				$msg = "Hubo un error al agregar el producto";
-				$result = -1;
 			}
 	}
 }

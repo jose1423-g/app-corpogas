@@ -1,41 +1,41 @@
 $(document).ready(function() {
 	
-	var table = $('#grid-table').DataTable( {
-		"responsive": true,
-		"autoWidth": true,
-		"processing": true,
-		"serverSide": true,
-		"ajax": {
-			"url": "../../ria/usuarios.ria.php", // ADHOC
-			"data": function(d) {
-			}
-		},
-		"language": {
-			"url": "../../vendor/datatables/lang/Spanish.json"
-		},
-		"bInfo" : true, // Mostrando registros del 1 al 10 de un total de 
-		"pageLength": 10,
-		"lengthMenu": [[10, 20, 25, 50, 100, 200,500], [10, 20, 25, 50, 100, 200, 500]],
-		"columnDefs": [
-			{
-				"targets": [ 0 ],
-				"visible": false,
-				"searchable": false
-			},
-			{
-				"targets": [ 1,2,4,5,6,8,13 ],
-				"className": 'text-center'
-			}
-		],
-		"order": [[0, "asc"]],
-		"columns": [
-			null, // 0 cargoId
-			null, // 1 SubArea
-			null, // 2 #paciente
-			null, // 3 Nombre
-			null, // 4 Genero
-		]
-	});
+	// var table = $('#grid-table').DataTable( {
+	// 	"responsive": true,
+	// 	"autoWidth": true,
+	// 	"processing": true,
+	// 	"serverSide": true,
+	// 	"ajax": {
+	// 		"url": "../../ria/usuarios.ria.php", // ADHOC
+	// 		"data": function(d) {
+	// 		}
+	// 	},
+	// 	"language": {
+	// 		"url": "../../vendor/datatables/lang/Spanish.json"
+	// 	},
+	// 	"bInfo" : true, // Mostrando registros del 1 al 10 de un total de 
+	// 	"pageLength": 10,
+	// 	"lengthMenu": [[10, 20, 25, 50, 100, 200,500], [10, 20, 25, 50, 100, 200, 500]],
+	// 	"columnDefs": [
+	// 		{
+	// 			"targets": [ 0 ],
+	// 			"visible": false,
+	// 			"searchable": false
+	// 		},
+	// 		{
+	// 			"targets": [ 1,2,4,5,6,8,13 ],
+	// 			"className": 'text-center'
+	// 		}
+	// 	],
+	// 	"order": [[0, "asc"]],
+	// 	"columns": [
+	// 		null, // 0 cargoId
+	// 		null, // 1 SubArea
+	// 		null, // 2 #paciente
+	// 		null, // 3 Nombre
+	// 		null, // 4 Genero
+	// 	]
+	// });
 
 	$('#IdCategoria_fk').select2({
 		theme: 'bootstrap4',
