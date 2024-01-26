@@ -17,7 +17,10 @@ $id_user = SessGetUserId();
 $a_head_data = array('#', 'Acciones', 'Folio', 'Estacion', 'Estatus', 'Fecha Creacion');
 $a_head_data_refacciones = array('Partida', 'Referencia', 'Descripcion', 'Cantidad');
 
-$qry = "SELECT IdEstacion, EstacionServicio FROM estaciones";
+$qry = "SELECT t1.IdEstacion, t1.EstacionServicio
+        FROM estaciones t1
+        LEFT JOIN seg_estacionesusuario t2 ON t2.IdEstacion_fk = t1.IdEstacion
+        WHERE t2.IdUsuario_fk = $id_user";
 $a_estaciones = DbQryToArray($qry, true);
 $estacion;
 foreach($a_estaciones as $row){

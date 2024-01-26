@@ -274,7 +274,7 @@ if ($op == 'loadUsuario') {
 
 } else if ($op == 'savePerfil') {
 	if (!strlen($id_usuario)) {
-		$msg = 'Hubo un error, la estacion no fue seleccionado';
+		$msg = 'Aun no a guardado el usuario';
 		$result = -1;
 	} elseif (!strlen($id_user)) {
 		$msg = 'Su sesion ha expirado';

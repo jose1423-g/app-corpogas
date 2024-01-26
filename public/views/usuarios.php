@@ -48,7 +48,7 @@ if ($perfil == 13) {
 	<div class="row px-5 mb-100">
 		<div class="col-12">
 			<!-- Modal -->
-			<div class="modal fade" id="DataModal">
+			<div class="modal fade" id="DataModal" data-bs-backdrop="static" data-bs-keyboard="false">
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -133,8 +133,8 @@ if ($perfil == 13) {
 															</div>
 														</div>
 														<div class="btn-group mb-2">
-															<button type="button" data-toggle="tooltip" data-placement="top" title="Mostrar Solo los conceptos seleccionados" class="btn btn-sm btn-primary active" id="button-show-sel">Solo seleccionados</button>
-															<button type="button" data-toggle="tooltip" data-placement="top" title="Mostrar Todos los conceptos" class="btn btn-sm btn-primary" id="button-show-all">Todos</button>
+															<button type="button" data-toggle="tooltip" data-placement="top" title="Mostrar Solo las estaciones seleccionados" class="btn btn-sm btn-primary active" id="button-show-sel">Solo seleccionados</button>
+															<button type="button" data-toggle="tooltip" data-placement="top" title="Mostrar Todos las estaciones" class="btn btn-sm btn-primary" id="button-show-all">Todos</button>
 														</div>
 														<tr>
 														<?php
@@ -198,6 +198,6 @@ if ($perfil == 13) {
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/usuarios.js?v=1.002"></script>
+	<script src="../js/usuarios.js?v=1.003"></script>
 
 <?php include('../layouts/main_end.php'); ?>

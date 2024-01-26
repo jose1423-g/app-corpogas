@@ -93,8 +93,14 @@ $(document).ready(function() {
 	}
 
 	$("#btn-add").on('click', function () {
+		$("#button-show-sel").removeClass('active')
+		$("#button-show-all").addClass('active')
+		$('#IdUsuario').val('-1');
+		$("#s_is_show_all").val(1)
+		$('#op').val();		
 		$('#DataModal').modal('show');
 		$('#passwd').prop('readonly', false);
+		$('#table-estaciones').DataTable().ajax.reload();
 		clear();
 	})
 
@@ -150,15 +156,7 @@ $(document).ready(function() {
 		placeholder: 'Selecciona un valor',
 	});
 
-	// $('#IdEstacion_fk').select2({
-	// 	theme: 'bootstrap4',
-	// 	dropdownParent: $('#DataModal'),
-	// 	language: 'es',
-	// 	allowClear: true,
-	// 	placeholder: 'Selecciona un valor',
-	// });
-
-	
+	/* muestra todos las estaciones */
 	$("#button-show-all").on('click', function () {
 		$("#s_is_show_all").val(1)
 		$("#button-show-sel").removeClass('active')
@@ -167,6 +165,7 @@ $(document).ready(function() {
 
 	})
 
+	/* muestra todos las estaciones seleccionadas */
 	$("#button-show-sel").on('click', function () {
 		$("#button-show-all").removeClass('active')
 		$("#button-show-sel").addClass('active')
@@ -273,20 +272,24 @@ $(document).ready(function() {
 		}	
 	});
 
-	$("#btn-close").on('click', function () {
-		$('#table-estaciones').DataTable().ajax.reload();
+	$("#btn-close").on('click', function () {		
 		$('#DataModal').modal('hide');
 		$('#IdUsuario').val('-1');
 		$("#s_is_show_all").val(0)
 		$('#op').val();		
+		$("#button-show-all").removeClass('active')
+		$("#button-show-sel").addClass('active')
+		$('#table-estaciones').DataTable().ajax.reload();
 	})
 
-	$("#btn-x-close").on('click', function () {
-		$('#table-estaciones').DataTable().ajax.reload();
+	$("#btn-x-close").on('click', function () {		
 		$('#DataModal').modal('hide');
 		$('#IdUsuario').val('-1');
 		$("#s_is_show_all").val(0)
 		$('#op').val();		
+		$("#button-show-all").removeClass('active')
+		$("#button-show-sel").addClass('active')
+		$('#table-estaciones').DataTable().ajax.reload();
 	})
 
 } );

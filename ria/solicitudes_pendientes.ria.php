@@ -6,11 +6,21 @@ require_once("$SYS_ROOT/php/knl/dates.inc.php");
 
 session_start();
 
+
+
 $id_user = SessGetUserId();
 if (!strlen($id_user)) {
 	echo "No user defined";
 	exit();
 }
+
+$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+$a_perfil = DbQryToRow($qry);
+$id_perfil = $a_perfil['UsuarioPerfilId_fk'];
+
+$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUSuario_fk = $id_user";
+$a_estacion = DbQryToRow($qry);
+$id_estacion = $a_estacion['IdEstacion_fk'];
 	
 // $qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = 436";
 // $a_data = DbQryToRow($qry);
@@ -52,10 +62,10 @@ if (!strlen($id_user)) {
 	$s_mostrar =  (isset($_GET['s_mostrar'])) ? $_GET['s_mostrar'] : '';
 	$s_estacion =  (isset($_GET['s_estacion'])) ? $_GET['s_estacion'] : '';
     
-    if (strlen($s_razon_social)) {
-        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-        $custom_where .= " Folio LIKE '%$folio%'";
-    }
+    // if (strlen($s_razon_social)) {
+    //     $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+    //     $custom_where .= " Folio LIKE '%$folio%'";
+    // }
 	
 	if (strlen($s_mostrar)) {
 		if ($s_mostrar == 2) {
@@ -81,38 +91,15 @@ if (!strlen($id_user)) {
 		$custom_where .= " Estatus = 2";
 	}
 
-	if (strlen($s_estacion)) {
-	
-		$qry = "SELECT * FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_user";
-		$a_estaciones = DbQryToRow($qry);
-		$id_estacion = $a_estaciones['IdEstacion_fk'];
-		$estaciones = explode(',', $id_estacion);
-
-		
-
-		if (in_array($s_estacion, $estaciones)) {
-			$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-			$custom_where .= "t1.IdEstacion_fk LIKE '%$s_estacion%'";	
-		} else {
-			$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-			$custom_where .= "t1.IdEstacion_fk LIKE '%-1%'";	
-		}
-			
-
-    } else {
-		
-		$qry = "SELECT * FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_user";
-		$a_estaciones = DbQryToRow($qry);
-		$id_estacion = $a_estaciones['IdEstacion_fk'];
-		$estaciones = explode(',', $id_estacion);
-		
+	if ($id_perfil == '13') {
 		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-		$custom_where .= "t1.IdEstacion_fk LIKE '%$estaciones[0]%'";	
+		$custom_where .= "t1.IdEstacion_fk = $id_estacion AND t1.IdUsuario_fk = $id_user";			
 	}
-
-
-	// echo $custom_where;
-	// exit();
+	
+	if (strlen($s_estacion)) {
+		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+		$custom_where .= "t1.IdEstacion_fk = $s_estacion";
+	}
 	
 	// new function for paging
 	$start = (isset($_GET['start'])) ? $_GET['start'] : '';
