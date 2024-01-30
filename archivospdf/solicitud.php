@@ -106,9 +106,9 @@ class PDF extends FPDF {
 		$this->SetFillColor(180, 180, 180);
 		$this->SetFont('Arial', 'B', 9);
 		// $this->SetLine("Partida", 5, 75, 20, 'C', 0, 'B');
-		$this->SetLine("Referencia", 5, 75, 125, 'L', 0, 'B');
-		$this->SetLine("Descripcion", 57, 75, 118, 'L', 0, 'B');
-		$this->SetLine("Cantidad", 175, 75, 35, 'C', 0, 'B');
+		$this->SetLine("Referencia", 5, 75, 125, 'L', 0, '0');
+		$this->SetLine("Descripcion", 57, 75, 118, 'L', 0, '0');
+		$this->SetLine("Cantidad", 175, 75, 35, 'C', 0, '0');
    
     }
 
@@ -263,7 +263,8 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 		$cantidad = $a_line['Cantidad'];
 			
 		$cont++;
-		$is_fill = (fmod($cont, 2) == 0);
+		$is_fill = 0;
+		// (fmod($cont, 2) == 0);
 		$brd = 0;
 		// IMPRIME DATOS DE LOS PRODUCTOS
 		// $pdf->SetLine($id_partida, 5, '', 19, 'C', 0, $brd, $is_fill, $ln);
@@ -272,8 +273,8 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 		$pdf->SetLine($cantidad, 175, '', 35, 'C', 1, $brd, $is_fill, $ln);
 		
 		if ($cont > 1) {
-			$pos = $pdf->GetY() - $ln;
-			$pdf->Line(5, $pos, 210, $pos);
+			// $pos = $pdf->GetY() - $ln;
+			// $pdf->Line(5, $pos, 210, $pos);
 		}
 		
 	
@@ -285,14 +286,16 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 	if ($faltan > 0) {
 		for($i = 0; $i < $faltan; $i++) {
 			$cont++;
-			$is_fill = (fmod($cont, 2) == 0);
-			// LINEAS DEL PDF 
-			// $pdf->SetLine('', 5, '', 19, 'C', 0, $brd, $is_fill, $ln);
+			$is_fill = 0;
+			// $is_fill =  (fmod($cont, 2) == 0);
+			$brd = 0;
+			// LINEAS DEL PDF 			
+			$pdf->SetLine('', 5, '', 19, 'C', 0, $brd, $is_fill, $ln);
 			$pdf->SetLine('', 5, '', 50, 'L', 0, $brd, $is_fill, $ln);
 			$pdf->SetLine('', 57, '', 116, 'L', 0, $brd, $is_fill, $ln);
 			$pdf->SetLine('', 175, '', 35, 'L', 1, $brd, $is_fill, $ln);
 			$pos = $pdf->GetY() - $ln;
-			$pdf->Line(5, $pos, 210, $pos);
+			// $pdf->Line(5, $pos, 210, $pos);
 		}
 	}
 	
@@ -316,7 +319,7 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 	$pdf->SetFont('Arial', 'B', 9);
 	$pdf->SetLine("Observaciones:", 5, $pos_msg,  20, 'L', 1);
 	$pdf->SetFont('Arial', '', 9);
-	$pdf->SetLine($observaciones, 5, 250, 207, 'L', 0, 'T', 1, 7);
+	$pdf->SetLine($observaciones, 5, 250, 207, 'L', 0, '0', 0, 7);
 	$fecha_footer = DtDbLgToShowLong($fecha_show, true);
 	$pdf->SetLine($fecha_footer, 5, 260, 207, 'L');
 
@@ -327,10 +330,8 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 	$filename_b = $fecha.'_'.$NoEstacion;
 	$filename = "$filename_b" . ".pdf";
 	// las notas solo se guardan si el parametro is_show_nota = 0
-	if ($is_show_venta == 1) {
-		// envia salida a la pantalla
-		// $pdf->Output();
-		// $pdf->Output('I', 'pdf_downloads/pedido_'.$filename_b.'.pdf');	
+	if ($is_show_venta == 1) {		
+		// $pdf->Output(); // envia salida a la pantalla
 		/* no permite repetir los archivos */
 		$pdf->Output('F', '../pdf_downloads/pedido_'.$filename_b.'.pdf');
 	} else {
@@ -342,10 +343,10 @@ function generaVentaPdf($id_solicitud, $is_show_venta = 0, $fecha_show) {
 
 
 // $id_venta = '1';
-// $id_solicitud = 72;
-// $fecha_show =  DtDbToday();
 // $fecha_show = $_REQUEST['fecha'];
 // $id_solicitud = $_REQUEST['IdSolicitud'];
+// $id_solicitud = 118;
+// $fecha_show =  DtDbToday();
 // $is_show = 1; // para que se muestre por pantalla (no se grabara el PDF)
 // generaVentaPdf($id_solicitud, $is_show, $fecha_show);
 ?>

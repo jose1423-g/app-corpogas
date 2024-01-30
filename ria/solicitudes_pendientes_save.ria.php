@@ -15,9 +15,9 @@ $id_user = SessGetUserId();
 
 // recupera datos
 $op = (isset($_REQUEST['op'])) ? $_REQUEST['op'] : '';
-
 $id_solicitud = (isset($_REQUEST['id_solicitud'])) ? $_REQUEST['id_solicitud'] : "";
 $fecha_show = (isset($_REQUEST['fecha'])) ? $_REQUEST['fecha'] : "";
+
 
 
 $msg = "";
@@ -31,24 +31,23 @@ $fecha_hoy =  DtDbToday($fecha_hoy);
 
 if ($op == 'loadSolicitud') {
 	if (!strlen($id_solicitud)) {
-		$msg = "El campo nombre refaccion es necesario";
+		$msg = "Ups hubo un error al cargar la solicitud";
 		$result = -1;
 	} elseif (!strlen($id_user)){
 		$msg = "Su session ha expirado";
 		$result = -1;
 	} else {
-
-		$qry = "SELECT t1.Folio, t1.Estatus, t1.Estatus AS Status, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
+		$qry = "SELECT t1.Folio, t1.Estatus, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
 		t1.MotRechazo, t1.ObGenerales, t5.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email, t3.Telefono
 		FROM solicitudes t1 
 		LEFT JOIN areas t2 ON t1.IdAreaSolicita_fk = t2.IdArea
 		LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
 		LEFT JOIN seg_estacionesusuario t4 ON t3.IdUsuario = t4.IdUsuario_fk 
 		LEFT JOIN estaciones t5 ON t4.IdEstacion_fk = t5.IdEstacion
-		WHERE IdSolicitud  = $id_solicitud";
+		WHERE t1.IdSolicitud  = $id_solicitud";
+		
         $a_datos = DbQryToRow($qry);	
-
-
+	
 		$estatus = $a_datos['Estatus'];
 		if ($estatus == 2) {
 			$estatus = "<span class='text-warning'>Pendiente Revision</span>";
@@ -72,19 +71,23 @@ if ($op == 'loadSolicitud') {
 		$Gerente = utf8_encode($a_datos['Gerente']);
 		$a_datos['Gerente'] = $Gerente;
 		
-		
-		$a_datos['result'] = 1;
+		$result = 1;
+		$a_datos['result'] = $result;
+		$a_datos['msg'] = $msg;
 		$a_ret = $a_datos; 
 		echo json_encode($a_ret);
 	}
+	
+
 } else if ($op == 'ShowProducts') {
 
-	$qry = "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad 
+	$qry = "SELECT t2.IdPartida, t3.Referencia, t3.NombreRefaccion, t2.Cantidad
 	FROM solicitudes t1
 	LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
 	LEFT JOIN productos t3 ON t2.IdProducto_fk = t3.IdProducto
 	WHERE t1.IdSolicitud = $id_solicitud ORDER BY t2.IdPartida ASC";
-	$a_producto = DbQryToArray($qry, true);	
+
+	$a_producto = DbQryToArray($qry);
 
 	$a_data = array();
 
@@ -107,6 +110,7 @@ if ($op == 'loadSolicitud') {
 		// } else if (!strlen($icons)) {
 		// 	$a_data[] =  $a_data;
 		} else {
+
 		$a_data_line['IdPartida'] = (string) $row['IdPartida'];
 		$a_data_line['Referencia'] =  (string) utf8_encode($row['Referencia']);
 		$a_data_line['NombreRefaccion'] = (string) utf8_encode($row['NombreRefaccion']);
@@ -132,7 +136,7 @@ if ($op == 'loadSolicitud') {
 				FechaAprobacion = $fecha_hoy 
 				WHERE IdSolicitud = $id_solicitud";
 		$res_ins = DbExecute($qry, true);
-		DbCommit();
+
 		if (is_string($res_ins)) {
 			$msg = 'Error al aprobar la solcitud: ' . $res_ins;
 			$result = -1;
@@ -174,6 +178,9 @@ if ($op == 'loadSolicitud') {
 
 					} else {
 
+						$qry = "SELECT Folio FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+						$folio =  DbGetFirstFieldValue($qry);
+						
 						$qry = "SELECT Email FROM seg_usuarios WHERE IdUsuario = $id_usuario";
 						$a_usuarios = DbQryToRow($qry);
 						$email = $a_usuarios['Email'];
@@ -194,16 +201,22 @@ if ($op == 'loadSolicitud') {
 						$folio = $a_solicitudes['Folio'];
 						$id_categoria = $a_solicitudes['IdCategoria_fk'];
 
-						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria = $id_categoria";
-						$categoria =  DbGetFirstFieldValue($qry);
-
+						$a_data_categoria = array();
+						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";			
+						$a_categoria =  DbQryToArray($qry);
+						foreach ($a_categoria as $row){
+							$valor =  $row['Categoria'];
+							array_push($a_data_categoria, $valor);
+						}
+						$categorias = implode(', ', $a_data_categoria);
+						
 						$mail_to = $email.','.$email_supervisor; // destinatarios jctg1@hotmail.com
 						$files[] = '../pdf_downloads/'.$ultimo_archivo;
 						$mail_from = $email_supervisor; //responder a 
 						$mail_from_name = 'CORPOGAS'; //nombre de la empresa
-						$mail_subject = $categoria.' '.$no_estacion;
+						$mail_subject = $categorias.' '.$no_estacion;
 						$mensaje_de_alerta = '';
-						$mail_text_body =  'Estimado(a) usuario de compras, a continuacion se adjunta la solicitud de refacciones en formato pdf correspondiente a la estacion '.$no_estacion.' '.$estacion;
+						$mail_text_body =  'Solicitud de Refacciones Estación '.$no_estacion.'  '.$estacion.' - Folio - '.$folio ;
 						$mail_html_body = "<html>
 											<head>
 											<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />
@@ -219,7 +232,7 @@ if ($op == 'loadSolicitud') {
 						$mail_passwd = 'qptttahefmxcndli';
 						$mail_smtp_secure = 'tls';
 						$mail_firma_url = "";
-						$mail_backup = 'compras@gruposynergo.com';// destinatario
+						$mail_backup = 'compras@gruposynergo.com';// destinatario 
 						$zp = 0;
 						
 						$ruta = $directorio.''.$ultimo_archivo;
@@ -289,12 +302,11 @@ if ($op == 'loadSolicitud') {
 							$a_ret = $datos;
 							echo json_encode($a_ret);
 							exit();	
-
 						}
 						
 					}
 				} else {
-					$msg = "Ups no pudimos agregar el pdf al correo";
+					$msg = "Ups no pudimos agregar el pdf al correo intente nuevamente";
 					$result = -1;
 					$datos['msg'] = $msg;
 					$datos['result'] = $result;

@@ -68,10 +68,11 @@ if ($op == 'save') {
 		} 
 
 		if(!strlen($no_serie)){
-			$no_serie = NULL;
+			$no_serie = 'NULL';
 		}
+		
 		$qry = "INSERT INTO productos (NombreRefaccion, Referencia, NoSerie, IdCategoria_fk, img, EsActivo) 
-				VALUES ('$nombre_refaccion', '$referencia', '$no_serie', $id_categoria, '$new_file_name', $es_activo)";
+				VALUES ('$nombre_refaccion', '$referencia', $no_serie, $id_categoria, '$new_file_name', $es_activo)";
 			$result = DbExecute($qry, true);
 			if (is_string($result)) {
 				$msg = "Hubo un error al agregar el producto". $result;

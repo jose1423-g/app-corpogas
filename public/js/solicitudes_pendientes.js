@@ -70,7 +70,7 @@ $(document).ready(function() {
             url: "../../ria/solicitudes_pendientes_save.ria.php",
             data: {
                 id_solicitud: id_solicitud,
-                op: 'loadSolicitud'
+                op:'loadSolicitud'
             },
             success: function (data) {
                 var data = jQuery.parseJSON(data);
@@ -201,41 +201,7 @@ $(document).ready(function() {
 					toastr.success(data.msg);
 					show_load();					
 					$('#grid-table').DataTable().ajax.reload();
-					$('#DataModal').modal('hide');
-                } else {
-					if (result == -1) {
-						toastr.warning(data.msg);
-						show_load();				
-					} else {
-						toastr.info(data.msg);
-					}
-				}
-            }
-
-		})
-	});
-
-	$("#btn-aprobar").on('click', function () {
-		$("#spinner").removeClass('d-none');
-		let fecha = $("#fecha_val").val();
-		let id_solicitud = $("#id_solicitud").val()
-		
-		$.ajax({
-			type: "post",
-            url: "../../ria/solicitudes_pendientes_save.ria.php",
-            data: {
-                id_solicitud: id_solicitud,
-				fecha: fecha,
-                op: 'aprobar'
-            },
-            success: function (data) {
-                var data = jQuery.parseJSON(data);
-				var result = data.result;
-                if (result == 1) {
-					toastr.success(data.msg);
-					show_load();					
-					$('#grid-table').DataTable().ajax.reload();
-					$('#DataModal').modal('hide');
+					$('#DataModal').modal('hide');				
                 } else {
 					if (result == -1) {
 						toastr.warning(data.msg);

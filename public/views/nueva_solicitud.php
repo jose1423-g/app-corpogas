@@ -50,6 +50,8 @@ if ($perfil == 13) {
     $btn_save = '<button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button>';
 } else if ($perfil == 16) {
 	$btn_save = '';
+} else if ($perfil == 12) {
+    $btn_save = '<button type="button" class="btn btn-primary btn-sm me-2" id="btn-save">Guardar</button>';
 }
 
 

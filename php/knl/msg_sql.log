@@ -38,3 +38,535 @@ Error id: "11582"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exi
 Error id: "22431"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
 Error id: "28908"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
 Error id: "14522"; Message: "FUNCTION pruebascorpogas.IDENT_CURRENT does not exist"; Query: "SELECT IDENT_CURRENT('seg_usuarios')AS INDENT_CURRENT";
+Error id: "30593"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "21198"; Message: "Unknown column 'Array' in 'field list'"; Query: "UPDATE solicitudes SET IdCategoria_fk = Array WHERE IdSolicitud = 118";
+Error id: "13807"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11 WHERE IdSolicitud = 118' at line 1"; Query: "UPDATE solicitudes SET IdCategoria_fk = 10,11 WHERE IdSolicitud = 118";
+Error id: "30972"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "31621"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "19930"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "16907"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "3630"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "701"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "28850"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "15823"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "26627"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "8619"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "8200"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "17313"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "2502"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "25472"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "3513"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "26110"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "10472"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "19201"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "12666"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "27947"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "17800"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "15137"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "27462"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "351"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "14252"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "19573"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "13721"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "28070"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "11655"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "13492"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "12551"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "8286"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "7231"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "26892"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "4693"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "12852"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "29671"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "25706"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "4956"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "30309"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "24378"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "26603"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "2376"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "5089"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "10697"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "15707"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "13574"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "6087"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "14542"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "26717"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "30162"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "25610"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "2552"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "21627"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "8856"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "27540"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "29172"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "3357"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "7058"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "5693"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "15922"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "15089"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "26499"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "22179"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "9199"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "20220"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "6533"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "5082"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "26979"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "14688"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "11520"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "22841"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "2942"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "24089"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "14038"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "30943"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "4107"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "24286"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "14527"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "2956"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "6444"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "20469"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "24970"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "15776"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "11609"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6"; Query: "SELECT t1.Folio, t1.Fecha, t2.EstacionServicio, t2.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email,
+			t1.MatEntregado, t1.AreaInstaloEntrego, t1.FolioRemision, t1.Nomenclatura, t1.Observaciones
+			FROM solicitudes t1
+			LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+			LEFT JOIN seg_usuarios t3 ON t1.IdUsuario_fk = t3.IdUsuario
+			WHERE t1.IdSolicitud = ";
+Error id: "7454"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "32465"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "23862"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "15703"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "20548"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "17403"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "14847"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "21559"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "7192"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "17109"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "24296"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "19876"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "5421"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
+Error id: "5068"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";

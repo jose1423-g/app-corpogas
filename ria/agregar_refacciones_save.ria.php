@@ -41,7 +41,7 @@ if ($op == 'ShowImg') {
 		echo json_encode($a_ret);
 		exit();
 	}
-
+/* agrega productos por categorias */
 } else if ($op == 'SaveData') {
     
     if (!strlen($id_categoria)) {
@@ -53,10 +53,17 @@ if ($op == 'ShowImg') {
     $id_solicitud  =  DbGetFirstFieldValue($qry);
 
 
-    $qry = "SELECT * FROM solicitudes WHERE IdSolicitud = $id_solicitud AND IdCategoria_fk = $id_categoria";
+    $qry = "SELECT IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud AND IdCategoria_fk = $id_categoria";
     $resp  =  DbGetFirstFieldValue($qry);
 
-    if (strlen($resp)) {
+    $a_categorias = explode(',', $resp);
+
+    
+
+    if (in_array($id_categoria, $a_categorias)) { /* tiene categoria  */
+        echo "Existe dentro del array";
+        exit();
+
         $datos = json_decode($data_json, true);   
         $qry = "SELECT MAX(IdPartida) FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
         $valor =  DbGetFirstFieldValue($qry);
@@ -89,55 +96,58 @@ if ($op == 'ShowImg') {
         }
         
     } else {
-        $qry = "SELECT * FROM solicitudes WHERE IdSolicitud = $id_solicitud AND IdCategoria_fk IS NOT NULL";
-        $value  =  DbGetFirstFieldValue($qry);
-        if (strlen($value)) {
-            $msg = 'Error una solicitud no puede contener mas de una categoria';
+
+        $a_categorias = array();
+        $qry = "SELECT IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+        $valores  =  DbGetFirstFieldValue($qry);
+
+        array_push($a_categorias, $valores, $id_categoria);
+        $cadena = implode(',', $a_categorias);
+
+        $qry = "UPDATE solicitudes SET IdCategoria_fk = '$cadena' WHERE IdSolicitud = $id_solicitud";
+        $res_upd = DbExecute($qry);
+        DbCommit();
+        if (is_string($res_upd)) {
+            $msg = 'Error al enviar la solicitud:' . $res_upd;
             $result = -1;
         } else {
-            $qry = "UPDATE solicitudes SET IdCategoria_fk = $id_categoria WHERE IdSolicitud = $id_solicitud";
-            $res_upd = DbExecute($qry);
-            DbCommit();
-            if (is_string($res_upd)) {
-                $msg = 'Error al enviar la solicitud:' . $res_upd;
+            if (!$res_upd) {
+                $msg = 'Error al enviar la solicitud';
                 $result = -1;
             } else {
-                if (!$res_upd) {
-                    $msg = 'Error al enviar la solicitud';
-                    $result = -1;
-                } else {
-                    $datos = json_decode($data_json, true);
-                    if (!empty($datos)) {
-                        if (!$valor) {
-                            $i = 0;
-                        }
-                            $i = $valor;
-                        foreach ($datos as $id => $cantidad) {
-                            $i = $i + 1;
-                            $qry = "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES ($i, $id, $cantidad, $id_solicitud)";
-                            $res_upd = DbExecute($qry);
-                            DbCommit();
-                            if (is_string($res_upd)) {
-                                $msg = 'Error al enviar los datos:' . $res_upd;
+                $datos = json_decode($data_json, true);
+                $qry = "SELECT MAX(IdPartida) FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
+                $valor =  DbGetFirstFieldValue($qry);
+                if (!empty($datos)) {
+                    if (!$valor) {
+                        $i = 0;
+                    }
+                        $i = $valor;
+                    foreach ($datos as $id => $cantidad) {
+                        $i = $i + 1;
+                        $qry = "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES ($i, $id, $cantidad, $id_solicitud)";
+                        $res_upd = DbExecute($qry);
+                        DbCommit();
+                        if (is_string($res_upd)) {
+                            $msg = 'Error al enviar los datos:' . $res_upd;
+                            $result = -1;
+                        } else {
+                            if (!$res_upd) {
+                                $msg = 'Error al enviar los datos';
                                 $result = -1;
                             } else {
-                                if (!$res_upd) {
-                                    $msg = 'Error al enviar los datos';
-                                    $result = -1;
-                                } else {
-                                    $msg = 'Productos agregados';
-                                    $result = 1;
-                                }
-                            }        
-                        }
-                    } else {
-                        $msg = 'Ups no has selecciona ningun producto';
-                        $result = -1;
+                                $msg = 'Productos agregados';
+                                $result = 1;
+                            }
+                        }        
                     }
-                        
+                } else {
+                    $msg = 'Ups no has selecciona ningun producto';
+                    $result = -1;
                 }
-            } 
-        }
+                    
+            }
+        } 
     }
     $a_ret = array('result' => $result, 'msg' => $msg);
     echo json_encode($a_ret);

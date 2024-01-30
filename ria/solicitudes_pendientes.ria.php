@@ -91,14 +91,29 @@ $id_estacion = $a_estacion['IdEstacion_fk'];
 		$custom_where .= " Estatus = 2";
 	}
 
+	/* esta condicion es solo para genrentes los admin y los supervisores pueden ver todas */
 	if ($id_perfil == '13') {
 		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
 		$custom_where .= "t1.IdEstacion_fk = $id_estacion AND t1.IdUsuario_fk = $id_user";			
 	}
 	
 	if (strlen($s_estacion)) {
+		/* hacer una consulta de todas las estaciones del supervisor */		
 		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
 		$custom_where .= "t1.IdEstacion_fk = $s_estacion";
+	} else {
+		$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_user";
+		$a_estaciones = DbQryToArray($qry);
+		$a_datos = array();
+		foreach($a_estaciones as $row){
+			$valor = $row['IdEstacion_fk'];
+			array_push($a_datos, $valor);
+		}
+		$datos = implode(',', $a_datos);
+
+		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+		$custom_where .= "t1.IdEstacion_fk IN($datos)";			
+		
 	}
 	
 	// new function for paging

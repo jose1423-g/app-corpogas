@@ -72,7 +72,7 @@ if ($perfil == 13) {
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body p-0">
-                            <input type="hidden" id="id_solicitud" name="id_solicitud" value="1">
+                            <input type="hidden" id="id_solicitud" name="id_solicitud" value="-1">
                             <input type="hidden" name="fecha_val" id="fecha_val" value="<?php echo $fecha ?>">
                             <div class="modal-body py-0">
                                 <div class="row">
