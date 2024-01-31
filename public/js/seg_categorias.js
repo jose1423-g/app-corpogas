@@ -12,12 +12,12 @@ $(document).ready(function() {
 		"autoWidth": true,
 		"processing": true,
         "serverSide": true,
-		"searching": true,
+		"searching": false,
 		"ajax": {
             "url":"../../ria/seg_categorias.ria.php", // ADHOC
             "data": function(d) {
-                // d.Folio = $('#folio').val();
-                // d.s_mostrar = $('#s_mostrar').val();
+                d.s_Categoria = $('#s_Categoria').val();
+				d.Activo = $('#Activo').val();                
             }
         },
         "language": {
@@ -46,6 +46,16 @@ $(document).ready(function() {
 			null, // IdUsuario_fk
 		]
     });
+
+	$('.keydown13').keydown( function(event) {
+		if (event.keyCode == 13) {
+            $('#grid-table').DataTable().ajax.reload();	
+		}
+	});
+
+	$("#btn-search").on('click', function () {
+		$('#grid-table').DataTable().ajax.reload();	
+	})
  
 	$('#grid-table tbody').on( 'click', '.button-edit', function () {
 		$('#DataModal').modal('show');

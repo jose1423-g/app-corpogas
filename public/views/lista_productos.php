@@ -64,7 +64,7 @@ foreach ($a_categoria as $row){
             <div class="py-2 border-bottom">
                 <h4>Productos</h4>
             </div>
-			<div class="row pt-2 justify-content-center">
+			<div class="row pt-2">
 				<div class="col-3">
                     <div class="form-group">
                         <label class="form-label fw-bold" for="IdCategoria_fk">Categoría</label>
@@ -77,16 +77,25 @@ foreach ($a_categoria as $row){
 				<div class="col-3">
 					<div class="form-group">
 						<label class="form-label fw-bold" for="Descripcion">Descripción</label>
-						<input class="form-control" name="Descripcion" id="Descripcion">
+						<input class="form-control keydown13" name="Descripcion" id="Descripcion">
 					</div> 
 				</div>
-                <div class="col-3">
+                <div class="col-2">
 					<div class="form-group">
 						<label class="form-label fw-bold" for="Referenecia">Referencia</label>
-						<input class="form-control" name="Referenecia" id="Referenecia">
+						<input class="form-control keydown13" name="Referenecia" id="Referenecia">
 					</div> 
 				</div>
-                <div class="col-3">
+				<div class="col-2">
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="EsActivo">Mostrar</label>
+                        <select class="form-select" name="EsActivo" id="EsActivo">
+                            <option value="1" selected>Activo</option>
+							<option value="0">Inactivos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-2">
                     <label class="form-label fw-bold" for="Ordenar">Ordenar</label>
                     <div class="input-group mb-3">
                         <select class="form-select" name="Ordenar" id="Ordenar">
@@ -135,7 +144,7 @@ foreach ($a_categoria as $row){
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/lista_productos.js?v=1.002"></script>
+	<script src="../js/lista_productos.js?v=1.003"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 

@@ -115,15 +115,18 @@ if ($perfil == 13) {
 			<div class="row pt-2 justify-content-center">
 				<div class="col-4">
 					<div class="form-group">
-						<label class="form-label fw-bold" for="">Categoria</label>
-						<input class="form-control form-control-sm" name="" id="">
+						<label class="form-label fw-bold" for="">s_Categoria</label>
+						<input class="form-control form-control-sm keydown13" name="s_Categoria" id="s_Categoria">
 					</div> 
 				</div>
 				<div class="col-4">
-					<label class="form-label fw-bold" for="">Estatus</label>
+					<label class="form-label fw-bold" for="Activo">Estatus</label>
 					<div class="input-group mb-3">
-						<select class="form-select form-select-sm" name="" id=""></select>    
-						<button class="btn btn-outline-info bg-info btn-sm" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+						<select class="form-select form-select-sm" name="Activo" id="Activo">
+							<option value="1" selected>Activo</option>
+							<option value="0">Inactivos</option>
+						</select>    
+						<button class="btn btn-outline-info bg-info btn-sm" type="button" id="btn-search"><i class="fas fa-search"></i></button>
 					</div>
 				</div>
 			</div><!-- row -->
@@ -166,7 +169,7 @@ if ($perfil == 13) {
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/seg_categorias.js?v=1.001"></script>
+	<script src="../js/seg_categorias.js?v=1.002"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 

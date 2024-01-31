@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    let confirmacion_elimina = "Estas seguro de eliminar el producto?"
+    let confirmacion_elimina = "Estas seguro de activar/desactivar el producto?"
 
     var table = $('#grid-table').DataTable( {
         "responsive": true,
@@ -13,7 +13,7 @@ $(document).ready(function() {
                 d.Descripcion = $('#Descripcion').val();
                 d.Referenecia = $('#Referenecia').val();
                 d.IdCategoria_fk = $('#IdCategoria_fk').val();
-                // d.Ordenar = $('#Ordenar').val();
+                d.EsActivo = $('#EsActivo').val();
             }
         },
         "language": {
@@ -42,8 +42,15 @@ $(document).ready(function() {
             null, // 4  Categoria
             null, // 5  imagen 
             null, // 6  sel
+            // null, // 7 EsActivo
         ]
     });
+
+    $('.keydown13').keydown( function(event) {
+		if (event.keyCode == 13) {
+            $('#grid-table').DataTable().ajax.reload();	
+		}
+	});
 
     $('#button-search').on('click', function(){
 		$('#grid-table').DataTable().ajax.reload();

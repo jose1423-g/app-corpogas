@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
 	$usuario = (isset($_POST['UserName'])) ? $_POST['UserName'] : '';
 	$passwd = (isset($_POST['passwd'])) ? $_POST['passwd'] : '';
 	if (strlen($usuario) and strlen($passwd)) {
-		$qry = "SELECT IdUsuario, UserName, EsActivo, passwd FROM seg_usuarios WHERE UserName = '$usuario'";
+		$qry = "SELECT IdUsuario, UserName, EsActivo, passwd, UsuarioPerfilId_fk FROM seg_usuarios WHERE UserName = '$usuario'";
 		// echo $qry;
 		$a_user = DbQryToRow($qry);
 		if (count($a_user) > 0) {		
@@ -23,10 +23,18 @@ if (isset($_POST['login'])) {
 				// if ($passwd_db == sha1($passwd)) {
 				if (hash_equals($hashed_password, crypt($passwd, $hashed_password))) {
 					$id_user = $a_user['IdUsuario'];
+					$id_perfil = $a_user['UsuarioPerfilId_fk'];
 					$ret = setLogin($id_user, DtDbToday(), TmDbStamp());
 					// ok
 					if ($ret == 1) {
-						redirect('nueva_solicitud.php');
+						if ($id_perfil == '13') { //gerente
+							redirect('nueva_solicitud.php');	
+						} else if ($id_perfil == '16') { //supervisor
+							redirect('solicitudes_pendientes.php');	
+						} else if ($id_perfil == '12') {
+							redirect('solicitudes_pendientes.php');	
+						}
+						
 					} else {
 						$error_alert = 'Datos de acceso incorrectos'; // no hay acceso al nombre de session???
 					}

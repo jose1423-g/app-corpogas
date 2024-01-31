@@ -15,8 +15,8 @@ if (!strlen($id_user)) {
 	 * you want to insert a non-database field (for example a counter or static image)
 	 */
 	 
-	$aColumns = array('t1.IdProducto', 't1.NombreRefaccion', 't1.Referencia', 't1.NoSerie', 't2.Categoria', 't1.IdProducto AS btnshow', 't1.IdProducto AS icons');
-	$aColumnsClean = array('IdProducto','NombreRefaccion','Referencia','NoSerie','Categoria', 'btnshow', 'icons');
+	$aColumns = array('t1.IdProducto', 't1.NombreRefaccion', 't1.Referencia', 't1.NoSerie', 't2.Categoria', 't1.IdProducto AS btnshow', 't1.EsActivo');
+	$aColumnsClean = array('IdProducto','NombreRefaccion','Referencia','NoSerie','Categoria', 'btnshow', 'EsActivo');
 
 	// especifico
 	// ..
@@ -36,6 +36,7 @@ if (!strlen($id_user)) {
 	$Descripcion =  (isset($_GET['Descripcion'])) ? $_GET['Descripcion'] : '';
 	$Referenecia =  (isset($_GET['Referenecia'])) ? $_GET['Referenecia'] : '';
 	$IdCategoria_fk =  (isset($_GET['IdCategoria_fk'])) ? $_GET['IdCategoria_fk'] : '';
+	$es_activo =  (isset($_GET['EsActivo'])) ? $_GET['EsActivo'] : '';
 
     if (strlen($Descripcion)) {
         $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
@@ -50,6 +51,21 @@ if (!strlen($id_user)) {
 	if (strlen($IdCategoria_fk)) {
         $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
         $custom_where .= "t1.IdCategoria_fk = $IdCategoria_fk";
+    } 
+
+	if (strlen($IdCategoria_fk)) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= "t1.IdCategoria_fk = $IdCategoria_fk";
+    } 
+
+	if ($es_activo == 1) {		
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= "t1.EsActivo = 1";
+    }
+
+	if ($es_activo == 0) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= "t1.EsActivo = 0";
     } 
 	
 	
@@ -84,15 +100,24 @@ if (!strlen($id_user)) {
 			if ( $aColumns[$i] == "btnshow" ) {
 				$icons = '<button type="button" class="btn btn-primary btn-sm btn-img"><i class="fas fa-eye"></i></button>';
 				$row[] = $icons;
-			} else if ($aColumns[$i] == "icons" ){
+			} else if ($aColumns[$i] == "EsActivo" ){
+				$es_activo = $aRow[$aColumns[$i]];
 				$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
 				$perfil  =  DbGetFirstFieldValue($qry);
 				if ($perfil == 13) {
 					$icons = '';	
 				} else if ($perfil == 16){
-					$icons = '<button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>';
+					if ($es_activo == 1) {
+						$icons = '<button type="button" class="btn btn-sm btn-delete"><i class="fas fa-toggle-on fs-4"></i></button>';	
+					} else {
+						$icons = '<button type="button" class="btn btn-sm btn-delete"><i class="fas fa-toggle-off fs-4"></i></button>';	
+					}					
 				} else if ($perfil == 12){
-					$icons = '<button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>';
+					if ($es_activo == 1) {
+						$icons = '<button type="button" class="btn btn-sm btn-delete"><i class="fas fa-toggle-on fs-4"></i></button>';	
+					} else {
+						$icons = '<button type="button" class="btn btn-sm btn-delete"><i class="fas fa-toggle-off fs-4"></i></button>';
+					}
 				}
 				$row[] = $icons;
             } else if ( $aColumns[$i] != ' ' ) {

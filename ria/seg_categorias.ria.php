@@ -32,22 +32,23 @@ if (!strlen($id_user)) {
 					LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario";
 						
 	$custom_where = "";
-    // $s_razon_social = (isset($_GET['s_razon_social'])) ? $_GET['s_razon_social'] : '';
-	// $s_mostrar =  (isset($_GET['s_mostrar'])) ? $_GET['s_mostrar'] : '';
-    // if (strlen($s_razon_social)) {
-    //     $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-    //     $custom_where .= " RazonSocial LIKE '%$s_razon_social%'";
-    // }
+    $categoria = (isset($_GET['s_Categoria'])) ? $_GET['s_Categoria'] : '';
+	$es_activo =  (isset($_GET['Activo'])) ? $_GET['Activo'] : '';
+
+    if (strlen($categoria)) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= " t1.Categoria LIKE '%$categoria%'";
+    }
 	
-	// if ($s_mostrar == 1) {
-    //     $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-    //     $custom_where .= " Estatus = 1";
-    // }
+	if ($es_activo == 1) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= " t1.Esactivo = 1";
+    }
 	
-	// if ($s_mostrar == 2) {
-    //     $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-    //     $custom_where .= " Estatus = 0";
-    // }
+	if ($es_activo == 0) {
+        $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
+        $custom_where .= " t1.EsActivo = 0";
+    }
 	
 	// new function for paging
 	$start = (isset($_GET['start'])) ? $_GET['start'] : '';
