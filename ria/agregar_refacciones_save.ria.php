@@ -23,6 +23,12 @@ $data_json = (isset($_REQUEST['data_json'])) ? $_REQUEST['data_json'] : '';
 $msg = '';
 $result = 0;
 
+/* categorias que no se pueden mezclar */
+// $a_datos_categorias  = array('21','17');
+/* in production */
+// $a_datos_categorias  = array('22','17');
+
+
 if ($op == 'ShowImg') {
 	if (!strlen($id_producto)) {
 		$msg = 'Hubo un error, No se pudo cargar la imagen';
@@ -49,21 +55,17 @@ if ($op == 'ShowImg') {
         $result = -1;
     } 
 
-    $qry = "SELECT * FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
+    $qry = "SELECT MAX(IdSolicitud) FROM solicitudes";
     $id_solicitud  =  DbGetFirstFieldValue($qry);
 
 
-    $qry = "SELECT IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud AND IdCategoria_fk = $id_categoria";
+    $qry = "SELECT IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud AND IdCategoria_fk LIKE '%$id_categoria%'";
     $resp  =  DbGetFirstFieldValue($qry);
 
-    $a_categorias = explode(',', $resp);
+    $a_categorias = explode(',', $resp); 
 
-    
-
-    if (in_array($id_categoria, $a_categorias)) { /* tiene categoria  */
-        echo "Existe dentro del array";
-        exit();
-
+    /* evita que la categoria se duplique */
+    if (in_array($id_categoria, $a_categorias)) { /* tiene categoria  */         
         $datos = json_decode($data_json, true);   
         $qry = "SELECT MAX(IdPartida) FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
         $valor =  DbGetFirstFieldValue($qry);
@@ -97,14 +99,45 @@ if ($op == 'ShowImg') {
         
     } else {
 
+        /* si no tiene categorias la agrega  */
         $a_categorias = array();
-        $qry = "SELECT IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+        $qry = "SELECT IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";   
         $valores  =  DbGetFirstFieldValue($qry);
+        
+        $s_categoria = explode(',', $valores);      
+        // echo "<pre>". print_r($s_categoria, true)."<pre>";
+
+
+        if ($id_categoria == '21') { //pinturas
+            $datos_categorias  = 17;
+            // echo "id categoria". $id_categoria;
+            if (in_array($datos_categorias, $s_categoria)) {                                
+                $msg = 'No se puede agregar a una misma solicitud Rollos Termicos y Pinturas 1';
+                $result = -1;
+                $a_ret = array('result' => $result, 'msg' => $msg);
+                echo json_encode($a_ret);
+                exit();
+            }    
+        }
+         
+        if ($id_categoria == '17') { //pinturas
+            $datos_categorias  = 21;
+            // echo "id categoria". $id_categoria;
+            if (in_array($datos_categorias, $s_categoria)) {                                
+                $msg = 'No se puede agregar a una misma solicitud Rollos Termicos y Pinturas 2';
+                $result = -1;
+                $a_ret = array('result' => $result, 'msg' => $msg);
+                echo json_encode($a_ret);
+                exit();
+            }    
+        }
 
         array_push($a_categorias, $valores, $id_categoria);
         $cadena = implode(',', $a_categorias);
 
         $qry = "UPDATE solicitudes SET IdCategoria_fk = '$cadena' WHERE IdSolicitud = $id_solicitud";
+        // echo $qry;
+        // exit();
         $res_upd = DbExecute($qry);
         DbCommit();
         if (is_string($res_upd)) {
@@ -136,7 +169,7 @@ if ($op == 'ShowImg') {
                                 $msg = 'Error al enviar los datos';
                                 $result = -1;
                             } else {
-                                $msg = 'Productos agregados';
+                                $msg = 'Productos agregados.';
                                 $result = 1;
                             }
                         }        
@@ -144,8 +177,7 @@ if ($op == 'ShowImg') {
                 } else {
                     $msg = 'Ups no has selecciona ningun producto';
                     $result = -1;
-                }
-                    
+                }                    
             }
         } 
     }
@@ -154,9 +186,6 @@ if ($op == 'ShowImg') {
     exit();
 
 } else if ($op == 'ShowProducts') {
-    // $qry = "SELECT MAX(IdSolicitud) FROM solicitudes";
-    // $id_solicitud  =  DbGetFirstFieldValue($qry);
-    // t2.IdPartida,
     $qry = "SELECT t2.Id, t3.Referencia, t3.NombreRefaccion, t2.Cantidad, t2.IdPartida AS icons
             FROM solicitudes t1
             LEFT JOIN productos_solicitud t2 ON t1.IdSolicitud = t2.IdSolicitud
@@ -263,18 +292,25 @@ if ($op == 'ShowImg') {
             $result = 1;
             $qry = "SELECT MAX(IdSolicitud) FROM solicitudes";
             $id_solicitud = DbGetFirstFieldValue($qry);
+
+            $qry = "SELECT t2.IdCategoria_fk 
+                    FROM productos_solicitud t1
+                    LEFT JOIN productos t2 ON t1.IdProducto_fk = t2.IdProducto
+                    LEFT JOIN productos_categorias t3 ON t2.IdCategoria_fk = t3.IdCategoria
+                    WHERE IdSolicitud = $id_solicitud GROUP BY t2.IdCategoria_fk";
+            $a_categoria = DbQryToArray($qry);
+
+            // echo "<pre>". print_r($a_categoria, true)."<pre>";
+            // exit();
+
+            /* cheacr el tamaño del array si es uno leer la tabla solicitudes y actualizar con categoria que queda */
+                        
             $qry = "SELECT * FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
             $data = DbGetFirstFieldValue($qry);
             if (!$data) {
                 $qry = "UPDATE solicitudes SET IdCategoria_fk = NULL WHERE IdSolicitud = $id_solicitud";
                 $res_upd = DbExecute($qry);  
-                // echo $qry;
-                // exit();
-                // $msg = '';
-                $result = 1; 
-                  
-
-                
+                $result = 1;                                 
             } 
         }
     }   

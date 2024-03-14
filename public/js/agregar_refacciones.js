@@ -1,12 +1,8 @@
 $(document).ready(function() {
 	// mensajes especificos
 	var confirmacion = 'Estas seguro de eliminar esta solicitud?'; // ADHOC
-
-	// $('#datetimepicker1').datetimepicker({
-	// 	format: 'L',
-	// 	locale: 'es'
-	// });
-
+	$("#add-modal").modal('show');
+	
 	/* evita que el modal de abajo se cierre  */
 	$(document).on('hidden.bs.modal', function (event) {
 		if ($('.modal:visible').length) {
@@ -32,8 +28,8 @@ $(document).ready(function() {
 			"url": "../../vendor/datatables/lang/Spanish.json"
 		},
 		"bInfo" : true, // Mostrando registros del 1 al 10 de un total de 
-		"pageLength": 10,
-		"lengthMenu": [[10, 20, 25, 50, 100, 200,500], [10, 20, 25, 50, 100, 200, 500]],
+		"pageLength": 5,
+		"lengthMenu": [[5, 10, 20, 25, 50, 100, 200,500], [5, 10, 20, 25, 50, 100, 200, 500]],
 		"columnDefs": [
 			{
 				"targets": [ 0 ],
@@ -60,8 +56,7 @@ $(document).ready(function() {
 		$('#table-refacciones tbody .valores').val('');
 		valores = {};
 		$('#table-refacciones').DataTable().ajax.reload();
-		// limpia los campos por cada busqueda 
-		
+		// limpia los campos por cada busqueda 		
 	});
 
 	$('#btn-add').on( 'click', function () {
@@ -112,6 +107,11 @@ $(document).ready(function() {
 		allowClear: true,
 		placeholder: 'Selecciona un valor',
 	});
+
+	
+	$('#IdCategoria_fk').on('change.select2', function (e) {        
+		$('#table-refacciones').DataTable().ajax.reload();
+    });
 
 	/* obtienen la cantida y el id del producto  */
 	valores = {};

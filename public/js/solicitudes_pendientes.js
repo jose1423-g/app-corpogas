@@ -44,8 +44,8 @@ $(document).ready(function() {
 			null, // acciones 1
 			null, // folio 2
 			null, // no estacion 3
-			null, // estatus 5
-            null, //  fecha
+			null, // estatus 4
+            null, //  fecha 5
 		] 
     });
 
@@ -54,6 +54,18 @@ $(document).ready(function() {
     })
  
 	$('#grid-table tbody').on( 'click', '.btn-show', function () {
+		$('#DataModal').modal('show');
+		
+		var data = table.row($(this).parents('tr')).data();
+		if (data == undefined) {
+			data = table.row( this ).data();
+		}
+        $("#id_solicitud").val(data[0])
+		loadSolicitud(data[0])
+	});
+
+
+	$('#grid-table tbody').on('click', '.btn-show-modal', function () {
 		$('#DataModal').modal('show');
 		
 		var data = table.row($(this).parents('tr')).data();
@@ -93,17 +105,17 @@ $(document).ready(function() {
 					$('#table-refacciones').DataTable().ajax.reload();	
 
 
-					if (data.Status == 2) {
+					if (data.btn_status == 2) {
 						$('#btn-aprobar').prop('disabled', false);
 						$('#btn-rechazar').prop('disabled', false);
 					}
 
-					if (data.Status == 3) {
+					if (data.btn_status == 3) {
 						$('#btn-aprobar').prop('disabled', true);
 						$('#btn-rechazar').prop('disabled', true);
 					} 
 
-					if (data.Status == 4) {
+					if (data.btn_status == 4) {
 						$('#btn-aprobar').prop('disabled', true);
 						$('#btn-rechazar').prop('disabled', true);
 					}
@@ -121,16 +133,6 @@ $(document).ready(function() {
         });
     }
 	
-	// $('#button-add').on('click', function(){
-	// 	$('#DataModal').modal('show');
-		
-	// 	// clean form
-	// 	$("#id_categoria").val('');
-	// 	$("#Categoria").val('');
-	// 	$("#IdUsuario_fk").val('');
-	// 	$('#EsActivo').prop('checked', true);
-	// });
-
 	var table_solicitud = $('#table-refacciones').DataTable( {
 		"responsive": true,
 		"autoWidth": true,
@@ -201,7 +203,7 @@ $(document).ready(function() {
 					toastr.success(data.msg);
 					show_load();					
 					$('#grid-table').DataTable().ajax.reload();
-					$('#DataModal').modal('hide');				
+					$('#DataModal').modal('hide');	
                 } else {
 					if (result == -1) {
 						toastr.warning(data.msg);

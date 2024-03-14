@@ -92,11 +92,11 @@ foreach ($a_solicitud as $row) {
 	</div>
 
     <!-- add refacciones -->
-    <div class="modal fade" id="add-modal" tabindex="-1" style="z-index: 1600">
+    <div class="modal fade" id="add-modal" tabindex="-1" style="z-index: 1600" data-bs-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Catalogo de Refacciones</h5>
+                <h5 class="modal-title">Catálogo de Refacciones</h5>
                 <button type="button" class="btn-close" id="modal-close-products"></button>
             </div>
             <div class="modal-body">
@@ -264,6 +264,6 @@ foreach ($a_solicitud as $row) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/agregar_refacciones.js?v=1.004"></script>
+<script src="../js/agregar_refacciones.js?v=1.005"></script>
 
 <?php include('../layouts/main_end.php'); ?>

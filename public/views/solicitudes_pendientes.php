@@ -210,7 +210,7 @@ if ($perfil == 13) {
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/solicitudes_pendientes.js?v=1.003"></script>
+	<script src="../js/solicitudes_pendientes.js?v=1.004"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 

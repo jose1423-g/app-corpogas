@@ -115,7 +115,7 @@ if ($perfil == 13) {
 			<div class="row pt-2 justify-content-center">
 				<div class="col-4">
 					<div class="form-group">
-						<label class="form-label fw-bold" for="">s_Categoria</label>
+						<label class="form-label fw-bold" for="s_Categorias">Categoria</label>
 						<input class="form-control form-control-sm keydown13" name="s_Categoria" id="s_Categoria">
 					</div> 
 				</div>

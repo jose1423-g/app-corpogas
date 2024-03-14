@@ -13,9 +13,6 @@ $id_user = SessGetUserId();
 $op = (isset($_REQUEST['op'])) ? $_REQUEST['op'] : '';
 $id_producto =  (isset($_REQUEST['Id_producto'])) ? $_REQUEST['Id_producto'] : '';
 
-// $fecha_hoy = "";
-// $fecha_hoy =  DtDbToday($fecha_hoy);
-
 $msg = '';
 $result = 0;
 
@@ -48,10 +45,6 @@ if ($op == 'ShowImg') {
 		$result = -1;
     } else {
 
-        // $qry = "SELECT img FROM productos WHERE IdProducto = $id_producto";
-        // $sign_filename = DbGetFirstFieldValue($qry);
-        // @unlink("../images/products/" . $sign_filename);
-
         $qry = "SELECT EsActivo FROM productos WHERE IdProducto = $id_producto";
         $es_activo = DbGetFirstFieldValue($qry);
 
@@ -60,14 +53,14 @@ if ($op == 'ShowImg') {
             $res_upd = DbExecute($qry);
             DbCommit();
             if (is_string($res_upd)) {
-                $msg = 'No se pudo eliminar el producto:' . $res_upd;
+                $msg = 'No se pudo desactivar el producto:' . $res_upd;
                 $result = -1;
             } else {
                 if (!$res_upd) {
-                    $msg = 'Error al eliminar producto';
+                    $msg = 'Error al desactivar producto';
                     $result = -1;
                 } else {
-                    $msg = 'producto eliminado con exito';
+                    $msg = 'producto desactivado con éxito';
                     $result = 1;
                 }
             }
@@ -76,14 +69,14 @@ if ($op == 'ShowImg') {
             $res_upd = DbExecute($qry);
             DbCommit();
             if (is_string($res_upd)) {
-                $msg = 'No se pudo eliminar el producto:' . $res_upd;
+                $msg = 'No se pudo activar el producto:' . $res_upd;
                 $result = -1;
             } else {
                 if (!$res_upd) {
-                    $msg = 'Error al eliminar producto';
+                    $msg = 'Error al activar producto';
                     $result = -1;
                 } else {
-                    $msg = 'producto eliminado con exito';
+                    $msg = 'producto activar con exito';
                     $result = 1;
                 }
             }

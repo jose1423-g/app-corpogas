@@ -37,7 +37,7 @@ if ($op == 'loadSolicitud') {
 		$msg = "Su session ha expirado";
 		$result = -1;
 	} else {
-		$qry = "SELECT t1.Folio, t1.Estatus, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
+		$qry = "SELECT t1.Folio, t1.Estatus, t1.Estatus AS btn_status, t1.Fecha, t1.MatEntregado, t2.Nombre AS AreaSolicita, t1.EntregoMatCompleto, t1.FolioRemision, t1.Observaciones,
 		t1.MotRechazo, t1.ObGenerales, t5.NoEstacion, CONCAT(t3.Nombre,' ',t3.ApellidoPaterno,' ',t3.ApellidoMaterno) AS Gerente, t3.Email, t3.Telefono
 		FROM solicitudes t1 
 		LEFT JOIN areas t2 ON t1.IdAreaSolicita_fk = t2.IdArea
@@ -131,10 +131,10 @@ if ($op == 'loadSolicitud') {
 		$result = -1;
 	} else {
 
-		$qry = "UPDATE solicitudes 
+		$qry = "UPDATE solicitudes
 				SET Estatus = 4, 
-				FechaAprobacion = $fecha_hoy 
-				WHERE IdSolicitud = $id_solicitud";
+				FechaAprobacion = '$fecha_hoy'
+				WHERE IdSolicitud = $id_solicitud";				
 		$res_ins = DbExecute($qry, true);
 
 		if (is_string($res_ins)) {
@@ -154,7 +154,7 @@ if ($op == 'loadSolicitud') {
 				$a_ret = $datos;
 				echo json_encode($a_ret);
 				exit();
-			} else { 
+			} else { 				
 				generaVentaPdf($id_solicitud, $is_show, $fecha_show);
 
 				$directorio = '../pdf_downloads/'; 
@@ -163,7 +163,7 @@ if ($op == 'loadSolicitud') {
 
 				if (strlen($ultimo_archivo)) {
 
-					$qry = "SELECT IdUsuario_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+					$qry = "SELECT IdUsuario_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";					
 					$id_usuario =  DbGetFirstFieldValue($qry);
 
 					if (!strlen($id_usuario)) {
@@ -178,31 +178,33 @@ if ($op == 'loadSolicitud') {
 
 					} else {
 
-						$qry = "SELECT Folio FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+						$qry = "SELECT Folio FROM solicitudes WHERE IdSolicitud = $id_solicitud";						
 						$folio =  DbGetFirstFieldValue($qry);
 						
-						$qry = "SELECT Email FROM seg_usuarios WHERE IdUsuario = $id_usuario";
+						$qry = "SELECT Email FROM seg_usuarios WHERE IdUsuario = $id_usuario";						
 						$a_usuarios = DbQryToRow($qry);
 						$email = $a_usuarios['Email'];
 
-						$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_usuario";
+						$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_usuario";						
 						$id_estacion =  DbGetFirstFieldValue($qry);
 					
-						$qry = "SELECT EmailSupervisor FROM estaciones WHERE IdEstacion = $id_estacion";
+						$qry = "SELECT EmailSupervisor FROM estaciones WHERE IdEstacion = $id_estacion";						
 						$email_supervisor = DbGetFirstFieldValue($qry);
 
-						$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";
+						$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";						
 						$a_estaciones = DbQryToRow($qry);
 						$estacion = $a_estaciones['EstacionServicio'];
 						$no_estacion = $a_estaciones['NoEstacion'];
 
-						$qry = "SELECT Folio, IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";
+						$qry = "SELECT Folio, IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";						
 						$a_solicitudes = DbQryToRow($qry);
 						$folio = $a_solicitudes['Folio'];
 						$id_categoria = $a_solicitudes['IdCategoria_fk'];
 
+						$id_categoria = str_replace(',', '', $id_categoria);
+
 						$a_data_categoria = array();
-						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";			
+						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";													
 						$a_categoria =  DbQryToArray($qry);
 						foreach ($a_categoria as $row){
 							$valor =  $row['Categoria'];
@@ -238,11 +240,11 @@ if ($op == 'loadSolicitud') {
 						$ruta = $directorio.''.$ultimo_archivo;
 
 						if (file_exists($ruta)) {
-							$result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);
+							$result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);							
 							if ($result == 0) {
 								$qry = "UPDATE solicitudes 
 										SET Estatus = 2, 
-										FechaAprobacion = $fecha_hoy 
+										FechaAprobacion = '$fecha_hoy' 
 										WHERE IdSolicitud = $id_solicitud";
 								$res_ins = DbExecute($qry, true);
 								DbCommit();
@@ -267,7 +269,7 @@ if ($op == 'loadSolicitud') {
 									} else {
 										$qry = "UPDATE solicitudes 
 												SET Estatus = 2 
-												WHERE IdSolicitud = $id_solicitud";
+												WHERE IdSolicitud = $id_solicitud";											
 										$res_ins = DbExecute($qry, true);
 										DbCommit();
 										$msg = "Error el correo fue enviado sin el pdf intente nuevamente";
@@ -293,7 +295,7 @@ if ($op == 'loadSolicitud') {
 							$qry = "UPDATE solicitudes 
 									SET Estatus = 2 
 									WHERE IdSolicitud = $id_solicitud";
-							$res_ins = DbExecute($qry, true);
+							$res_ins = DbExecute($qry, true);							
 							DbCommit();
 							$msg = "Ups no pudimos enviar su correo intente nuevamente";
 							$result = -1;

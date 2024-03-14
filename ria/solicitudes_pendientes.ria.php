@@ -150,11 +150,11 @@ $id_estacion = $a_estacion['IdEstacion_fk'];
             } else if ($aColumns[$i] == "Estatus"){
                 $estatus = $aRow[ $aColumns[$i] ];
                 if ($estatus == 2) {
-                    $html = '<center><span class="text-warning">Pendiente Revision</span></center>';
+                    $html = '<span style="cursor:pointer" class="text-warning btn-show-modal">Pendiente Revision</span>';
                 } else if ($estatus == 3) {
-                    $html = '<center><span class="text-danger">Rechazada</span></center>';
+                    $html = '<span style="cursor:pointer" class="text-danger btn-show-modal">Rechazada</span>';
                 } else if ($estatus = 4){
-					$html = '<center><span class="text-success">Abierta</span></center>';
+					$html = '<span style="cursor:pointer" class="text-success btn-show-modal">Abierta</span>';
 				}
                 $row[] = $html;
             } else if ($aColumns[$i] == "Fecha") {
