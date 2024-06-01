@@ -103,49 +103,56 @@ if ($op == 'ShowImg') {
         $a_categorias = array();
         $qry = "SELECT IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";   
         $valores  =  DbGetFirstFieldValue($qry);
+        if (isset($valores)) {            
+            $s_categoria = explode(',', $valores);                     
+        }        
         
-        $s_categoria = explode(',', $valores);      
-        // echo "<pre>". print_r($s_categoria, true)."<pre>";
+        $a_data = count($s_categoria);
 
-
-        if ($id_categoria == '21') { //pinturas
-            $datos_categorias  = 17;
-            // echo "id categoria". $id_categoria;
-            if (in_array($datos_categorias, $s_categoria)) {                                
-                $msg = 'No se puede agregar a una misma solicitud Rollos Termicos y Pinturas 1';
+        if (!in_array($id_categoria, $s_categoria)) {    
+            $rollos = 17;
+            $pinturas = 22;
+            if (in_array($rollos, $s_categoria) || in_array($pinturas, $s_categoria)) {
+                $msg = 'Las categorias Rollos Termicos y Pinturas no se puden mezclar con las demas categorias';
                 $result = -1;
                 $a_ret = array('result' => $result, 'msg' => $msg);
                 echo json_encode($a_ret);
-                exit();
-            }    
-        }
-         
-        if ($id_categoria == '17') { //pinturas
-            $datos_categorias  = 21;
-            // echo "id categoria". $id_categoria;
-            if (in_array($datos_categorias, $s_categoria)) {                                
-                $msg = 'No se puede agregar a una misma solicitud Rollos Termicos y Pinturas 2';
-                $result = -1;
-                $a_ret = array('result' => $result, 'msg' => $msg);
-                echo json_encode($a_ret);
-                exit();
-            }    
-        }
-
+                exit();   
+            } else {
+                if ($id_categoria == '17') {                                                  
+                    if ($a_data > 0) {                                                                                            
+                        $msg = 'No se puede agregar rollos a la solcilitud';
+                        $result = -1;
+                        $a_ret = array('result' => $result, 'msg' => $msg);
+                        echo json_encode($a_ret);
+                        exit();                               
+                    }
+                }
+                if ($id_categoria == '22') {                                        
+                    if ($a_data > 0) {                                          
+                        $msg = 'No se puede agregar pinturas a la solcilitud';
+                        $result = -1;
+                        $a_ret = array('result' => $result, 'msg' => $msg);
+                        echo json_encode($a_ret);
+                        exit();   
+                    }
+                }
+            }
+        }    
+        
+               
         array_push($a_categorias, $valores, $id_categoria);
-        $cadena = implode(',', $a_categorias);
-
-        $qry = "UPDATE solicitudes SET IdCategoria_fk = '$cadena' WHERE IdSolicitud = $id_solicitud";
-        // echo $qry;
-        // exit();
+        $cadena = implode(',', $a_categorias);   
+        $cadena = ltrim($cadena, ',');
+        $qry = "UPDATE solicitudes SET IdCategoria_fk = '$cadena' WHERE IdSolicitud = $id_solicitud";                
         $res_upd = DbExecute($qry);
         DbCommit();
         if (is_string($res_upd)) {
-            $msg = 'Error al enviar la solicitud:' . $res_upd;
+            $msg = 'Error al agregar la categoria:' . $res_upd;
             $result = -1;
         } else {
             if (!$res_upd) {
-                $msg = 'Error al enviar la solicitud';
+                $msg = 'Error al agregar la categoria';
                 $result = -1;
             } else {
                 $datos = json_decode($data_json, true);
@@ -162,11 +169,11 @@ if ($op == 'ShowImg') {
                         $res_upd = DbExecute($qry);
                         DbCommit();
                         if (is_string($res_upd)) {
-                            $msg = 'Error al enviar los datos:' . $res_upd;
+                            $msg = 'Error al agregar los productos:' . $res_upd;
                             $result = -1;
                         } else {
                             if (!$res_upd) {
-                                $msg = 'Error al enviar los datos';
+                                $msg = 'Error al agregar los productos';
                                 $result = -1;
                             } else {
                                 $msg = 'Productos agregados.';
@@ -299,16 +306,22 @@ if ($op == 'ShowImg') {
                     LEFT JOIN productos_categorias t3 ON t2.IdCategoria_fk = t3.IdCategoria
                     WHERE IdSolicitud = $id_solicitud GROUP BY t2.IdCategoria_fk";
             $a_categoria = DbQryToArray($qry);
+            
+            $a_categoria_update = '';
+            foreach ($a_categoria as $row) {
+                $a_categoria_update .= $row['IdCategoria_fk'].",";
+            }
 
-            // echo "<pre>". print_r($a_categoria, true)."<pre>";
-            // exit();
-
-            /* cheacr el tamaño del array si es uno leer la tabla solicitudes y actualizar con categoria que queda */
+            $a_data_update = str_replace(','," ", $a_categoria_update);
+            $a_data_update = explode(" ", $a_data_update);            
+            $a_data_update = implode(",", $a_data_update);
+            $qry = "UPDATE solicitudes SET IdCategoria_fk = '$a_data_update' WHERE IdSolicitud = $id_solicitud"; 
+            $res_upd = DbExecute($qry);
                         
             $qry = "SELECT * FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
             $data = DbGetFirstFieldValue($qry);
             if (!$data) {
-                $qry = "UPDATE solicitudes SET IdCategoria_fk = NULL WHERE IdSolicitud = $id_solicitud";
+                $qry = "UPDATE solicitudes SET IdCategoria_fk = NULL WHERE IdSolicitud = $id_solicitud";                
                 $res_upd = DbExecute($qry);  
                 $result = 1;                                 
             } 

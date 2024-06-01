@@ -62,8 +62,8 @@ if ($op == 'loadUsuario') {
 		$materno = utf8_encode($a_usuarios['ApellidoMaterno']);
 		$a_usuarios['ApellidoMaterno'] = $materno;
 
-		$pass = utf8_encode($a_usuarios['passwd']);
-		$a_usuarios['passwd'] = $pass;
+		// $pass = utf8_encode($a_usuarios['passwd']);
+		// $a_usuarios['passwd'] = $pass;
 
 		$email = utf8_encode($a_usuarios['Email']);
 		$a_usuarios['Email'] = $email;
@@ -107,8 +107,7 @@ if ($op == 'loadUsuario') {
 	} else if (!strlen($passwd)){
 		$msg = 'El campo password es requerido';
 		$result = -1;
-	} else {
-
+	} else {		
 		$nombre = utf8_decode($nombre);
 		$apellido_paterno =  utf8_decode($apellido_paterno);
 		$apellido_materno =  utf8_decode($apellido_materno);
@@ -120,8 +119,10 @@ if ($op == 'loadUsuario') {
 		if (!strlen($apellido_materno)) {
 			$apellido_materno = '';
 		}
+	
 
-		if (strlen($id_usuario)) {
+		if (strlen($id_usuario)) {	
+			// $passwd = crypt($passwd, "doxasystems");
 			$qry = "UPDATE seg_usuarios 
 					SET UserName = '$user_name', 
 					Nombre = '$nombre', 
@@ -166,16 +167,16 @@ if ($op == 'loadUsuario') {
 			}
 
 		} else {
+
+			// $passwd = crypt($passwd, "doxasystems");
 			$qry = "SELECT UserName FROM seg_usuarios WHERE UserName = '$user_name'";
 			$user = DbGetFirstFieldValue($qry);
-			// echo $data;
 			if (isset($user)) {
 				$msg = 'El usuario ya existe intente con otro';
-				$result = -1;
-				
+				$result = -1;				
 			} else {
-
-				$passwd = crypt($passwd, "doxasystems");
+				
+				$passwd = crypt($passwd, "doxasystems");				
 				$qry = "INSERT INTO seg_usuarios (UserName, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono)
 						VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono')";
 				$res_ins = DbExecute($qry, true);

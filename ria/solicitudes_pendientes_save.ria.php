@@ -201,8 +201,8 @@ if ($op == 'loadSolicitud') {
 						$folio = $a_solicitudes['Folio'];
 						$id_categoria = $a_solicitudes['IdCategoria_fk'];
 
-						$id_categoria = str_replace(',', '', $id_categoria);
-
+						$id_categoria = ltrim($id_categoria, ',');						
+						
 						$a_data_categoria = array();
 						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";													
 						$a_categoria =  DbQryToArray($qry);

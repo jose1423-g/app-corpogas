@@ -110,6 +110,7 @@ $(document).ready(function() {
 
 	
 	$('#IdCategoria_fk').on('change.select2', function (e) {        
+		valores = {};
 		$('#table-refacciones').DataTable().ajax.reload();
     });
 
@@ -123,7 +124,6 @@ $(document).ready(function() {
 		let id = data[0]; 
 		valorInput = $(this).val();
 		valores[id] = valorInput;
-
 	});	  
 
 	/* agregar los productos seleccionados */
@@ -155,9 +155,11 @@ $(document).ready(function() {
 					
 				} else {
 					if (result == -1) {
-						toastr.warning(data.msg);
+						valores = {};		
+						toastr.warning(data.msg);														
 					} else {
-						toastr.info(data.msg);
+						valores = {};
+						toastr.info(data.msg);												
 					}
 				}	
 		  	}

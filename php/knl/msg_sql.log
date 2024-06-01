@@ -571,3 +571,48 @@ Error id: "19876"; Message: "You have an error in your SQL syntax; check the man
 Error id: "5421"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
 Error id: "5068"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria = 10,11";
 Error id: "14556"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1"; Query: "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN()";
+Error id: "27921"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 23, , 134)";
+Error id: "20086"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 23, , 134)";
+Error id: "7944"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 19, , 134)";
+Error id: "22177"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (1, 19, , 134)";
+Error id: "10036"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (2, 30, , 134)";
+Error id: "10155"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (3, 30, , 134)";
+Error id: "3191"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (3, 30, , 134)";
+Error id: "16612"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (3, 19, , 134)";
+Error id: "8390"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' 134)' at line 1"; Query: "INSERT INTO productos_solicitud (IdPartida, IdProducto_fk, Cantidad, IdSolicitud) VALUES (3, 19, , 134)";
+Error id: "6606"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LI' at line 5"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk
+            WHERE  Estatus = 2 AND t1.IdEstacion_fk IN()
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "31926"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LI' at line 5"; Query: "
+            SELECT t1.IdSolicitud, t1.IdSolicitud AS icons, t1.Folio, t3.NoEstacion, t1.Estatus, t1.Fecha
+            FROM solicitudes t1 
+						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk
+            WHERE  Estatus = 2 AND t1.IdEstacion_fk IN()
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "4298"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "31522"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "31155"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "25147"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "32088"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "2928"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "24241"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "28566"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "12009"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "26391"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
