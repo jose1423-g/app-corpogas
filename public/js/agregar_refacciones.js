@@ -315,7 +315,8 @@ $(document).ready(function() {
 
 
 	$("#btn-revision").on('click', function () {
-
+		$("#spinner").removeClass("d-none")
+		let fecha = $("#fecha_val").val();		
 		let msg_confirmacion = "Desea enviar la solicitud a aprobar a su GG?";
 		if (!confirm(msg_confirmacion)) return false;
 
@@ -323,14 +324,14 @@ $(document).ready(function() {
 			type: "POST",
 			url: "../../ria/agregar_refacciones_save.ria.php",
 			data: {
-				// id_partida: id_partida,
+				fecha: fecha,
 				op: 'Revision'
 			},
 			success: function(data){
 				var data = jQuery.parseJSON(data);
 				var result = data.result;
-				if (result == 1) {
-					// toastr.success(data.msg);
+				if (result == 1) {					
+					$("#spinner").addClass("d-none")
 					window.location.href = "../views/solicitudes_pendientes.php";
 				} else {
 					if (result == -1) {

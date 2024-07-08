@@ -11,6 +11,7 @@ $app_title = 'Refacciones en solicitud';
 $index_active = 'active';
 segVerifyAuth($app);
 
+$fecha = DtDbToday();
 
 $app = basename(__FILE__);
 // Partida
@@ -67,6 +68,7 @@ foreach ($a_solicitud as $row) {
 <?php include('../layouts/main_content.php')  ?>
 
     <input type="hidden" name="id_solicitud" id="id_solicitud" value="<?php echo $id_solicitud; ?>">
+    <input type="hidden" name="fecha_val" id="fecha_val" value="<?php echo $fecha ?>">
 
     <div class="position-absolute top-50 start-50 translate-middle w-25 d-none" id="spinner" style="z-index: 2000">
         <div class="d-flex justify-content-center">
@@ -264,6 +266,6 @@ foreach ($a_solicitud as $row) {
 
 <?php include('../layouts/footer.php'); ?>
     <!-- script -->
-<script src="../js/agregar_refacciones.js?v=1.005"></script>
+<script src="../js/agregar_refacciones.js?v=1.006"></script>
 
 <?php include('../layouts/main_end.php'); ?>

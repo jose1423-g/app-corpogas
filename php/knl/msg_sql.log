@@ -616,3 +616,4 @@ Error id: "24241"; Message: "Access denied for user 'progas_user'@'localhost' (u
 Error id: "28566"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
 Error id: "12009"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
 Error id: "26391"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
+Error id: "977803567"; Message: "Unknown database 'progas'";

@@ -218,6 +218,7 @@ $(document).ready(function() {
 	});
 
 	$("#btn-rechazar").on('click', function () {
+		$("#spinner").removeClass('d-none');
 		let fecha = $("#fecha_val").val();
 		let id_solicitud = $("#id_solicitud").val()
 
@@ -236,6 +237,7 @@ $(document).ready(function() {
 				var result = data.result;
                 if (result == 1) {
 					toastr.success(data.msg);		
+					show_load();
 					$('#grid-table').DataTable().ajax.reload();
 					$('#DataModal').modal('hide');
                 } else {
@@ -250,7 +252,7 @@ $(document).ready(function() {
 		})
 	});
 
-	function  show_load() {
+	function show_load() {
 		$("#spinner").addClass('d-none');		
 	}
 	

@@ -100,10 +100,7 @@ if ($op == 'loadUsuario') {
 		$result = -1;
 	} else if (!strlen($email)){
 		$msg = 'El campo email es requerido';
-		$result = -1;
-	} else if (!strlen($telefefono)){
-		$msg = 'El campo telefono es requerido';
-		$result = -1;
+		$result = -1;	
 	} else if (!strlen($passwd)){
 		$msg = 'El campo password es requerido';
 		$result = -1;
@@ -121,8 +118,7 @@ if ($op == 'loadUsuario') {
 		}
 	
 
-		if (strlen($id_usuario)) {	
-			// $passwd = crypt($passwd, "doxasystems");
+		if (strlen($id_usuario)) {
 			$qry = "UPDATE seg_usuarios 
 					SET UserName = '$user_name', 
 					Nombre = '$nombre', 
@@ -145,40 +141,21 @@ if ($op == 'loadUsuario') {
 					$result = -1;
 				} else {    
 					$msg = 'Usuario actulizado con exito';
-					$result = 1;
-					// $qry = "UPDATE seg_estacionesusuario 
-					// 		SET IdEstacion_fk = '$id_estacion' 
-					// 		WHERE IdUsuario_fk = $id_usuario";
-					// $res_ins = DbExecute($qry, true);
-					// DbCommit();
-					// if (is_string($res_ins)) {
-					// 	$msg = 'Error al actualizar el usuario.: ' . $res_ins;
-					// 	$result = -1;
-					// } else {
-					// 	if (!$res_ins) {
-					// 		$msg = 'Error al actualizar el usuario.';
-					// 		$result = -1;
-					// 	} else {
-					// 		$msg = 'Usuario actulizado correctamente';
-					// 		$result = 1;
-					// 	}
-					// }
+					$result = 1;					
 				}
 			}
 
 		} else {
+			$passwd = crypt($passwd, "doxasystems");
 
-			// $passwd = crypt($passwd, "doxasystems");
 			$qry = "SELECT UserName FROM seg_usuarios WHERE UserName = '$user_name'";
 			$user = DbGetFirstFieldValue($qry);
 			if (isset($user)) {
 				$msg = 'El usuario ya existe intente con otro';
 				$result = -1;				
 			} else {
-				
-				$passwd = crypt($passwd, "doxasystems");				
 				$qry = "INSERT INTO seg_usuarios (UserName, Nombre, ApellidoPaterno, ApellidoMaterno, passwd, UsuarioPerfilId_fk, EsActivo, Email, telefono)
-						VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono')";
+						VALUES ('$user_name', '$nombre', '$apellido_paterno', '$apellido_materno', '$passwd', $usuario_perfil_id, $es_activo, '$email', '$telefefono')";				
 				$res_ins = DbExecute($qry, true);
 				DbCommit();
 				if (is_string($res_ins)) {
@@ -188,29 +165,11 @@ if ($op == 'loadUsuario') {
 					if (!$res_ins) {
 						$msg = 'Error al crear el usuario';
 						$result = -1;
-					} else {    
-						// $id_usuario = LastIdAutoTable('seg_usuarios');
+					} else {
 						$qry = "SELECT MAX(IdUsuario) FROM seg_usuarios";
 						$id_usuario = DbGetFirstFieldValue($qry);
 						$msg = 'Usuario creado con exito';
-						$result = 1;						
-						// $qry = "SELECT MAX(IdUsuario) AS id_usuario FROM seg_usuarios";
-						// $id_usuario = DbGetFirstFieldValue($qry);					
-						// $qry = "INSERT INTO seg_estacionesusuario (IdUsuario_fk, IdEstacion_fk) VALUES ($id_usuario, '$id_estacion')";
-						// $res_ins = DbExecute($qry, true);
-						// DbCommit();
-						// if (is_string($res_ins)) {
-						// 	$msg = 'Error al crear el usuario.: ' . $res_ins;
-						// 	$result = -1;
-						// } else {
-						// 	if (!$res_ins) {
-						// 		$msg = 'Error al crear el usuario.';
-						// 		$result = -1;
-						// 	} else {
-						// 		$msg = 'Usuario creado correctamente';
-						// 		$result = 1;
-						// 	}
-						// }
+						$result = 1;
 					}
 				}
 			}

@@ -186,9 +186,13 @@ if ($op == 'loadSolicitud') {
 						$email = $a_usuarios['Email'];
 
 						$qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUsuario_fk = $id_usuario";						
-						$id_estacion =  DbGetFirstFieldValue($qry);
-					
-						$qry = "SELECT EmailSupervisor FROM estaciones WHERE IdEstacion = $id_estacion";						
+						$id_estacion =  DbGetFirstFieldValue($qry);						
+						
+						/* obtiene el email del supervisor */
+						$qry = "SELECT t1.EMail
+								FROM seg_usuarios t1 
+								LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
+								WHERE t2.IdEstacion_fk = $id_estacion";
 						$email_supervisor = DbGetFirstFieldValue($qry);
 
 						$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";						
@@ -243,7 +247,7 @@ if ($op == 'loadSolicitud') {
 							$result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);							
 							if ($result == 0) {
 								$qry = "UPDATE solicitudes 
-										SET Estatus = 2, 
+										SET Estatus = 2,
 										FechaAprobacion = '$fecha_hoy' 
 										WHERE IdSolicitud = $id_solicitud";
 								$res_ins = DbExecute($qry, true);
@@ -320,13 +324,15 @@ if ($op == 'loadSolicitud') {
 		}
 	}
 } else if ($op == 'rechazar'){
+
 	if (!strlen($id_solicitud)) {
-		$msg = "Error al aprobar la solicitud.";
+		$msg = "Error al obtener el id solicitud.";
 		$result = -1;
 	} else if(!strlen($id_user)){
 		$msg = "Su session ha expirado.";
 		$result = -1;
 	} else {
+		
 		$estatus  = 3;
 		$qry = "UPDATE solicitudes SET Estatus = $estatus, FechaAprobacion = '$fecha_show' WHERE IdSolicitud =  $id_solicitud";
 		$res_ins = DbExecute($qry, true);
@@ -340,23 +346,141 @@ if ($op == 'loadSolicitud') {
 			echo json_encode($a_ret);
 			exit();
 		} else {
-			if (!$res_ins) {
-				$msg = 'Error al rechazar la solicitud';
-				$result = -1;
-				$datos['msg'] = $msg;
-				$datos['result'] = $result;
-				$a_ret = $datos;
-				echo json_encode($a_ret);
-				exit();
+
+
+			generaVentaPdf($id_solicitud, $is_show, $fecha_show);
+
+            $directorio = '../pdf_downloads/'; 
+            $archivos = scandir($directorio, SCANDIR_SORT_DESCENDING); // Obtener la lista de archivos en la carpeta				
+            $ultimo_archivo = reset($archivos); // Obtener el último archivo descargado
+            
+            if (strlen($ultimo_archivo)) {
+
+				$qry = "SELECT Folio, IdEstacion_fk, IdUsuario_fk, IdCategoria_fk
+						FROM solicitudes
+						WHERE IdSolicitud = $id_solicitud";
+				$a_data = DbQryToRow($qry);
+				$folio = $a_data['Folio'];
+				$id_usuario = $a_data['IdUsuario_fk'];
+				$id_estacion = $a_data['IdEstacion_fk'];		
+				$id_categoria = $a_data['IdCategoria_fk'];
+				
+				/* obtiene el email del gerente */
+				$qry = "SELECT Email FROM seg_usuarios WHERE IdUsuario = $id_usuario";						
+				$a_usuarios = DbQryToRow($qry);
+				$email = $a_usuarios['Email'];
+
+				/* obtiene el email del supervisor */
+				$qry = "SELECT t1.EMail
+				FROM seg_usuarios t1 
+				LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
+				WHERE t2.IdEstacion_fk = $id_estacion";
+				$email_supervisor = DbGetFirstFieldValue($qry);
+
+				$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";						
+				$a_estaciones = DbQryToRow($qry);
+				$estacion = $a_estaciones['EstacionServicio'];
+				$no_estacion = $a_estaciones['NoEstacion'];
+
+				$id_categoria = ltrim($id_categoria, ',');						
+				
+				$a_data_categoria = array();
+				$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";													
+				$a_categoria =  DbQryToArray($qry);
+				foreach ($a_categoria as $row){
+					$valor =  $row['Categoria'];
+					array_push($a_data_categoria, $valor);
+				}
+				$categorias = implode(', ', $a_data_categoria);
+
+				$mail_to = $email; // 
+				$files[] = '../pdf_downloads/'.$ultimo_archivo;
+				$mail_from = $email_supervisor; //responder a 
+				$mail_from_name = 'CORPOGAS'; //nombre de la empresa
+				$mail_subject = 'Solicitud rechazada categoria '. $categorias.'  No.Estacion '.$no_estacion;
+				$mensaje_de_alerta = '';
+				$mail_text_body =  'Solicitud de Refacciones rechazada '.$no_estacion.'  '.$estacion.' - Folio - '.$folio ;
+				$mail_html_body = "<html>
+									<head>
+									<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />
+									<title>$mail_subject</title>
+									</head>
+									<body>
+										<p>$mail_text_body</p>
+									</body>
+									</html>";
+				$mail_host = 'smtp.gmail.com';
+				$mail_port = '587';
+				$mail_username = 'doxasystems.mail@gmail.com'; //aparece al lado del nombre de la empresa Corpogas
+				$mail_passwd = 'qptttahefmxcndli';
+				$mail_smtp_secure = 'tls';
+				$mail_firma_url = "";
+				$mail_backup = 'compras@gruposynergo.com';// destinatario 
+				$zp = 0;
+
+				$ruta = $directorio.''.$ultimo_archivo;
+				if (file_exists($ruta)) {
+					$result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);
+					if ($result == 0) {
+						
+						$qry = "UPDATE solicitudes 
+								SET Estatus = 2,					 
+								WHERE IdSolicitud = $id_solicitud";
+						$res_ins = DbExecute($qry, true);
+						DbCommit();
+
+						$msg = "Ups hemos tenido un error vuelva a intentarlo.";
+						$result = - 1;
+						$datos['msg'] = $msg;
+						$datos['result'] = $result;
+						$a_ret = $datos;
+						echo json_encode($a_ret);
+						exit();
+
+					} else {			
+						$ruta = $directorio.''.$ultimo_archivo;
+						if (file_exists($ruta)) { // verifica que exista el archivo
+                            if (unlink($ruta)) { 
+								$msg = "Solicitud rechazada con exito.";
+								$result = 1;
+								$datos['msg'] = $msg;
+								$datos['result'] = $result;
+								$a_ret = $datos;
+								echo json_encode($a_ret);
+								exit();					
+							} else {
+								//no se pudo borrar el archivo intenta nuevamente								
+								unlink($ruta);
+							}
+						}													
+					}
+				} else {
+
+					$qry = "UPDATE solicitudes 
+							SET Estatus = 2 
+							WHERE IdSolicitud = $id_solicitud";
+
+					$res_ins = DbExecute($qry, true);							
+					DbCommit();
+					$msg = "Ups no pudimos enviar el correo intente nuevamente";
+					$result = -1;
+					$datos['msg'] = $msg;
+					$datos['result'] = $result;
+					$a_ret = $datos;
+					echo json_encode($a_ret);
+					exit();	
+
+				}
 			} else {
-				$msg = 'Solicitud rechazada con exito';
-				$result = 1;
-				$datos['msg'] = $msg;
-				$datos['result'] = $result;
-				$a_ret = $datos;
-				echo json_encode($a_ret);
-				exit();
-			}
+
+                $msg = "Ups no pudimos agregar el pdf al correo intente nuevamente";
+                $result = -1;
+                $datos['msg'] = $msg;
+                $datos['result'] = $result;
+                $a_ret = $datos;
+                echo json_encode($a_ret);
+                exit();	
+            }
 		}
 	}
 }

@@ -1,4 +1,4 @@
 <?php
-$SYS_ROOT = 'C:/xampp_5640/htdocs/Progas';
+$SYS_ROOT = 'D:/xampp/htdocs/app-corpogas';
 $SYS_ROOT_REL = '/';
 ?>

@@ -2,7 +2,9 @@
 require_once("sys_root.inc.php");
 require_once("$SYS_ROOT/php/knl/db.inc.php");
 require_once("$SYS_ROOT/php/knl/locale.inc.php");
+require_once("$SYS_ROOT/php/knl/phpext.inc.php");
 require_once("$SYS_ROOT/php/knl/dates.inc.php");
+require_once("$SYS_ROOT/archivospdf/solicitud.php");
 
 session_start();
 
@@ -16,18 +18,11 @@ $id_solicitud =  (isset($_REQUEST['IdSolicitud'])) ? $_REQUEST['IdSolicitud'] : 
 $id_partida =  (isset($_REQUEST['id_partida'])) ? $_REQUEST['id_partida'] : '';
 $id_categoria = (isset($_REQUEST['IdCategoria_fk'])) ? $_REQUEST['IdCategoria_fk'] : '';
 $data_json = (isset($_REQUEST['data_json'])) ? $_REQUEST['data_json'] : '';
+$fecha_show = (isset($_REQUEST['fecha'])) ? $_REQUEST['fecha'] : "";
 
-// $fecha_hoy = "";
-// $fecha_hoy =  DtDbToday($fecha_hoy);
-
+$is_show = 1;
 $msg = '';
 $result = 0;
-
-/* categorias que no se pueden mezclar */
-// $a_datos_categorias  = array('21','17');
-/* in production */
-// $a_datos_categorias  = array('22','17');
-
 
 if ($op == 'ShowImg') {
 	if (!strlen($id_producto)) {
@@ -65,7 +60,7 @@ if ($op == 'ShowImg') {
     $a_categorias = explode(',', $resp); 
 
     /* evita que la categoria se duplique */
-    if (in_array($id_categoria, $a_categorias)) { /* tiene categoria  */         
+    if (in_array($id_categoria, $a_categorias)) { /* tiene categoria  */
         $datos = json_decode($data_json, true);   
         $qry = "SELECT MAX(IdPartida) FROM productos_solicitud WHERE IdSolicitud = $id_solicitud";
         $valor =  DbGetFirstFieldValue($qry);
@@ -332,7 +327,8 @@ if ($op == 'ShowImg') {
     exit();
     
 } else if ($op == 'Revision') {
-    $qry = "SELECT * FROM solicitudes ORDER BY IdSolicitud DESC LIMIT 1";
+
+    $qry = "SELECT MAX(IdSolicitud) FROM solicitudes";
     $id_solicitud  =  DbGetFirstFieldValue($qry);
 
     $qry  = "UPDATE solicitudes SET Estatus = 2 WHERE IdSolicitud = $id_solicitud";
@@ -340,17 +336,142 @@ if ($op == 'ShowImg') {
     if (is_string($res_upd)) {
         $msg = 'Error al enviar la solicitud:' . $res_upd;
         $result = -1;
+        $a_ret = array('result' => $result, 'msg' => $msg);
+        echo json_encode($a_ret);
     } else {
         if (!$res_upd) {
             $msg = 'Error al enviar la solicitud';
             $result = -1;
+            $a_ret = array('result' => $result, 'msg' => $msg);
+            echo json_encode($a_ret);
         } else {
-            $msg = 'Solicitud enviada';
-            $result = 1;
+            
+            generaVentaPdf($id_solicitud, $is_show, $fecha_show);
+
+            $directorio = '../pdf_downloads/'; 
+            $archivos = scandir($directorio, SCANDIR_SORT_DESCENDING); // Obtener la lista de archivos en la carpeta				
+            $ultimo_archivo = reset($archivos); // Obtener el último archivo descargado
+            
+            if (strlen($ultimo_archivo)) {
+
+                $qry = "SELECT Folio, IdEstacion_fk, IdUsuario_fk, IdCategoria_fk
+                        FROM solicitudes
+                        WHERE IdSolicitud = $id_solicitud";
+                $a_data = DbQryToRow($qry);
+                $folio = $a_data['Folio'];
+                $id_usuario = $a_data['IdUsuario_fk'];
+                $id_estacion = $a_data['IdEstacion_fk'];		
+                $id_categoria = $a_data['IdCategoria_fk'];
+                
+                /* obtiene el email del gerente */
+                $qry = "SELECT Email FROM seg_usuarios WHERE IdUsuario = $id_usuario";						
+                $a_usuarios = DbQryToRow($qry);
+                $email = $a_usuarios['Email'];
+
+                /* obtiene el email del supervisor */
+                $qry = "SELECT t1.EMail
+                FROM seg_usuarios t1 
+                LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
+                WHERE t2.IdEstacion_fk = $id_estacion";
+                $email_supervisor = DbGetFirstFieldValue($qry);
+
+                $qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";						
+                $a_estaciones = DbQryToRow($qry);
+                $estacion = $a_estaciones['EstacionServicio'];
+                $no_estacion = $a_estaciones['NoEstacion'];
+
+                $id_categoria = ltrim($id_categoria, ',');						
+                
+                $a_data_categoria = array();
+                $qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";													
+                $a_categoria =  DbQryToArray($qry);
+                foreach ($a_categoria as $row){
+                    $valor =  $row['Categoria'];
+                    array_push($a_data_categoria, $valor);
+                }
+                $categorias = implode(', ', $a_data_categoria);
+
+                $mail_to = $email_supervisor; // 
+                $files[] = '../pdf_downloads/'.$ultimo_archivo;
+                $mail_from = $email; //responder a 
+                $mail_from_name = 'CORPOGAS'; //nombre de la empresa
+                $mail_subject = 'Nueva solicitud categoria '. $categorias.'  No.Estacion '.$no_estacion;
+                $mensaje_de_alerta = '';
+                $mail_text_body =  'Nueva solicitud de refacciones para la estación '.$no_estacion.'  '.$estacion.' - Folio - '.$folio;
+                $mail_html_body = "<html>
+                                    <head>
+                                    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />
+                                    <title>$mail_subject</title>
+                                    </head>
+                                    <body>
+                                        <p>$mail_text_body</p>
+                                    </body>
+                                    </html>";
+                $mail_host = 'smtp.gmail.com';
+                $mail_port = '587';
+                $mail_username = 'doxasystems.mail@gmail.com'; //aparece al lado del nombre de la empresa Corpogas
+                $mail_passwd = 'qptttahefmxcndli';
+                $mail_smtp_secure = 'tls';
+                $mail_firma_url = "";
+                $mail_backup = 'compras@gruposynergo.com';// destinatario 
+                $zp = 0;
+
+                $ruta = $directorio.''.$ultimo_archivo;
+
+                if (file_exists($ruta)) {
+                    $result = multi_attach_mail_new($mail_to, $files, $mail_from, $mail_from_name, $mail_subject, $mail_html_body, $mail_text_body, $mail_host, $mail_port, $mail_username, $mail_passwd, $mail_smtp_secure, $mail_firma_url, $mail_backup, $zp);
+                    if ($result == 0) {
+
+                        $msg = "Ups no hemos podido enviar el correo.";
+                        $result = - 1;
+                        $datos['msg'] = $msg;
+                        $datos['result'] = $result;
+                        $a_ret = $datos;
+                        echo json_encode($a_ret);
+                        exit();
+
+                    } else {	
+                        $ruta = $directorio.''.$ultimo_archivo;
+                        if (file_exists($ruta)) { // verifica que exista el archivo
+                            if (unlink($ruta)) { // Intentar borrar el archivo
+                                $msg = "Solicitud enviado a revsion";
+                                $result = 1;
+                                $datos['msg'] = $msg;
+                                $datos['result'] = $result;
+                                $a_ret = $datos;
+                                echo json_encode($a_ret);
+                                exit();
+                            } else {                            
+                                //si no se pudiera el borrar el pdf entra aqui;                         
+                                unlink($ruta);
+                            }		                    
+                        }
+                    }                
+                } else {        
+
+                    $msg = "Ups no pudimos enviar la solciitud a revision intente nuevamente";
+                    $result = -1;
+                    $datos['msg'] = $msg;
+                    $datos['result'] = $result;
+                    $a_ret = $datos;
+                    echo json_encode($a_ret);
+                    exit();	                
+                }
+
+            } else {
+
+                $msg = "Ups no pudimos agregar el pdf al correo intente nuevamente";
+                $result = -1;
+                $datos['msg'] = $msg;
+                $datos['result'] = $result;
+                $a_ret = $datos;
+                echo json_encode($a_ret);
+                exit();	
+            }
         }
     }
-    $a_ret = array('result' => $result, 'msg' => $msg);
-    echo json_encode($a_ret);
+        
+
 }
 
 // $a_ret = array('result' => $result, 'msg' => $msg);

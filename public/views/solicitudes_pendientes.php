@@ -38,8 +38,7 @@ if ($perfil == 13) {
 	$btn_rechazar = '';
 } else if ($perfil == 16) {
 	$btn_save = '<button type="button" class="btn btn-primary btn-sm" id="btn-aprobar">Aprobar</button>';
-    $btn_rechazar = '<button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button>';
-	// $btn_new = '';
+    $btn_rechazar = '<button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button>';	
 } else if ($perfil == 12) {
 	$btn_save = '<button type="button" class="btn btn-primary btn-sm" id="btn-aprobar">Aprobar</button>';
     $btn_rechazar = '<button type="button" class="btn btn-danger btn-sm" id="btn-rechazar">Rechazar</button>';
@@ -210,7 +209,7 @@ if ($perfil == 13) {
 <?php include('../layouts/footer.php'); ?>
 
 <!-- script -->
-	<script src="../js/solicitudes_pendientes.js?v=1.004"></script>
+	<script src="../js/solicitudes_pendientes.js?v=1.005"></script>
 
 <?php include('../layouts/main_end.php'); ?>
 
