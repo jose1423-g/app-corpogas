@@ -28,16 +28,6 @@ $msg = '';
 $html_btn = '';
 $result = 0;
 
-// $a_perfiles = array('1','2','3');
-
-//  if (!in_array(4, $a_perfiles)) {
-// 	echo "true";
-// 	exit();
-//  } else {
-// 	echo "false";
-// 	exit();
-//  }
-
 if ($op == 'load') {
 	if (!strlen($id_perfil)) {
 		$msg = 'Hubo un error, el perfil no fue seleccionado';
@@ -50,12 +40,12 @@ if ($op == 'load') {
 		// $a_values = array();
 		//muestra los seleccionados
 		if (strlen($id_perfil)) {
-			$qry = "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = $id_perfil";
+			$qry = "SELECT IdApp_fk FROM seg_perfilesaplicaciones WHERE IdUsuarioPerfil_fk = $id_perfil";
 			$a_perfiles = DbQryToArray($qry);
 		}
 		
 		$qry = "SELECT IdApp, IdApp AS Sel, FileName, Descripcion
-				FROM Seg_Aplicaciones WHERE Es_activa = 1"; 
+				FROM seg_aplicaciones WHERE Es_activa = 1"; 
 
 		$a_data_b = DbQryToArray($qry, true);
 		$a_data = array();
@@ -103,7 +93,7 @@ if ($op == 'load') {
 	} else {
 		
 		if ($check_app == 1) {
-			$qry = "INSERT INTO Seg_PerfilesAplicaciones ( IdApp_fk, IdUsuarioPerfil_fk )VALUES($id_app, $id_perfil)";
+			$qry = "INSERT INTO seg_perfilesaplicaciones ( IdApp_fk, IdUsuarioPerfil_fk )VALUES($id_app, $id_perfil)";
 			$res_db = DbExecute($qry, true);
 			DbCommit();
 			if (is_string($res_db)) {
@@ -125,7 +115,7 @@ if ($op == 'load') {
 			}
 		} else {
 			/* SELECT * FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil = 1 AND IdApp = 71 */
-			$qry = "DELETE FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = $id_perfil AND IdApp_fk = $id_app";
+			$qry = "DELETE FROM seg_perfilesaplicaciones WHERE IdUsuarioPerfil_fk = $id_perfil AND IdApp_fk = $id_app";
 			$res_db = DbExecute($qry, true);
 			DbCommit();
 			if (is_string($res_db)) {

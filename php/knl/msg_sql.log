@@ -617,3 +617,74 @@ Error id: "28566"; Message: "Access denied for user 'progas_user'@'localhost' (u
 Error id: "12009"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
 Error id: "26391"; Message: "Access denied for user 'progas_user'@'localhost' (using password: YES)";
 Error id: "977803567"; Message: "Unknown database 'progas'";
+Error id: "1353472386"; Message: "Table 'progas.Seg_PerfilesAplicaciones' doesn't exist"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12";
+Error id: "995439126"; Message: "Table 'progas.Seg_UsuarioPerfil' doesn't exist"; Query: "
+            SELECT UsuarioPerfilId, UsuarioPerfilId AS icons, NombrePerfil
+            FROM   Seg_UsuarioPerfil
+            
+            ORDER BY UsuarioPerfilId
+            
+        ";
+Error id: "1023200060"; Message: "Table 'progas.Seg_PerfilesAplicaciones' doesn't exist"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12";
+Error id: "252105569"; Message: "Table 'progas.Seg_PerfilesAplicaciones' doesn't exist"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12";
+Error id: "945641115"; Message: "Table 'progas.Seg_UsuarioPerfil' doesn't exist"; Query: "
+            SELECT UsuarioPerfilId, UsuarioPerfilId AS icons, NombrePerfil
+            FROM   Seg_UsuarioPerfil
+            
+            ORDER BY UsuarioPerfilId
+            
+        ";
+Error id: "150478249"; Message: "Table 'progas.Seg_PerfilesAplicaciones' doesn't exist"; Query: "SELECT IdApp_fk FROM Seg_PerfilesAplicaciones WHERE IdUsuarioPerfil_fk = 12";
+Error id: "343025722"; Message: "Table 'progas.Seg_Aplicaciones' doesn't exist"; Query: "SELECT IdApp, IdApp AS Sel, FileName, Descripcion
+				FROM Seg_Aplicaciones WHERE Es_activa = 1";
+Error id: "1481730834"; Message: "Table 'progas.Seg_Aplicaciones' doesn't exist"; Query: "SELECT IdApp, IdApp AS Sel, FileName, Descripcion
+				FROM Seg_Aplicaciones WHERE Es_activa = 1";
+Error id: "367451679"; Message: "Table 'progas.Seg_Aplicaciones' doesn't exist"; Query: "SELECT IdApp, IdApp AS Sel, FileName, Descripcion
+				FROM Seg_Aplicaciones WHERE Es_activa = 1";
+Error id: "1583702921"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar, t1.Fecha, 112) AS numeric) => 20240706
+            ORDER BY  t1.IdSoli' at line 5"; Query: "
+            SELECT t1.IdSolicitud, t1.Folio, t3.NoEstacion, t3.EstacionServicio, t1.Fecha
+            FROM solicitudes t1 
+						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk
+            WHERE  Estatus = 2 AND t1.IdEstacion_fk IN(187,222,229,223,159) AND  CAST(CONVERT(varchar, t1.Fecha, 112) AS numeric) => 20240706
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "776597445"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar, t1.Fecha, 112) AS numeric) >= 20240706 AND  CAST(CONVERT(varchar, t1.Fe' at line 5"; Query: "
+            SELECT t1.IdSolicitud, t1.Folio, t3.NoEstacion, t3.EstacionServicio, t1.Fecha
+            FROM solicitudes t1 
+						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
+						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk
+            WHERE  Estatus = 2 AND t1.IdEstacion_fk IN(187,222,229,223,159) AND  CAST(CONVERT(varchar, t1.Fecha, 112) AS numeric) >= 20240706 AND  CAST(CONVERT(varchar, t1.Fecha, 112) AS numeric) <= 20240706
+            ORDER BY  t1.IdSolicitud
+                    asc
+            LIMIT 0, 8
+        ";
+Error id: "632350110"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND t1.IdEstacion_fk = 187' at line 6"; Query: "SELECT t1.Folio, t1.IdEstacion_fk, t1.IdCategoria_fk, t1.fecha, t1.Estatus, t1.Observaciones 
+            FROM solicitudes t1
+            LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+            WHERE t1.IdCategoria_fk IS NOT NULL AND t1.Estatus > 1 
+            AND t1.fecha >= 20240709 AND t1.fecha <= 20240709
+            AND COALESCE(t1.Estatus, 0) =  AND t1.IdEstacion_fk = 187";
+Error id: "2006623031"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND t1.IdEstacion_fk = 187' at line 6"; Query: "SELECT t1.Folio, t1.IdEstacion_fk, t1.IdCategoria_fk, t1.fecha, t1.Estatus, t1.Observaciones 
+            FROM solicitudes t1
+            LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+            WHERE t1.IdCategoria_fk IS NOT NULL AND t1.Estatus > 1 
+            AND t1.fecha >= 20240709 AND t1.fecha <= 20240709
+            AND COALESCE(t1.Estatus, 0) =  AND t1.IdEstacion_fk = 187";
+Error id: "1257112936"; Message: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 't2.NoEstacion) AS EstacionServicio, t1.IdCategoria_fk, t1.fecha, t1.Estatus, t1.' at line 1"; Query: "SELECT t1.Folio, CONCAT(t2.EstacionServicio '  ' t2.NoEstacion) AS EstacionServicio, t1.IdCategoria_fk, t1.fecha, t1.Estatus, t1.Observaciones 
+            FROM solicitudes t1
+            LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.IdEstacion
+            WHERE t1.IdCategoria_fk IS NOT NULL AND t1.Estatus > 1 
+            AND t1.fecha >= 20240701 AND t1.fecha <= 20240709
+                        
+            AND t1.IdEstacion_fk = 217";
+Error id: "1094456110"; Message: "Unknown column 't2.217' in 'on clause'"; Query: "SELECT t1.Folio, CONCAT(t2.EstacionServicio +' '+ t2.NoEstacion) AS EstacionServicio, t1.IdCategoria_fk, t1.fecha, t1.Estatus, t1.Observaciones 
+            FROM solicitudes t1
+            LEFT JOIN estaciones t2 ON t1.IdEstacion_fk = t2.217
+            WHERE t1.IdCategoria_fk IS NOT NULL AND t1.Estatus > 1 
+            AND t1.fecha >= 20240701 AND t1.fecha <= 20240709
+                        
+            AND t1.IdEstacion_fk = 217";

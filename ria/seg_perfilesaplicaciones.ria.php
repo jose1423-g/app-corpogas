@@ -27,7 +27,7 @@ if (!strlen($id_user)) {
 	$sIndexColumn = "UsuarioPerfilId";
 	
 	/* DB table to use */
-	$sTable = "Seg_UsuarioPerfil";
+	$sTable = "seg_usuarioperfil";
 	
 	$custom_from = "";
 	
