@@ -203,12 +203,18 @@ if ($op == 'loadSolicitud') {
 						$qry = "SELECT Folio, IdCategoria_fk FROM solicitudes WHERE IdSolicitud = $id_solicitud";						
 						$a_solicitudes = DbQryToRow($qry);
 						$folio = $a_solicitudes['Folio'];
-						$id_categoria = $a_solicitudes['IdCategoria_fk'];
-
-						$id_categoria = ltrim($id_categoria, ',');						
+						$id_categoria = $a_solicitudes['IdCategoria_fk'];					
+						
+						$id_categoria_clean = ltrim($id_categoria, ',');
+						$id_categoria_clean = trim($id_categoria_clean );
+						// Separar la cadena en un array por comas
+						$categories = explode(',', $id_categoria_clean);
+						// Eliminar valores vacíos del array
+						$categories = array_filter($categories);
+						$categories = implode(',', $categories);
 						
 						$a_data_categoria = array();
-						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";													
+						$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($categories)";													
 						$a_categoria =  DbQryToArray($qry);
 						foreach ($a_categoria as $row){
 							$valor =  $row['Categoria'];
@@ -380,12 +386,18 @@ if ($op == 'loadSolicitud') {
 				$qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";						
 				$a_estaciones = DbQryToRow($qry);
 				$estacion = $a_estaciones['EstacionServicio'];
-				$no_estacion = $a_estaciones['NoEstacion'];
-
-				$id_categoria = ltrim($id_categoria, ',');						
+				$no_estacion = $a_estaciones['NoEstacion'];				
+				
+				$id_categoria_clean = ltrim($id_categoria, ',');
+                $id_categoria_clean = trim($id_categoria_clean );
+                // Separar la cadena en un array por comas
+                $categories = explode(',', $id_categoria_clean);
+                // Eliminar valores vacíos del array
+                $categories = array_filter($categories);
+                $categories = implode(',', $categories);
 				
 				$a_data_categoria = array();
-				$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";													
+				$qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($categories)";													
 				$a_categoria =  DbQryToArray($qry);
 				foreach ($a_categoria as $row){
 					$valor =  $row['Categoria'];
@@ -415,7 +427,7 @@ if ($op == 'loadSolicitud') {
 				$mail_passwd = 'qptttahefmxcndli';
 				$mail_smtp_secure = 'tls';
 				$mail_firma_url = "";
-				$mail_backup = 'compras@gruposynergo.com';// destinatario 
+				$mail_backup = "$email";// destinatario 
 				$zp = 0;
 
 				$ruta = $directorio.''.$ultimo_archivo;

@@ -17,7 +17,7 @@ $id_user = SessGetUserId();
 $a_head_data = array('#', 'Acciones', 'Folio', 'Estacion', 'Estatus', 'Fecha Creacion');
 $a_head_data_refacciones = array('Partida', 'Referencia', 'Descripcion', 'Cantidad');
 
-$qry = "SELECT t1.IdEstacion, t1.EstacionServicio
+$qry = "SELECT t1.IdEstacion, t1.EstacionServicio, t1.NoEstacion
         FROM estaciones t1
         LEFT JOIN seg_estacionesusuario t2 ON t2.IdEstacion_fk = t1.IdEstacion
         WHERE t2.IdUsuario_fk = $id_user";
@@ -26,7 +26,8 @@ $estacion;
 foreach($a_estaciones as $row){
     $id = $row['IdEstacion'];
     $nombre = utf8_encode($row['EstacionServicio']);
-    $estacion .= "<option value='$id'>$nombre</option>";
+    $numero = $row['NoEstacion'];
+    $estacion .= "<option value='$id'>$numero  -  $nombre</option>";
 }
 
 $fecha = DtDbToday();

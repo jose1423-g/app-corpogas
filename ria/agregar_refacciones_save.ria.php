@@ -329,7 +329,7 @@ if ($op == 'ShowImg') {
 } else if ($op == 'Revision') {
 
     $qry = "SELECT MAX(IdSolicitud) FROM solicitudes";
-    $id_solicitud  =  DbGetFirstFieldValue($qry);
+    $id_solicitud  =  DbGetFirstFieldValue($qry);    
 
     $qry  = "UPDATE solicitudes SET Estatus = 2 WHERE IdSolicitud = $id_solicitud";
     $res_upd = DbExecute($qry);
@@ -357,7 +357,7 @@ if ($op == 'ShowImg') {
                 $qry = "SELECT Folio, IdEstacion_fk, IdUsuario_fk, IdCategoria_fk
                         FROM solicitudes
                         WHERE IdSolicitud = $id_solicitud";
-                $a_data = DbQryToRow($qry);
+                $a_data = DbQryToRow($qry);                
                 $folio = $a_data['Folio'];
                 $id_usuario = $a_data['IdUsuario_fk'];
                 $id_estacion = $a_data['IdEstacion_fk'];		
@@ -365,25 +365,31 @@ if ($op == 'ShowImg') {
                 
                 /* obtiene el email del gerente */
                 $qry = "SELECT Email FROM seg_usuarios WHERE IdUsuario = $id_usuario";						
-                $a_usuarios = DbQryToRow($qry);
+                $a_usuarios = DbQryToRow($qry);                
                 $email = $a_usuarios['Email'];
 
                 /* obtiene el email del supervisor */
                 $qry = "SELECT t1.EMail
                 FROM seg_usuarios t1 
                 LEFT JOIN seg_estacionesusuario t2 ON t1.IdUsuario = t2.IdUsuario_fk
-                WHERE t2.IdEstacion_fk = $id_estacion";
-                $email_supervisor = DbGetFirstFieldValue($qry);
+                WHERE t2.IdEstacion_fk = $id_estacion";                
+                $email_supervisor = DbGetFirstFieldValue($qry);                
 
                 $qry = "SELECT EstacionServicio, NoEstacion FROM estaciones WHERE IdEstacion = $id_estacion";						
-                $a_estaciones = DbQryToRow($qry);
+                $a_estaciones = DbQryToRow($qry);                
                 $estacion = $a_estaciones['EstacionServicio'];
                 $no_estacion = $a_estaciones['NoEstacion'];
 
-                $id_categoria = ltrim($id_categoria, ',');						
+                $id_categoria_clean = ltrim($id_categoria, ',');
+                $id_categoria_clean = trim($id_categoria_clean );
+                // Separar la cadena en un array por comas
+                $categories = explode(',', $id_categoria_clean);
+                // Eliminar valores vacíos del array
+                $categories = array_filter($categories);
+                $categories = implode(',', $categories);
                 
                 $a_data_categoria = array();
-                $qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($id_categoria)";													
+                $qry = "SELECT Categoria FROM productos_categorias WHERE IdCategoria IN($categories)";
                 $a_categoria =  DbQryToArray($qry);
                 foreach ($a_categoria as $row){
                     $valor =  $row['Categoria'];
@@ -413,7 +419,7 @@ if ($op == 'ShowImg') {
                 $mail_passwd = 'qptttahefmxcndli';
                 $mail_smtp_secure = 'tls';
                 $mail_firma_url = "";
-                $mail_backup = 'compras@gruposynergo.com';// destinatario 
+                $mail_backup = "$email_supervisor";// destinatario 
                 $zp = 0;
 
                 $ruta = $directorio.''.$ultimo_archivo;

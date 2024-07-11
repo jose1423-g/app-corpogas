@@ -21,16 +21,6 @@ $id_perfil = $a_perfil['UsuarioPerfilId_fk'];
 $qry = "SELECT IdEstacion_fk FROM seg_estacionesusuario WHERE IdUSuario_fk = $id_user";
 $a_estacion = DbQryToRow($qry);
 $id_estacion = $a_estacion['IdEstacion_fk'];
-	
-// $qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = 436";
-// $a_data = DbQryToRow($qry);
-// $es_perfil = $a_data['UsuarioPerfilId_fk'];
-// $perfil = 0;
-// 	if ($es_perfil == 12) {
-// 		$perfil = 1;
-// 	}
-
-
 
 	/* Array of database columns which should be read and sent back to DataTables. Use a space where
 	 * you want to insert a non-database field (for example a counter or static image)
@@ -52,20 +42,12 @@ $id_estacion = $a_estacion['IdEstacion_fk'];
 	$custom_from = "FROM solicitudes t1 
 						LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
 						LEFT JOIN estaciones t3 ON t3.IdEstacion = t1.IdEstacion_fk";
-	// $custom_from = "FROM solicitudes t1 
-	// 				LEFT JOIN seg_usuarios t2 ON t1.IdUsuario_fk = t2.IdUsuario
-	// 				LEFT JOIN estaciones t3 ON t1.IdEstacion_fk  = t3.IdEstacion 
-	// 				LEFT JOIN seg_estacionesusuario t4 ON t3.IdEstacion = t4.IdEstacion_fk";
 						
 	$custom_where = "";
     $folio = (isset($_GET['Folio'])) ? $_GET['Folio'] : '';
 	$s_mostrar =  (isset($_GET['s_mostrar'])) ? $_GET['s_mostrar'] : '';
 	$s_estacion =  (isset($_GET['s_estacion'])) ? $_GET['s_estacion'] : '';
     
-    // if (strlen($s_razon_social)) {
-    //     $custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-    //     $custom_where .= " Folio LIKE '%$folio%'";
-    // }
 	
 	if (strlen($s_mostrar)) {
 		if ($s_mostrar == 2) {
@@ -88,7 +70,7 @@ $id_estacion = $a_estacion['IdEstacion_fk'];
 		}
     } else {
 		$custom_where .= (strlen($searchValue) or strlen($custom_where)) ? " AND " : "WHERE ";
-		$custom_where .= " Estatus = 2";
+		$custom_where .= "Estatus > 1";
 	}
 
 	/* esta condicion es solo para genrentes los admin y los supervisores pueden ver todas */
