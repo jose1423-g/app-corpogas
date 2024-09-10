@@ -25,10 +25,16 @@
                     <p class="d-none ms-3 mb-0">Estatus solicitud</p>
                 </a>
             </li>
-            <li class="nav-item menu-item">
+            <li class="nav-item mb-3 menu-item">
                 <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="reporte_solicitudes.php">
                     <i class="nav-icon fs-5 fas fa-file-alt"></i>
                     <p class="d-none ms-3 mb-0">Reporte de solicitudes</p>
+                </a>
+            </li>
+            <li class="nav-item menu-item">
+                <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="upload_excel.php">
+                    <i class="nav-icon fs-5 fas fa-file-alt"></i>
+                    <p class="d-none ms-3 mb-0">Upload excel</p>
                 </a>
             </li>
         </div>

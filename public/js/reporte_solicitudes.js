@@ -73,7 +73,7 @@ $(document).ready(function() {
 		let fecha_hasta = $("#s_FechaHasta").val();
 		let estatus = $("#s_mostrar").val();		
 		if(estacion){		
-		var window_url = `../../reportes_excel/reporte_solicitudes_xlsx.php?op=get_exel&s_estacion=${estacion}&s_FechaDesde=${fecha_desde}&s_FechaHasta=${fecha_hasta}&s_mostrar=${estatus}`;		
+		var window_url = `../../reportes_excel/reporte_solicitudes_xlsx.php?op=get_exel&s_estacion=${estacion}&s_FechaDesde=${fecha_desde}&s_FechaHasta=${fecha_hasta}&s_mostrar=${estatus}`;
 		window.open(window_url, 'mywindow', 'status=1,resizable=1,height=400,width=400');
 		} else {
 			toastr.warning('El campo estacion es requerido');
