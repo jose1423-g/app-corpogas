@@ -34,7 +34,7 @@
             <li class="nav-item menu-item">
                 <a class="d-flex justify-content-center align-items-center text-white text-decoration-none px-3" href="upload_excel.php">
                     <i class="nav-icon fs-5 fas fa-file-alt"></i>
-                    <p class="d-none ms-3 mb-0">Upload excel</p>
+                    <p class="d-none ms-3 mb-0">Subir archivos excel</p>
                 </a>
             </li>
         </div>
