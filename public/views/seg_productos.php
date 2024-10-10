@@ -69,13 +69,13 @@ if ($perfil == 13) {
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="form-label fw-bold" for="">Referencia</label>
+                                <label class="form-label fw-bold" for="Referencia">Referencia</label>
                                 <input type="text" class="form-control form-control-sm" name="Referencia" id="Referencia">
                             </div> 
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="form-label fw-bold" for="">Numero de serie</label>
+                                <label class="form-label fw-bold" for="NoSerie">Numero de serie</label>
                                 <input type="text" class="form-control form-control-sm" name="NoSerie" id="NoSerie">
                             </div> 
                         </div>

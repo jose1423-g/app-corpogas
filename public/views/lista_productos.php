@@ -16,11 +16,11 @@ $app_title = 'Categorias';
 $usuarios_active = 'active';
 segVerifyAuth($app);
 
-// $id_user = SessGetUserId();
+$id_user = SessGetUserId();
 // $g_nombre_usuario = GetUserName($id_user, 'NA');
 
 // // read data (grid)
-$a_head_data = array('IdProducto', 'Descripción', 'Referencia', 'No Serie', 'Categoría', 'Imagen', 'Acción');
+$a_head_data = array('IdProducto', 'Editar', 'Descripción', 'Referencia', 'No Serie', 'Categoría', 'Imagen', 'Acción');
 // $a_grid_data = array();
 
 /* Categoria */
@@ -33,14 +33,43 @@ foreach ($a_categoria as $row){
     $html .= "<option value='$id'>$des</option>";
 }
 
+$qry = "SELECT IdCategoria, Categoria FROM productos_categorias WHERE EsActivo = 1";
+$a_categoria = DbQryToArray($qry, true);
+$html_categoria = '';
+foreach ($a_categoria as $row){
+    $id = $row['IdCategoria'];
+    $categoria = $row['Categoria'];
+    $html_categoria .= "<option value='$id'>$categoria</option>";
+}
+
+$qry = "SELECT UsuarioPerfilId_fk FROM seg_usuarios WHERE IdUsuario = $id_user";
+$perfil  =  DbGetFirstFieldValue($qry);
+if ($perfil == 13) {
+	$btn_save = '';
+	$btn_new = '';
+} else if ($perfil == 16) {
+	$btn_save = '<button type="button" name="btn-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>';
+	// $btn_new = '<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
+} else if ($perfil == 12) {
+	$btn_save = '<button type="button" name="btn-save" id="btn-save" class="btn btn-sm btn-primary">Guardar</button>';
+	// $btn_new = '<button type="button" id="button-add" title="Agregar" class="btn btn-primary btn-sm"><span class="fa fas fa-plus fs-6 me-2"></span>Nuevo</button>';
+}
+
 
 ?>
 
 <?php include('../layouts/main.php'); ?>
 <?php include('../layouts/main_content.php') ?>
 
-	<!-- <img src="..." class="img-fluid" alt="..."> -->
-	<!-- modal -->
+	<div class="position-absolute top-50 start-50 translate-middle w-25 d-none" id="spinner" style="z-index: 2000">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+	
+	<!-- modal  img-->
 	<div class="modal fade" id="DataModal" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -58,6 +87,64 @@ foreach ($a_categoria as $row){
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal para editar -->
+	<div class="modal fade" id="DataModalEdit" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Actulizar</h5>
+					<button type="button" class="btn-close" id="close-modal-img" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>				
+				<form id="form-data" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+					<input type="hidden" id="Id_producto" name="Id_producto">
+					<input type="hidden" name="img" id="img">
+					<div class="modal-body p-3">
+
+						<div class="form-group">
+							<label class="form-label fw-bold" for="NombreRefaccion">Nombre Refaccion</label>
+							<input type="text" class="form-control form-control-sm" name="NombreRefaccion" id="NombreRefaccion">
+						</div>
+						
+						<div class="form-group">
+							<label class="form-label fw-bold" for="Referencia">Referencia</label>
+							<input type="text" class="form-control form-control-sm" name="Referencia" id="Referencia">
+						</div> 							
+						
+						<div class="form-group">
+							<label class="form-label fw-bold" for="NoSerie">Numero de serie</label>
+							<input type="text" class="form-control form-control-sm" name="NoSerie" id="NoSerie">
+						</div> 
+													
+						<div class="form-group">
+							<label class="form-label fw-bold" for="IdCategoria_fkP">Categoria</label>
+							<select class="form-control form-control-sm" name="IdCategoria_fkP" id="IdCategoria_fkP">
+								<option value=""></option>
+								<?php echo $html_categoria; ?>
+							</select>
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label" for="uploadedfile">Imagen</label>
+							<input class="form-control form-control-sm" type="file" name="uploadedfile"  id="uploadedfile">							
+							<p class="my-p" id=img_p></p>
+						</div>
+							
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" name="EsActivoP" id="EsActivoP">
+							<label class="custom-control-label" for="EsActivoP">Activo</label>
+						</div>
+														
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+						<?php echo $btn_save; ?>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<div class="row px-5 mb-100">
         <!-- search -->
         <div class="col-12 shadow-sm bg-white rounded-2 py-2">

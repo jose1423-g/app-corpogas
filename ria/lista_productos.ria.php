@@ -15,8 +15,8 @@ if (!strlen($id_user)) {
 	 * you want to insert a non-database field (for example a counter or static image)
 	 */
 	 
-	$aColumns = array('t1.IdProducto', 't1.NombreRefaccion', 't1.Referencia', 't1.NoSerie', 't2.Categoria', 't1.IdProducto AS btnshow', 't1.EsActivo');
-	$aColumnsClean = array('IdProducto','NombreRefaccion','Referencia','NoSerie','Categoria', 'btnshow', 'EsActivo');
+	$aColumns = array('t1.IdProducto', 't1.IdProducto AS icon', 't1.NombreRefaccion', 't1.Referencia', 't1.NoSerie', 't2.Categoria', 't1.IdProducto AS btnshow', 't1.EsActivo');
+	$aColumnsClean = array('IdProducto', 'icon', 'NombreRefaccion','Referencia','NoSerie','Categoria', 'btnshow', 'EsActivo');
 
 	// especifico
 	// ..
@@ -97,7 +97,10 @@ if (!strlen($id_user)) {
 	while ( $aRow = mysqli_fetch_array( $rResult ) ) {
 		$row = array();
 		for ( $i=0 ; $i<count($aColumns) ; $i++ ) {
-			if ( $aColumns[$i] == "btnshow" ) {
+			if ( $aColumns[$i] == "icon" ) {
+				$icons = '<div style="cursor:pointer;" title="Editar"><span class="fas fa-pen-square text-primary fs-5 btn-edit" aria-hidden="true"></span></div>';
+				$row[] = $icons;
+			} else if ( $aColumns[$i] == "btnshow" ) {
 				$icons = '<button type="button" class="btn btn-primary btn-sm btn-img"><i class="fas fa-eye"></i></button>';
 				$row[] = $icons;
 			} else if ($aColumns[$i] == "EsActivo" ){
